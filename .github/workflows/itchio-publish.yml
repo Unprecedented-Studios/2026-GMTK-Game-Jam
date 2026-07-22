@@ -52,19 +52,19 @@ jobs:
         run: "ls -l ./build"
         
       - name: Remove Old WASM
-        run: "rm ./build/${{ env.GODOT_EXPORT_NAME }}/index.wasm"
+        run: "rm ./build/index.wasm"
 
       - name: list files
         if: always()
         run: "ls -l ./build"
 
-      - run: "sed -i -e 's/.wasm/.wasm.br/g' ./build/${{ env.GODOT_EXPORT_NAME }}/index.html"
-      - run: "sed -i -e 's/.wasm`/.wasm.br`/g' ./build/${{ env.GODOT_EXPORT_NAME }}/index.js"
+      - run: "sed -i -e 's/.wasm/.wasm.br/g' ./build/index.html"
+      - run: "sed -i -e 's/.wasm`/.wasm.br`/g' ./build/index.js"
       - name: Zip For Release
         uses: TheDoctor0/zip-release@0.7.6
         with:
           filename: ${{ env.GODOT_EXPORT_NAME }}.zip
-          directory: ./build/${{ env.GODOT_EXPORT_NAME }}
+          directory: ./build/
       
     
       - name: list files
