@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
         
       - name: Move Build
-        run: "mv ${{ steps.export.outputs.build_directory }}/$GODOT_EXPORT_NAME ./build"
+        run: "mv ${{ steps.export.outputs.build_directory }}/${{ env.GODOT_EXPORT_NAME }} ./build"
         
       - name: Compress wasm
         # You may pin to the exact commit or the version.
@@ -52,19 +52,19 @@ jobs:
         run: "ls -l ./build"
         
       - name: Remove Old WASM
-        run: "rm ./build/GMTK-2026-web/index.wasm"
+        run: "rm ./build/${{ env.GODOT_EXPORT_NAME }}/index.wasm"
 
       - name: list files
         if: always()
         run: "ls -l ./build"
 
-      - run: "sed -i -e 's/.wasm/.wasm.br/g' ./build/$GODOT_EXPORT_NAME/index.html"
-      - run: "sed -i -e 's/.wasm`/.wasm.br`/g' ./build/$GODOT_EXPORT_NAME/index.js"
+      - run: "sed -i -e 's/.wasm/.wasm.br/g' ./build/${{ env.GODOT_EXPORT_NAME }}/index.html"
+      - run: "sed -i -e 's/.wasm`/.wasm.br`/g' ./build/${{ env.GODOT_EXPORT_NAME }}/index.js"
       - name: Zip For Release
         uses: TheDoctor0/zip-release@0.7.6
         with:
-          filename: gamedev-2025-web.zip
-          directory: ./build/$GODOT_EXPORT_NAME
+          filename: ${{ env.GODOT_EXPORT_NAME }}.zip
+          directory: ./build/${{ env.GODOT_EXPORT_NAME }}
       
     
       - name: list files
@@ -75,6 +75,6 @@ jobs:
 #        with:
 #          butler_key: ${{secrets.ITCHIO_TOKEN}}
 #          itch_user: mcnigma
-#          itch_game: escape-the-tank
+#          itch_game: GMTK-2026-tbd
 #          version: ${{ github.ref_name }}
-#          files: "${{ steps.export.outputs.archive_directory }}/gamedev-2025-web.zip"
+#          files: "${{ steps.export.outputs.archive_directory }}/${{ env.GODOT_EXPORT_NAME }}.zip"
