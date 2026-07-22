@@ -78,4 +78,4 @@ jobs:
           itch_user: unprecedented
           itch_game: gmtk-2026-game-jam
           version: ${{ github.ref_name }}
-          files: "${{ steps.export.outputs.archive_directory }}/${{ env.GODOT_EXPORT_NAME }}.zip"
+          files: "build/${{ env.GODOT_EXPORT_NAME }}.zip"
