@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://1kpckr43gxh0"]
 
 [ext_resource type="Texture2D" uid="uid://bn7h5wx3bavf2" path="res://assets/Characters/Hero_01.png" id="1_agfs1"]
-[ext_resource type="PackedScene" uid="uid://c3mmg5v2dxirm" path="res://scenes/status_box.tscn" id="2_rkhd4"]
+[ext_resource type="PackedScene" uid="uid://grm1n1j5ar5" path="res://scenes/buff.tscn" id="2_lrhn5"]
+[ext_resource type="PackedScene" uid="uid://c3mmg5v2dxirm" path="res://scenes/health_bar.tscn" id="2_rkhd4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("1_agfs1")
@@ -233,8 +234,32 @@ sprite_frames = SubResource("SpriteFrames_p74uo")
 animation = &"attack"
 frame_progress = 0.80621135
 
-[node name="StatusBox" parent="." unique_id=1365132128 instance=ExtResource("2_rkhd4")]
+[node name="Status" type="VBoxContainer" parent="." unique_id=2098837675]
 offset_left = -88.0
-offset_top = 78.0
+offset_top = 91.0
 offset_right = 88.0
-offset_bottom = 176.0
+offset_bottom = 225.0
+
+[node name="HealthBar" parent="Status" unique_id=1365132128 instance=ExtResource("2_rkhd4")]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BuffsAndDebuffs" type="GridContainer" parent="Status" unique_id=725685112]
+layout_mode = 2
+size_flags_horizontal = 0
+columns = 5
+
+[node name="Buff" parent="Status/BuffsAndDebuffs" unique_id=152885644 instance=ExtResource("2_lrhn5")]
+layout_mode = 2
+
+[node name="Buff2" parent="Status/BuffsAndDebuffs" unique_id=1499338431 instance=ExtResource("2_lrhn5")]
+layout_mode = 2
+
+[node name="Buff3" parent="Status/BuffsAndDebuffs" unique_id=18965508 instance=ExtResource("2_lrhn5")]
+layout_mode = 2
+
+[node name="Buff4" parent="Status/BuffsAndDebuffs" unique_id=1927088358 instance=ExtResource("2_lrhn5")]
+layout_mode = 2
+
+[node name="Buff5" parent="Status/BuffsAndDebuffs" unique_id=1151752139 instance=ExtResource("2_lrhn5")]
+layout_mode = 2

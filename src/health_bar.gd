@@ -20,8 +20,6 @@ var health: int = 100:
 		health_bar.value = (float(health)/float(max_health))
 		health_label.text = str(health)
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

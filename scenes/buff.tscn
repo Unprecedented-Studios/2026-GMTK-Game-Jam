@@ -97,6 +97,7 @@ region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
 [node name="DurationTimer" type="Timer" parent="." unique_id=101613920]
+wait_time = 5.0
 one_shot = true
 
 [node name="DurationCover" type="ProgressBar" parent="." unique_id=823223496]
@@ -106,7 +107,6 @@ offset_right = 32.0
 offset_bottom = 32.0
 theme = SubResource("Theme_bareo")
 max_value = 1.0
-value = 0.4
 fill_mode = 1
 show_percentage = false
 

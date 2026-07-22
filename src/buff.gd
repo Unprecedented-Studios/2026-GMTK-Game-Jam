@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends TextureRect
 class_name Buff
 
 enum Buff_list {none,AccuracyUp, AccuracyDown, AttackUp, AttackDown, 
@@ -15,6 +15,7 @@ enum Buff_list {none,AccuracyUp, AccuracyDown, AttackUp, AttackDown,
 	Buff_list.SpeedUp:$SpeedUp,
 	Buff_list.SpeedDown:$SpeedDown,
 }
+
 
 var buff_duration_seconds:float = 5:
 	set(duration):
@@ -35,6 +36,7 @@ var type:Buff_list = Buff_list.none:
 func _ready() -> void:
 	for c:Sprite2D in buffs.values():
 		c.hide()
+	$DurationTimer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

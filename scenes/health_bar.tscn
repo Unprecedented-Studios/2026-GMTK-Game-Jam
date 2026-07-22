@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c3mmg5v2dxirm"]
+
+[ext_resource type="Script" uid="uid://d2umnxovkmjxx" path="res://src/health_bar.gd" id="1_y3kqx"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="2_6opq1"]
+
+[node name="HealthBar" type="VBoxContainer" unique_id=1365132128]
+custom_minimum_size = Vector2(176, 50)
+custom_maximum_size = Vector2(176, -1)
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+script = ExtResource("1_y3kqx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=788611588]
+layout_mode = 2
+alignment = 1
+
+[node name="Health" type="Label" parent="HBoxContainer" unique_id=674308375]
+layout_mode = 2
+theme = ExtResource("2_6opq1")
+text = "100"
+
+[node name="of" type="Label" parent="HBoxContainer" unique_id=859442073]
+layout_mode = 2
+theme = ExtResource("2_6opq1")
+text = "/"
+
+[node name="MaxHealth" type="Label" parent="HBoxContainer" unique_id=610749462]
+layout_mode = 2
+theme = ExtResource("2_6opq1")
+text = "100"
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=266414973]
+layout_mode = 2
+theme = ExtResource("2_6opq1")
+max_value = 1.0
+value = 1.0
