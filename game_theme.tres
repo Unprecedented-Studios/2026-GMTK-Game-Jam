@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://vkag71ghbux6"]
+
+[ext_resource type="FontFile" uid="uid://brvv7i7i3l63r" path="res://assets/Fonts/HolobitsStandard.ttf" id="1_1fvms"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0, 0.72156864, 0, 1)
+
+[resource]
+Label/fonts/font = ExtResource("1_1fvms")
+ProgressBar/fonts/font = ExtResource("1_1fvms")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_lquwl")

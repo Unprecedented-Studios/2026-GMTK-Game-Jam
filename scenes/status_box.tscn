@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c3mmg5v2dxirm"]
+
+[ext_resource type="Script" uid="uid://d2umnxovkmjxx" path="res://src/status_box.gd" id="1_bs0wq"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="1_vjyqx"]
+
+[node name="StatusBox" type="VBoxContainer" unique_id=1365132128]
+custom_maximum_size = Vector2(200, -1)
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+script = ExtResource("1_bs0wq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=788611588]
+layout_mode = 2
+alignment = 1
+
+[node name="Health" type="Label" parent="HBoxContainer" unique_id=674308375]
+layout_mode = 2
+theme = ExtResource("1_vjyqx")
+text = "100"
+
+[node name="of" type="Label" parent="HBoxContainer" unique_id=859442073]
+layout_mode = 2
+theme = ExtResource("1_vjyqx")
+text = "/"
+
+[node name="MaxHealth" type="Label" parent="HBoxContainer" unique_id=610749462]
+layout_mode = 2
+theme = ExtResource("1_vjyqx")
+text = "100"
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=266414973]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_vjyqx")
+value = 40.0
+
+[node name="BuffsAndDebuffs" type="GridContainer" parent="." unique_id=504285856]
+layout_mode = 2
+columns = 4
