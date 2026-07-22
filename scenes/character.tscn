@@ -234,7 +234,7 @@ animation = &"attack"
 frame_progress = 0.80621135
 
 [node name="StatusBox" parent="." unique_id=1365132128 instance=ExtResource("2_rkhd4")]
-offset_left = -99.0
-offset_top = 85.0
-offset_right = 101.0
-offset_bottom = 147.0
+offset_left = -88.0
+offset_top = 78.0
+offset_right = 88.0
+offset_bottom = 176.0
