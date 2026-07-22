@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" format=3 uid="uid://bc34f446p3bhg"]
 
-[ext_resource type="Texture2D" uid="uid://7jirw2vppq83" path="res://assets/Tilesets/Sprites/RA_Grounds.png" id="1_if7qk"]
+[ext_resource type="Texture2D" uid="uid://7jirw2vppq83" path="res://assets/Tilesets/Sprites/RA_Grounds.png" id="1_kq08k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aygpm"]
-texture = ExtResource("1_if7qk")
+texture = ExtResource("1_kq08k")
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/terrains_peering_bit/bottom_right_corner = 0
