@@ -1,5 +1,5 @@
-extends VBoxContainer
 class_name StatusBox
+extends VBoxContainer
 
 @onready var health_label:Label = $HBoxContainer/Health
 @onready var max_health_label:Label = $HBoxContainer/MaxHealth
@@ -17,14 +17,8 @@ var health: int = 100:
 		return health
 	set(new_health):
 		health = clampi(new_health,0, max_health)
-		health_bar.value = (float(health)/float(max_health)) * 100.0
+		health_bar.value = (float(health)/float(max_health))
 		health_label.text = str(health)
-		
-		
-func _ready() -> void:
-	health_label.text = "100"
-	max_health_label.text = "100"
-	health_bar.value = 100.0
 
 
 

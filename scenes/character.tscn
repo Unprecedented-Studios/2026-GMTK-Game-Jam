@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1kpckr43gxh0"]
 
 [ext_resource type="Texture2D" uid="uid://bn7h5wx3bavf2" path="res://assets/Characters/Hero_01.png" id="1_agfs1"]
+[ext_resource type="PackedScene" uid="uid://c3mmg5v2dxirm" path="res://scenes/status_box.tscn" id="2_rkhd4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
 atlas = ExtResource("1_agfs1")
@@ -224,8 +225,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Character" type="AnimatedSprite2D" unique_id=1116749280]
+[node name="Character" type="Node2D" unique_id=2001436315]
+
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=1116749280]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_p74uo")
 animation = &"attack"
 frame_progress = 0.80621135
+
+[node name="StatusBox" parent="." unique_id=1365132128 instance=ExtResource("2_rkhd4")]
+offset_left = -99.0
+offset_top = 85.0
+offset_right = 101.0
+offset_bottom = 147.0
