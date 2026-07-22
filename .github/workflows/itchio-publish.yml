@@ -70,11 +70,12 @@ jobs:
       - name: list files
         run: "ls -lR ./build"
         
-#      - name: Publish to Itch
-#        uses: Ayowel/butler-to-itch@v1.2.0
-#        with:
-#          butler_key: ${{secrets.ITCHIO_TOKEN}}
-#          itch_user: mcnigma
-#          itch_game: GMTK-2026-tbd
-#          version: ${{ github.ref_name }}
-#          files: "${{ steps.export.outputs.archive_directory }}/${{ env.GODOT_EXPORT_NAME }}.zip"
+      - name: Publish to Itch
+        if: github.ref == 'refs/heads/release'
+        uses: Ayowel/butler-to-itch@v2.0.0
+        with:
+          butler_key: ${{secrets.ITCHIO_TOKEN}}
+          itch_user: unprecedented
+          itch_game: gmtk-2026-game-jam
+          version: ${{ github.ref_name }}
+          files: "${{ steps.export.outputs.archive_directory }}/${{ env.GODOT_EXPORT_NAME }}.zip"
