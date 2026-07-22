@@ -1,0 +1,80 @@
+name: Publish to Itch.io
+
+
+env:
+  GODOT_EXPORT_NAME: GMTK-2026-web
+  
+on:
+  push:
+    branches: ["release", "main"]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Godot Export
+        id: export
+        uses: firebelley/godot-export@v8.0.0
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: false
+          # Use the GitHub Actions workflow cache to cache the Godot export templates and Godot executable. 
+          # Helps speed up builds by not having to download them every time.
+          cache: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+        
+      - name: Move Build
+        run: "mv ${{ steps.export.outputs.build_directory }}/$GODOT_EXPORT_NAME ./build"
+        
+      - name: Compress wasm
+        # You may pin to the exact commit or the version.
+        # uses: ThiagoJaweb/ghaction-CompressFiles@23278320ded41f5b5c203a4aef7e69789b044336
+        uses: StefH/ghaction-CompressFiles@v1
+        with:
+          # The path
+          path: ./build # default is .
+          # The file extensions to compress.
+          extensions: '.wasm' # optional, default is .js,.css,.html,.json
+          # The compression utility to use.
+          tools: 'brotli' # optional, default is brotli,gzip
+          # Maximum folder depth to process
+          depth: 3 # optional, default is 3
+
+
+      - name: list files
+        if: always()
+        run: "ls -l ./build"
+        
+      - name: Remove Old WASM
+        run: "rm ./build/GMTK-2026-web/index.wasm"
+
+      - name: list files
+        if: always()
+        run: "ls -l ./build"
+
+      - run: "sed -i -e 's/.wasm/.wasm.br/g' ./build/$GODOT_EXPORT_NAME/index.html"
+      - run: "sed -i -e 's/.wasm`/.wasm.br`/g' ./build/$GODOT_EXPORT_NAME/index.js"
+      - name: Zip For Release
+        uses: TheDoctor0/zip-release@0.7.6
+        with:
+          filename: gamedev-2025-web.zip
+          directory: ./build/$GODOT_EXPORT_NAME
+      
+    
+      - name: list files
+        run: "ls -lR ./build"
+        
+#      - name: Publish to Itch
+#        uses: Ayowel/butler-to-itch@v1.2.0
+#        with:
+#          butler_key: ${{secrets.ITCHIO_TOKEN}}
+#          itch_user: mcnigma
+#          itch_game: escape-the-tank
+#          version: ${{ github.ref_name }}
+#          files: "${{ steps.export.outputs.archive_directory }}/gamedev-2025-web.zip"
