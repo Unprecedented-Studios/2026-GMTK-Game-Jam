@@ -102,3 +102,7 @@ func _on_action_bar_area_mouse_entered() -> void:
 	mouse_over_actions = true
 func _on_action_bar_area_mouse_exited() -> void:
 	mouse_over_actions = false
+
+
+func _on_start_button_button_up() -> void:
+	$StartMenu.hide()

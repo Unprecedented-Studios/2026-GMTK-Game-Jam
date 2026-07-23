@@ -53,7 +53,7 @@ func take_damage(info:DamageInfo) -> void:
 		elif b.type == Buff.Buff_list.DefenseUp:
 			currDamage *= .5
 	
-	$HitParticles.emitting = true
+	$HitParticles.restart()
 	if currDamage.damage > 0:
 		
 		current_hp -= currDamage.damage
@@ -72,7 +72,7 @@ func heal(amount:int) -> void:
 	var currHeal = amount;
 	
 	#loop through buff list for modifiers
-	$HealParticles.emitting = true
+	$HealParticles.restart()
 	current_hp += currHeal;
 	if current_hp > max_hp:
 			current_hp = max_hp;

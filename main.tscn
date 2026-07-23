@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b7a6agmcejp1p" path="res://src/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="4_1bvp3"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/instructions.tscn" id="6_272bh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
 size = Vector2(418.5, 55.5)
@@ -44,5 +46,66 @@ damage = 4.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=521100015]
 
+[node name="StartMenu" type="Panel" parent="." unique_id=613390001]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu" unique_id=1017478401]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -31.0
+offset_right = 171.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="StartMenu/VBoxContainer" unique_id=2099104179]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("5_7mycd")
+text = "GMTK 2026 - Party Healer"
+
+[node name="Label2" type="Label" parent="StartMenu/VBoxContainer" unique_id=1442215105]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("5_7mycd")
+
+[node name="StartButton" type="Button" parent="StartMenu/VBoxContainer" unique_id=1358768156]
+layout_mode = 2
+theme = ExtResource("5_7mycd")
+text = "Start Game"
+
+[node name="Instructions" parent="StartMenu/VBoxContainer" unique_id=403647643 instance=ExtResource("6_272bh")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/VBoxContainer" unique_id=1690243360]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BackButton" type="Button" parent="StartMenu/VBoxContainer/HBoxContainer" unique_id=850201358]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_7mycd")
+text = "Back"
+
+[node name="NextButton" type="Button" parent="StartMenu/VBoxContainer/HBoxContainer" unique_id=1470243051]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_7mycd")
+text = "Next"
+
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/StartButton" to="." method="_on_start_button_button_up"]

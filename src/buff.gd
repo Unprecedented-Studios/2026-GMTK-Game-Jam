@@ -26,7 +26,8 @@ enum Buff_list {AccuracyUp, AccuracyDown, AttackUp, AttackDown,
 var buff_duration_seconds:float = 5
 signal heal_tick
 var heal_amount:int = 5
-var type:Buff_list = Buff_list.none
+@export var type:Buff_list = Buff_list.none
+@export var instructional:bool = false
 var debuff:bool:
 	get:
 		match type:
@@ -41,6 +42,9 @@ func _ready() -> void:
 		if c != type:
 			buffs[c].queue_free()
 	buffs[type].show()
+	if instructional:
+		$DurationCover.queue_free()
+		return
 	$TickTimer.start()
 	$DurationTimer.start(buff_duration_seconds)
 	$BuffCountdown.text = str(int(round(buff_duration_seconds)))
@@ -48,6 +52,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if instructional:
+		return
 	$DurationCover.value =  (buff_duration_seconds-$DurationTimer.time_left)/buff_duration_seconds
 
 

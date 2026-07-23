@@ -3,7 +3,7 @@ class_name Action
 
 enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, AOEHeal,Dispell, Shield,Resist}
 @export var action_type:actions_list = actions_list.BasicAttack
-
+@export var instructional:bool = false
 signal action_attempt(Action)
 
 @onready var actions:Dictionary = \
@@ -35,6 +35,8 @@ func _ready() -> void:
 			actions[c].queue_free()
 		else:
 			actions[c].show()
+			if instructional:
+				continue
 			self.tooltip_text = action_information[action_type]["tooltip"]
 			cooldown_count_down = action_information[action_type]["cooldown"]
 			$HotkeyLabel.text = action_information[action_type]["key"]

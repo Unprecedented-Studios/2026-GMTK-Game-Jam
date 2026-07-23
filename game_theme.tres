@@ -6,6 +6,7 @@
 bg_color = Color(0, 0.72156864, 0, 1)
 
 [resource]
+Button/fonts/font = ExtResource("1_1fvms")
 Label/fonts/font = ExtResource("1_1fvms")
 ProgressBar/fonts/font = ExtResource("1_1fvms")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_lquwl")
