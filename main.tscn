@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d4m228n38ary8"]
 
 [ext_resource type="Script" uid="uid://b7a6agmcejp1p" path="res://src/main.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://drs4p6kc11ino" path="res://scenes/map.tscn" id="2_dg77c"]
 [ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://0lfld60o4qw7" path="res://assets/Sounds/Phat Phrog Studios - Modern Chiptune - Loop.mp3" id="5_4c57u"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="5_7mycd"]
@@ -17,6 +18,8 @@ size = Vector2(418.5, 55.5)
 
 [node name="Main" type="Node" unique_id=793544856]
 script = ExtResource("1_1bvp3")
+
+[node name="Map" parent="." unique_id=1809714923 instance=ExtResource("2_dg77c")]
 
 [node name="Enemies" type="Node2D" parent="." unique_id=524587179]
 
