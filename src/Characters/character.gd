@@ -8,10 +8,20 @@ var current_hp;
 @onready var health_bar:StatusBox = get_node("Status/HealthBar");
 @onready var buff_display:GridContainer = get_node("Status/BuffsAndDebuffs");
 
+@onready var select_box:Line2D = $SelectBox
+
 var mouse_over_me:bool = false
 
 func _ready():
 	current_hp = max_hp;
+	if self.is_in_group("enemies"):
+		select_box.default_color = Color.RED
+		select_box.clear_points()
+		select_box.add_point(Vector2(-100,-40))
+		select_box.add_point(Vector2(100,-40))
+		select_box.add_point(Vector2(100,80))
+		select_box.add_point(Vector2(-100,80))
+
 	
 func _update_healthBar():
 	health_bar.max_health = max_hp;
@@ -19,16 +29,16 @@ func _update_healthBar():
 
 var selected:bool = false:
 	get():
-		return $SelectBox.visible
+		return select_box.visible
 	set(value):
 		if value:
-			$SelectBox.show()
+			select_box.show()
 		else: 
-			$SelectBox.hide()
-
+			select_box.hide()
+const SELECT_FLASH_SPEED:float = .01
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	select_box.modulate.a = .8 + (sin(Time.get_ticks_msec()*SELECT_FLASH_SPEED)*.2)
 	
 func take_damage(info:DamageInfo) -> void:
 	if current_hp == 0:
@@ -74,9 +84,9 @@ func attack_hit(_num:int):
 
 func _input(event: InputEvent) -> void:
 	if not mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $SelectBox.visible:
-		$SelectBox.hide()
+		select_box.hide()
 	elif mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		$SelectBox.show()
+		select_box.show()
 
 
 
