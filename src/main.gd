@@ -158,3 +158,11 @@ func _on_next_button_button_up() -> void:
 			i.hide()
 		instructions[active_instruction].show()
 #endregion
+
+
+func _on_v_slider_drag_ended(value_changed: bool) -> void:
+	AudioServer.set_bus_volume_linear(0,$StartMenu/VBoxContainer/MainMenu/HBoxContainer/VolumeSlider.value/100.0)
+
+
+func _on_background_music_finished() -> void:
+	$StartMenu/BackgroundMusic.play()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7a6agmcejp1p" path="res://src/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://0lfld60o4qw7" path="res://assets/Sounds/Phat Phrog Studios - Modern Chiptune - Loop.mp3" id="5_4c57u"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://b7tff3a1g5o5o" path="res://assets/Primitive/GrayBox.png" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="5_lquwl"]
@@ -46,8 +47,6 @@ damage = 6.0
 position = Vector2(677, 59)
 attack_rate = 1.5
 damage = 4.0
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=521100015]
 
 [node name="StartMenu" type="Panel" parent="." unique_id=613390001]
 process_mode = 3
@@ -197,7 +196,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_7mycd")
 
-[node name="VSlider" type="HSlider" parent="StartMenu/VBoxContainer/MainMenu/HBoxContainer" unique_id=60945427]
+[node name="VolumeSlider" type="HSlider" parent="StartMenu/VBoxContainer/MainMenu/HBoxContainer" unique_id=60945427]
 custom_minimum_size = Vector2(150, 0)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -240,10 +239,16 @@ size_flags_horizontal = 3
 theme = ExtResource("5_7mycd")
 text = "Next"
 
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="StartMenu" unique_id=521100015]
+stream = ExtResource("5_4c57u")
+autoplay = true
+
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/StartButton" to="." method="_on_start_button_button_up"]
 [connection signal="button_down" from="StartMenu/VBoxContainer/MainMenu/HowToPlay" to="." method="_on_how_to_play_button_down"]
+[connection signal="drag_ended" from="StartMenu/VBoxContainer/MainMenu/HBoxContainer/VolumeSlider" to="." method="_on_v_slider_drag_ended"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_button_up"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_button_up"]
+[connection signal="finished" from="StartMenu/BackgroundMusic" to="." method="_on_background_music_finished"]
