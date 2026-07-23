@@ -68,7 +68,6 @@ func heal(amount:int) -> void:
 			current_hp = max_hp;
 	#TODO play heal animation?
 	_update_healthBar();
-	
 
 func die() -> void:
 	current_hp = 0;
@@ -81,6 +80,16 @@ func die() -> void:
 func attack_hit(_num:int):
 	pass;
 
+func apply_buff(new_buff:Buff):
+	for b:Buff in buff_display.get_children():
+		if b.type == new_buff.type:
+			b.queue_free()
+	buff_display.add_child(new_buff)
+	
+func dispell():
+	for b:Buff in buff_display.get_children():
+		if b.debuff:
+			b.queue_free()
 
 func _input(event: InputEvent) -> void:
 	if mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

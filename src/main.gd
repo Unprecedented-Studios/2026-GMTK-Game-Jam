@@ -64,6 +64,8 @@ var heal_amount:int = 50
 var aoe_heal_amount:int = 20
 var basic_attack_damage:DamageInfo = DamageInfo.new()
 
+var buff_preload = preload("res://scenes/buff.tscn")
+
 func perform_action(act:Action):
 	var selected_character = get_selected_character()
 	if selected_character == null:
@@ -74,17 +76,26 @@ func perform_action(act:Action):
 			selected_character.heal(small_heal_amount)
 		elif act.action_type == Action.actions_list.Heal:
 			selected_character.heal(heal_amount)
+		elif act.action_type == Action.actions_list.AOEHeal:
+			for a:Character in $Allies:
+				a.heal(aoe_heal_amount)
 		elif act.action_type == Action.actions_list.BasicAttack:
 			basic_attack_damage.damage = 5.0
 			selected_character.take_damage(basic_attack_damage)
 		elif act.action_type == Action.actions_list.HealOverTime:
-			pass
+			var new_HOT:Buff = buff_preload.instantiate()
+			new_HOT.type = Buff.Buff_list.HealOverTime
+			selected_character.apply_buff(new_HOT)
 		elif act.action_type == Action.actions_list.Dispell:
-			pass
+			selected_character.dispell()
 		elif act.action_type == Action.actions_list.Shield:
-			pass
+			var new_shield:Buff = buff_preload.instantiate()
+			new_shield.type = Buff.Buff_list.Shield
+			selected_character.apply_buff(new_shield)
 		elif act.action_type == Action.actions_list.Resist:
-			pass
+			var new_resist:Buff = buff_preload.instantiate()
+			new_resist.type = Buff.Buff_list.Resist
+			selected_character.apply_buff(new_resist)
 
 var mouse_over_actions:bool = false
 func _on_action_bar_area_mouse_entered() -> void:

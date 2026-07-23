@@ -1,9 +1,10 @@
 extends TextureRect
 class_name Buff
 
-enum Buff_list {none,AccuracyUp, AccuracyDown, AttackUp, AttackDown, 
+enum Buff_list {AccuracyUp, AccuracyDown, AttackUp, AttackDown, 
 				DefenseUp,DefenseDown,SpeedUp,SpeedDown, Shield,HealOverTime, 
-				Resist}
+				Resist,
+				none}
 				
 @onready var buffs:Dictionary =\
 {
@@ -26,22 +27,23 @@ var buff_duration_seconds:float = 5:
 	set(duration):
 		buff_duration_seconds = duration
 		$DurationTimer.start(duration)
-		
+	
 
-var type:Buff_list = Buff_list.none:
-	set(new_type):
-		for c in buffs.keys():
-			if c != new_type:
-				buffs[c].queue_free()
-		if new_type != Buff_list.none:
-			buffs[new_type].show()
+var type:Buff_list = Buff_list.none
+var debuff:bool:
 	get:
-		return type
-
+		match type:
+			Buff_list.AccuracyDown: return true
+			Buff_list.AttackDown: return true
+			Buff_list.DefenseDown: return true
+			Buff_list.SpeedDown: return true
+		return false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for c:Sprite2D in buffs.values():
-		c.hide()
+	for c in buffs.keys():
+		if c != type:
+			buffs[c].queue_free()		
+	buffs[type].show()
 	$DurationTimer.start()
 
 
