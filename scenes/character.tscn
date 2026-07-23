@@ -7,9 +7,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
 size = Vector2(176, 155)
 
+[sub_resource type="Curve" id="Curve_p74uo"]
+_data = [Vector2(0, 0.9476489), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d0tu5"]
+colors = PackedColorArray(0, 1, 0, 1, 0.35686275, 1, 0.49019608, 1)
+
+[sub_resource type="Curve" id="Curve_lrhn5"]
+_data = [Vector2(0.048423797, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Character" type="Node2D" unique_id=2001436315]
 script = ExtResource("1_my7n2")
-max_hp = null
 
 [node name="Status" type="VBoxContainer" parent="." unique_id=2098837675]
 offset_left = -88.0
@@ -45,6 +55,45 @@ points = PackedVector2Array(-50, 0, 50, 0, 50, 90, -50, 90, -50, 2.5)
 closed = true
 width = 5.0
 default_color = Color(0, 1, 0, 1)
+
+[node name="HealParticles" type="CPUParticles2D" parent="." unique_id=893944888]
+position = Vector2(3, 42)
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+lifetime_randomness = 0.13
+emission_shape = 3
+emission_rect_extents = Vector2(20, 40)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_p74uo")
+color = Color(0, 1, 0, 1)
+color_initial_ramp = SubResource("Gradient_d0tu5")
+
+[node name="HitParticles" type="CPUParticles2D" parent="." unique_id=32448927]
+position = Vector2(7, 53)
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.82
+randomness = 0.6
+emission_shape = 3
+emission_rect_extents = Vector2(5, 5)
+direction = Vector2(-1, 0)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 90.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_lrhn5")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
