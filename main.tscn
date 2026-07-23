@@ -2,19 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b7a6agmcejp1p" path="res://src/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_h2yge"]
-[ext_resource type="Script" uid="uid://d2umnxovkmjxx" path="res://src/health_bar.gd" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://bndj272ou4xq4" path="res://src/Characters/heros/basic.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node" unique_id=793544856]
 script = ExtResource("1_1bvp3")
-
-[node name="StatusBox" type="VBoxContainer" parent="." unique_id=199753221]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_1bvp3")
-metadata/_custom_type_script = "uid://d2umnxovkmjxx"
 
 [node name="Hero1" parent="." unique_id=1116749280 groups=["allies"] instance=ExtResource("1_h2yge")]
 position = Vector2(405, 207)

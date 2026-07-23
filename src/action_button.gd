@@ -39,7 +39,7 @@ func _ready() -> void:
 
 var cooldown_count_down:int = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 	
@@ -60,8 +60,6 @@ func _on_duration_timer_timeout() -> void:
 		$DurationTimer.stop()
 		$DurationCover.hide()
 		$TimerLabel.hide()
-	
-
 
 
 func _on_button_button_up() -> void:

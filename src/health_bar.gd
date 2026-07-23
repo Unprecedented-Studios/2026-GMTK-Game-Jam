@@ -4,7 +4,6 @@ extends VBoxContainer
 @onready var health_label:Label = $HBoxContainer/Health
 @onready var max_health_label:Label = $HBoxContainer/MaxHealth
 @onready var health_bar:ProgressBar = $HealthBar
-@onready var buffs_and_debuffs:GridContainer = $BuffsAndDebuffs
 # Called when the node enters the scene tree for the first time.
 var max_health:int = 100:
 	set(new_max_health):
