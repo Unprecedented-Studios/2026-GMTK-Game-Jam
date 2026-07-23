@@ -6,9 +6,11 @@ var current_hp;
 
 @onready var health_bar:StatusBox = get_node("Status/HealthBar");
 @onready var buff_display:GridContainer = get_node("Status/BuffsAndDebuffs");
+@onready var sprite:AnimatedSprite2D = get_node("Character");
 
 func _ready():
 	current_hp = max_hp;
+	sprite.play("idle")
 	pass
 	
 func _update_healthBar():
@@ -20,13 +22,15 @@ func _process(_delta: float) -> void:
 	pass
 	
 func take_damage(info:DamageInfo) -> void:
+	if current_hp == 0:
+				return;
 	var currDamage = info;
 	#loop through buff list for modifiers
 	
 	current_hp -= currDamage.damage
 	#TODO play damage animation based on type?
 	
-	if current_hp < 0:
+	if current_hp <= 0:
 		die();
 	_update_healthBar();
 	
@@ -46,5 +50,14 @@ func die() -> void:
 	current_hp = 0;
 	
 	#TODO: death animation?
+	sprite.play("die")
+	
+	sprite.animation_finished.connect(_on_character_animation_finished)
 	
 	_update_healthBar();
+
+
+func _on_character_animation_finished():
+	if current_hp == 0:
+		queue_free();
+	pass # Replace with function body.
