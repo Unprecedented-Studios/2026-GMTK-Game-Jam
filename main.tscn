@@ -101,6 +101,29 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("5_7mycd")
 
+[node name="EndingMenu" type="VBoxContainer" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1284787590]
+visible = false
+layout_mode = 2
+
+[node name="VictoryDefeat" type="Label" parent="StartMenu/VBoxContainer/MainMenu/EndingMenu" unique_id=1177398752]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("5_7mycd")
+theme_override_font_sizes/font_size = 24
+text = "Victory!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThanksForPlaying" type="Label" parent="StartMenu/VBoxContainer/MainMenu/EndingMenu" unique_id=1665885655]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("5_7mycd")
+text = "Thanks for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PauseMenu" type="VBoxContainer" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1191444597]
 visible = false
 layout_mode = 2
@@ -155,6 +178,33 @@ layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("5_7mycd")
 text = "How To PLay"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/VBoxContainer/MainMenu" unique_id=488322341]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Volume" type="Label" parent="StartMenu/VBoxContainer/MainMenu/HBoxContainer" unique_id=1447008821]
+layout_mode = 2
+theme = ExtResource("5_7mycd")
+text = "Volume "
+
+[node name="spacer" type="Label" parent="StartMenu/VBoxContainer/MainMenu/HBoxContainer" unique_id=520126754]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_7mycd")
+
+[node name="VSlider" type="HSlider" parent="StartMenu/VBoxContainer/MainMenu/HBoxContainer" unique_id=60945427]
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_7mycd")
+value = 80.0
 
 [node name="BasicInstructions" parent="StartMenu/VBoxContainer" unique_id=403647643 instance=ExtResource("6_5vw27")]
 visible = false

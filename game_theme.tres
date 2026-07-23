@@ -1,12 +1,16 @@
 [gd_resource type="Theme" format=3 uid="uid://vkag71ghbux6"]
 
 [ext_resource type="FontFile" uid="uid://brvv7i7i3l63r" path="res://assets/Fonts/HolobitsStandard.ttf" id="1_1fvms"]
+[ext_resource type="Texture2D" uid="uid://ueglfwlkuvpl" path="res://assets/Primitive/16x16whitebox.png" id="2_pd6sc"]
+[ext_resource type="Texture2D" uid="uid://dvpp8p7y5lm2q" path="res://assets/Primitive/16x16graybox.png" id="3_2l2ys"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0, 0.72156864, 0, 1)
 
 [resource]
 Button/fonts/font = ExtResource("1_1fvms")
+HSlider/icons/grabber = ExtResource("2_pd6sc")
+HSlider/icons/grabber_highlight = ExtResource("3_2l2ys")
 Label/fonts/font = ExtResource("1_1fvms")
 ProgressBar/fonts/font = ExtResource("1_1fvms")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_lquwl")
