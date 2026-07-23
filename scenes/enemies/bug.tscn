@@ -287,6 +287,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qwdop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mg8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtffu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jahts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abc4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xww0a")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0t6l1")
 }, {
 "duration": 1.0,
@@ -331,5 +354,6 @@ animations = [{
 
 [node name="Character" parent="." index="0" unique_id=1116749280]
 sprite_frames = SubResource("SpriteFrames_vnare")
-frame_progress = 0.41657835
+animation = &"hurt"
+frame_progress = 0.0
 flip_h = true

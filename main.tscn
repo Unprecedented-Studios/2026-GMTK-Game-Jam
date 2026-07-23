@@ -12,6 +12,16 @@ script = ExtResource("1_1bvp3")
 [node name="Hero1" parent="." unique_id=1116749280 groups=["allies"] instance=ExtResource("1_h2yge")]
 position = Vector2(405, 207)
 script = ExtResource("4_1bvp3")
+attack_rate = 2.0
+damage = 5.0
+type = 0
+
+[node name="Hero2" parent="." unique_id=2001436315 groups=["allies"] instance=ExtResource("1_h2yge")]
+position = Vector2(188, 266)
+script = ExtResource("4_1bvp3")
+attack_rate = 1.333
+damage = 4.0
+type = 0
 
 [node name="Bug" parent="." unique_id=2036031585 instance=ExtResource("5_lquwl")]
 position = Vector2(988, 218)

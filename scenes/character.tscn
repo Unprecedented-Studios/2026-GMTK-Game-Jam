@@ -114,6 +114,7 @@ atlas = ExtResource("1_agfs1")
 region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p74uo"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -134,7 +135,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5vw27")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -145,7 +146,7 @@ animations = [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_4c57u")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack2",
 "speed": 5.0
 }, {
@@ -153,7 +154,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_efxa6")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -199,7 +200,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yaehf")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"knocked",
 "speed": 5.0
 }, {
@@ -227,14 +228,108 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Character" type="Node2D" unique_id=2001436315]
+[sub_resource type="Animation" id="Animation_my7n2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dp8ca"]
+resource_name = "attack1"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1],
+"method": &"attack_hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0lw5n"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cgup"]
+_data = {
+&"RESET": SubResource("Animation_my7n2"),
+&"attack1": SubResource("Animation_dp8ca"),
+&"idle": SubResource("Animation_0lw5n")
+}
+
+[node name="Character2" type="Node2D" unique_id=2001436315]
 script = ExtResource("1_my7n2")
 
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=1116749280]
+visible = false
+position = Vector2(224, 39)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_p74uo")
-animation = &"idle"
-frame_progress = 0.57191265
+animation = &"attack"
 
 [node name="Status" type="VBoxContainer" parent="." unique_id=2098837675]
 offset_left = -88.0
@@ -266,4 +361,14 @@ layout_mode = 2
 [node name="Buff5" parent="Status/BuffsAndDebuffs" unique_id=1151752139 instance=ExtResource("2_lrhn5")]
 layout_mode = 2
 
-[connection signal="animation_finished" from="Character" to="." method="_on_character_animation_finished"]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=215155055]
+position = Vector2(6, 14)
+scale = Vector2(4, 4)
+texture = ExtResource("1_agfs1")
+hframes = 6
+vframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=492343676]
+root_node = NodePath("../Character")
+libraries/ = SubResource("AnimationLibrary_2cgup")
+autoplay = &"idle"
