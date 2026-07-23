@@ -60,8 +60,14 @@ func act():
 	action_attempt.emit(self)
 	self_modulate.a = .7
 
+func play_rejected_sound():
+	$ActionRejectedSound.pitch_scale = randf_range(.95,1.05)
+	$ActionRejectedSound.play()
+
 	
 func activate():
+	$ActionSound.pitch_scale = randf_range(.95,1.05)
+	$ActionSound.play()
 	$DurationTimer.start()
 	$DurationCover.show()
 	cooldown_count_down = action_information[action_type]["cooldown"]

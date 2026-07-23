@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c57yspa5arglx"]
+[gd_scene format=4 uid="uid://c57yspa5arglx"]
 
 [ext_resource type="Texture2D" uid="uid://d23nqt1ojta2" path="res://assets/Primitive/GrayBoxBorder.png" id="1_3r1b2"]
 [ext_resource type="Texture2D" uid="uid://diggkmxcohkl3" path="res://assets/Abilities/Other/Staff_Purple_41.png" id="2_3hqqe"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgehs57r20blf" path="res://assets/Abilities/Buffs & Debuffs/Protect_Up.png" id="6_7gkn4"]
 [ext_resource type="Texture2D" uid="uid://dmhj252junhfw" path="res://assets/Abilities/Buffs & Debuffs/Resistance_Up.png" id="7_2c6a1"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="10_3r1b2"]
+[ext_resource type="AudioStream" uid="uid://c1hfkov62f0pw" path="res://assets/Sounds/UI_Keypad_Rejected.mp3" id="10_npg4v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0tu5"]
 
@@ -21,6 +22,9 @@ bg_color = Color(0, 0, 0, 0.70980394)
 [sub_resource type="Theme" id="Theme_bareo"]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_p74uo")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_57cb2")
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_mjpwl"]
+data = PackedByteArray("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")
 
 [node name="ActionButton" type="TextureRect" unique_id=152885644]
 material = SubResource("ShaderMaterial_d0tu5")
@@ -142,6 +146,15 @@ theme = ExtResource("10_3r1b2")
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ActionSound" type="AudioStreamPlayer" parent="." unique_id=749332876]
+stream = SubResource("AudioStreamMP3_mjpwl")
+bus = &"UI sounds"
+
+[node name="ActionRejectedSound" type="AudioStreamPlayer" parent="." unique_id=347413765]
+stream = ExtResource("10_npg4v")
+volume_db = -3.0
+bus = &"UI sounds"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

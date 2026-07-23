@@ -20,6 +20,7 @@ func _input(event: InputEvent) -> void:
 	if mouse_over_actions:
 		return
 	if event.is_action_released("Escape"):
+		$StartMenu/MenuSound.play()
 		get_tree().paused = true
 		$StartMenu.show()
 		$StartMenu/VBoxContainer/MainMenu/PauseMenu.show()
@@ -73,7 +74,8 @@ var buff_preload = preload("res://scenes/buff.tscn")
 
 func perform_action(act:Action):
 	var selected_character = get_selected_character()
-	if selected_character == null:
+	if selected_character == null or not act.is_ready:
+		act.play_rejected_sound()
 		return
 	elif act.is_ready:
 		act.activate()
@@ -82,7 +84,7 @@ func perform_action(act:Action):
 		elif act.action_type == Action.actions_list.Heal:
 			selected_character.heal(heal_amount)
 		elif act.action_type == Action.actions_list.AOEHeal:
-			for a:Character in $Allies:
+			for a:Character in $Allies.get_children():
 				a.heal(aoe_heal_amount)
 		elif act.action_type == Action.actions_list.BasicAttack:
 			basic_attack_damage.damage = 5.0

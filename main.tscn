@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/BuffExplanations.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
+[ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
 size = Vector2(418.5, 55.5)
@@ -242,6 +243,12 @@ text = "Next"
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="StartMenu" unique_id=521100015]
 stream = ExtResource("5_4c57u")
 autoplay = true
+bus = &"Background Music"
+
+[node name="MenuSound" type="AudioStreamPlayer" parent="StartMenu" unique_id=1653538116]
+stream = ExtResource("11_efxa6")
+pitch_scale = 1.54
+bus = &"UI sounds"
 
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
