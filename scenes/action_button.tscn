@@ -32,6 +32,12 @@ texture = ExtResource("1_3r1b2")
 expand_mode = 2
 script = ExtResource("2_mjpwl")
 
+[node name="Button" type="Button" parent="." unique_id=1940619063]
+modulate = Color(1, 1, 1, 0.05882353)
+layout_mode = 0
+offset_right = 47.666668
+offset_bottom = 48.0
+
 [node name="BasicAttack" type="Sprite2D" parent="." unique_id=308000399]
 visible = false
 position = Vector2(24, 24)
@@ -55,6 +61,7 @@ region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="HealOverTime" type="Sprite2D" parent="." unique_id=1745423341]
+visible = false
 position = Vector2(24, 24)
 scale = Vector2(2, 2)
 texture = ExtResource("4_3r1b2")
@@ -94,12 +101,20 @@ region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="DurationTimer" type="Timer" parent="." unique_id=101613920]
-wait_time = 5.0
-one_shot = true
+
+[node name="HotkeyLabel" type="Label" parent="." unique_id=532193354]
+layout_mode = 0
+offset_left = 31.333334
+offset_top = 32.666668
+offset_right = 71.333336
+offset_bottom = 57.666668
+theme = ExtResource("10_3r1b2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "A"
 
 [node name="DurationCover" type="ProgressBar" parent="." unique_id=823223496]
 visible = false
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
@@ -128,4 +143,6 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]

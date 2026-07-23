@@ -17,14 +17,14 @@ enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, AOEHeal,Dispell, 
 }
 
 var action_information:Dictionary = {
-	actions_list.BasicAttack:{"tooltip":"Basic magic attack - deals a small amount of damage", "mana":0},
-	actions_list.SmallHeal:{"tooltip":"Small Heal - small heal with short cooldown","mana":0},
-	actions_list.Heal:{"tooltip":"Heal - a powerful single target heal","mana":0},
-	actions_list.HealOverTime:{"tooltip":"Heal Over Time - applys a buff to an ally to heal them slowly","mana":0},
-	actions_list.AOEHeal:{"tooltip":"Multi-heal - Heals all party members, but requires lots of mana","mana":0},
-	actions_list.Dispell:{"tooltip":"Dispell - Removes all Debuffs on an ally","mana":0},
-	actions_list.Shield:{"tooltip":"Shield - Provides a shield that blocks all damage on an ally for a short time","mana":0},
-	actions_list.Resist:{"tooltip":"Resist - Provides a buff that prevents any debuffs from being applied to an ally.","mana":0},
+	actions_list.BasicAttack:{"tooltip":"Basic magic attack - deals a small amount of damage", "mana":0, "key":"Q","cooldown":1},
+	actions_list.SmallHeal:{"tooltip":"Small Heal - small heal with short cooldown","mana":0, "key":"W","cooldown":1},
+	actions_list.Heal:{"tooltip":"Heal - a powerful single target heal","mana":0, "key":"E","cooldown":10},
+	actions_list.HealOverTime:{"tooltip":"Heal Over Time - applys a buff to an ally to heal them slowly","mana":0,"key":"R","cooldown":5},
+	actions_list.AOEHeal:{"tooltip":"Multi-heal - Heals all party members, but requires lots of mana","mana":0, "key":"A","cooldown":15},
+	actions_list.Dispell:{"tooltip":"Dispell - Removes all Debuffs on an ally","mana":0, "key":"S","cooldown":5},
+	actions_list.Shield:{"tooltip":"Shield - Provides a shield that blocks all damage on an ally for a short time","mana":0, "key":"D","cooldown":15},
+	actions_list.Resist:{"tooltip":"Resist - Provides a buff that prevents any debuffs from being applied to an ally.","mana":0, "key":"F","cooldown":5},
 }
 
 func _ready() -> void:
@@ -34,8 +34,35 @@ func _ready() -> void:
 		else:
 			actions[c].show()
 			self.tooltip_text = action_information[action_type]["tooltip"]
+			cooldown_count_down = action_information[action_type]["cooldown"]
+			$HotkeyLabel.text = action_information[action_type]["key"]
 
-
+var cooldown_count_down:int = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+	
+func activate():
+	if not $DurationTimer.is_stopped():
+		return
+	$DurationTimer.start()
+	$DurationCover.show()
+	cooldown_count_down = action_information[action_type]["cooldown"]
+	$TimerLabel.text = str(cooldown_count_down)
+	$TimerLabel.show()
+
+func _on_duration_timer_timeout() -> void:
+	if cooldown_count_down > 1:
+		cooldown_count_down -= 1
+		$TimerLabel.text = str(cooldown_count_down)
+	else:
+		$DurationTimer.stop()
+		$DurationCover.hide()
+		$TimerLabel.hide()
+	
+
+
+
+func _on_button_button_up() -> void:
+	activate()
