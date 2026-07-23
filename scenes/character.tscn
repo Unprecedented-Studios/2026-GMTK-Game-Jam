@@ -5,14 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://grm1n1j5ar5" path="res://scenes/buff.tscn" id="2_lrhn5"]
 [ext_resource type="PackedScene" uid="uid://c3mmg5v2dxirm" path="res://scenes/health_bar.tscn" id="2_rkhd4"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
+size = Vector2(176, 155)
+
 [node name="Character" type="Node2D" unique_id=2001436315]
 script = ExtResource("1_my7n2")
 
 [node name="Status" type="VBoxContainer" parent="." unique_id=2098837675]
 offset_left = -88.0
-offset_top = 91.0
+offset_top = 100.0
 offset_right = 88.0
-offset_bottom = 225.0
+offset_bottom = 234.0
 
 [node name="HealthBar" parent="Status" unique_id=1365132128 instance=ExtResource("2_rkhd4")]
 layout_mode = 2
@@ -44,3 +47,19 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_agfs1")
 hframes = 6
 vframes = 12
+
+[node name="Area2D" type="Area2D" parent="." unique_id=736704528]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=715550499]
+position = Vector2(2, 81.5)
+shape = SubResource("RectangleShape2D_bareo")
+
+[node name="SelectBox" type="Line2D" parent="." unique_id=1617944770]
+visible = false
+points = PackedVector2Array(-50, 0, 50, 0, 50, 90, -50, 90, -50, 2.5)
+closed = true
+width = 5.0
+default_color = Color(0, 1, 0, 1)
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

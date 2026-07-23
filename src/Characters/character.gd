@@ -8,13 +8,24 @@ var current_hp;
 @onready var health_bar:StatusBox = get_node("Status/HealthBar");
 @onready var buff_display:GridContainer = get_node("Status/BuffsAndDebuffs");
 
+var mouse_over_me:bool = false
+
 func _ready():
 	current_hp = max_hp;
 	
 func _update_healthBar():
 	health_bar.max_health = max_hp;
 	health_bar.health = current_hp;
-	
+
+var selected:bool = false:
+	get():
+		return $SelectBox.visible
+	set(value):
+		if value:
+			$SelectBox.show()
+		else: 
+			$SelectBox.hide()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -59,3 +70,18 @@ func die() -> void:
 
 func attack_hit(_num:int):
 	pass;
+
+
+func _input(event: InputEvent) -> void:
+	if not mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $SelectBox.visible:
+		$SelectBox.hide()
+	elif mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		$SelectBox.show()
+
+
+
+func _on_area_2d_mouse_entered() -> void:
+	mouse_over_me = true
+
+func _on_area_2d_mouse_exited() -> void:
+	mouse_over_me = false

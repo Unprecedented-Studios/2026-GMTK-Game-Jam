@@ -20,7 +20,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="Basic" parent="." unique_id=2001436315 instance=ExtResource("4_1bvp3")]
-position = Vector2(739, 42)
+position = Vector2(677, 59)
 attack_rate = 1.5
 damage = 4.0
 
@@ -28,3 +28,5 @@ damage = 4.0
 position = Vector2(182, 175)
 attack_rate = 2.0
 damage = 6.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=521100015]
