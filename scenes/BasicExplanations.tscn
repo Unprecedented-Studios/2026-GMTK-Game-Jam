@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dqa85a3bsbaob"]
+
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="1_3inmn"]
+
+[node name="BasicInstructions" type="VBoxContainer" unique_id=403647643]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BuffsTitle" type="Label" parent="." unique_id=2108974237]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+theme_override_font_sizes/font_size = 20
+text = "Basic Instructions"
+
+[node name="spacer" type="Label" parent="." unique_id=1917615235]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+
+[node name="Label" type="Label" parent="." unique_id=1340719339]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+text = "You are a healer in a dungeon party"
+
+[node name="Label2" type="Label" parent="." unique_id=1625143981]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+text = "Select allies or enemies by clicking"
+
+[node name="Label3" type="Label" parent="." unique_id=766047870]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+text = "You can also use tab to select targets"
+
+[node name="Label4" type="Label" parent="." unique_id=1265937044]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+text = "Use your keyboard to use your actions"
+
+[node name="Label5" type="Label" parent="." unique_id=1253569596]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")
+text = "You can also click on your abilities to use them"
+
+[node name="spacer2" type="Label" parent="." unique_id=991401532]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("1_3inmn")

@@ -106,3 +106,49 @@ func _on_action_bar_area_mouse_exited() -> void:
 
 func _on_start_button_button_up() -> void:
 	$StartMenu.hide()
+
+
+#region Instructions stuff
+var active_instruction = 0
+@onready var instructions:Array[VBoxContainer] =\
+[
+	$StartMenu/VBoxContainer/BasicInstructions, 
+	$StartMenu/VBoxContainer/ActionInstructions,
+	$StartMenu/VBoxContainer/BuffInstructions
+]
+
+func _on_how_to_play_button_down() -> void:
+	active_instruction = 0
+	for i:VBoxContainer in instructions:
+		i.hide()
+	instructions[active_instruction].show()
+	$StartMenu/VBoxContainer/HBoxContainer/BackButton.show()
+	$StartMenu/VBoxContainer/HBoxContainer/NextButton.show()
+	$StartMenu/VBoxContainer/MainMenu.hide()
+
+func _on_back_button_button_up() -> void:
+	if active_instruction == 0:
+		for i:VBoxContainer in instructions:
+			i.hide()
+		$StartMenu/VBoxContainer/HBoxContainer/BackButton.hide()
+		$StartMenu/VBoxContainer/HBoxContainer/NextButton.hide()
+		$StartMenu/VBoxContainer/MainMenu.show()
+	else:
+		active_instruction -=1
+		for i:VBoxContainer in instructions:
+			i.hide()
+		instructions[active_instruction].show()
+
+func _on_next_button_button_up() -> void:
+	if active_instruction == instructions.size()-1:
+		for i:VBoxContainer in instructions:
+			i.hide()
+		$StartMenu/VBoxContainer/HBoxContainer/BackButton.hide()
+		$StartMenu/VBoxContainer/HBoxContainer/NextButton.hide()
+		$StartMenu/VBoxContainer/MainMenu.show()
+	else:
+		active_instruction +=1
+		for i:VBoxContainer in instructions:
+			i.hide()
+		instructions[active_instruction].show()
+#endregion

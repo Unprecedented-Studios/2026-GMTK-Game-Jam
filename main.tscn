@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="4_1bvp3"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dqa85a3bsbaob" path="res://scenes/BasicExplanations.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/instructions.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/BuffExplanations.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
 size = Vector2(418.5, 55.5)
@@ -68,39 +70,68 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="StartMenu/VBoxContainer" unique_id=2099104179]
+[node name="MainMenu" type="VBoxContainer" parent="StartMenu/VBoxContainer" unique_id=723185485]
+layout_mode = 2
+alignment = 1
+
+[node name="GameNameLabel" type="Label" parent="StartMenu/VBoxContainer/MainMenu" unique_id=2099104179]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("5_7mycd")
+theme_override_font_sizes/font_size = 32
 text = "GMTK 2026 - Party Healer"
 
-[node name="Label2" type="Label" parent="StartMenu/VBoxContainer" unique_id=1442215105]
+[node name="Label2" type="Label" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1442215105]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("5_7mycd")
 
-[node name="StartButton" type="Button" parent="StartMenu/VBoxContainer" unique_id=1358768156]
+[node name="StartButton" type="Button" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1358768156]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("5_7mycd")
 text = "Start Game"
 
-[node name="Instructions" parent="StartMenu/VBoxContainer" unique_id=403647643 instance=ExtResource("6_272bh")]
+[node name="HowToPlay" type="Button" parent="StartMenu/VBoxContainer/MainMenu" unique_id=775000562]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_7mycd")
+text = "How To PLay"
+
+[node name="BasicInstructions" parent="StartMenu/VBoxContainer" unique_id=403647643 instance=ExtResource("6_5vw27")]
+visible = false
+layout_mode = 2
+
+[node name="ActionInstructions" parent="StartMenu/VBoxContainer" unique_id=972011276 instance=ExtResource("7_kek77")]
+visible = false
+layout_mode = 2
+
+[node name="BuffInstructions" parent="StartMenu/VBoxContainer" unique_id=1173691565 instance=ExtResource("6_272bh")]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/VBoxContainer" unique_id=1690243360]
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
 [node name="BackButton" type="Button" parent="StartMenu/VBoxContainer/HBoxContainer" unique_id=850201358]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_7mycd")
 text = "Back"
 
 [node name="NextButton" type="Button" parent="StartMenu/VBoxContainer/HBoxContainer" unique_id=1470243051]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_7mycd")
@@ -108,4 +139,7 @@ text = "Next"
 
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
-[connection signal="button_up" from="StartMenu/VBoxContainer/StartButton" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/StartButton" to="." method="_on_start_button_button_up"]
+[connection signal="button_down" from="StartMenu/VBoxContainer/MainMenu/HowToPlay" to="." method="_on_how_to_play_button_down"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_button_up"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_button_up"]
