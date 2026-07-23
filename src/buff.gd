@@ -41,9 +41,9 @@ func _ready() -> void:
 		if c != type:
 			buffs[c].queue_free()
 	buffs[type].show()
-	if type == Buff_list.HealOverTime:
-		$HealTimer.start()
+	$TickTimer.start()
 	$DurationTimer.start(buff_duration_seconds)
+	$BuffCountdown.text = str(int(round(buff_duration_seconds)))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,5 +55,7 @@ func _on_duration_timer_timeout() -> void:
 	self.queue_free()
 
 
-func _on_heal_timer_timeout() -> void:
-	heal_tick.emit(heal_amount)
+func _on_tick_timer_timeout() -> void:
+	if type == Buff_list.HealOverTime:
+		heal_tick.emit(heal_amount)
+	$BuffCountdown.text = str(int(round($DurationTimer.time_left)))

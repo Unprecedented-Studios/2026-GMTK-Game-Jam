@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cgehs57r20blf" path="res://assets/Abilities/Buffs & Debuffs/Protect_Up.png" id="11_1mfsv"]
 [ext_resource type="Texture2D" uid="uid://d30pt38l6t822" path="res://assets/Abilities/Buffs & Debuffs/Health_Up.png" id="12_pisac"]
 [ext_resource type="Texture2D" uid="uid://dmhj252junhfw" path="res://assets/Abilities/Buffs & Debuffs/Resistance_Up.png" id="13_nt7q8"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="14_pisac"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0tu5"]
 
@@ -20,7 +21,7 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57cb2"]
-bg_color = Color(0, 0, 0, 0.70980394)
+bg_color = Color(0, 0, 0, 0.5058824)
 
 [sub_resource type="Theme" id="Theme_bareo"]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_p74uo")
@@ -37,7 +38,6 @@ stretch_mode = 2
 script = ExtResource("1_ixfor")
 
 [node name="AccuracyDown" type="Sprite2D" parent="." unique_id=308000399]
-visible = false
 position = Vector2(16, 16)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_npcpg")
@@ -134,11 +134,23 @@ offset_right = 32.0
 offset_bottom = 32.0
 theme = SubResource("Theme_bareo")
 max_value = 1.0
+value = 0.5
 fill_mode = 1
 show_percentage = false
 
-[node name="HealTimer" type="Timer" parent="." unique_id=513067011]
+[node name="TickTimer" type="Timer" parent="." unique_id=513067011]
 wait_time = 0.999
 
+[node name="BuffCountdown" type="Label" parent="." unique_id=1732696522]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 18.0
+offset_right = 42.0
+offset_bottom = 43.0
+theme = ExtResource("14_pisac")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "20"
+
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
-[connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
