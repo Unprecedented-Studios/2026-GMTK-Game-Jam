@@ -2,8 +2,7 @@ extends Node
 
 var actions:Array[Action]
 func _ready():
-	#set up initial arrays of allies and enemies
-
+	get_tree().paused = true
 
 	actions = $ActionBar.get_actions()
 	for a:Action in actions:
@@ -20,7 +19,13 @@ func get_characters() -> Array[Character]:
 func _input(event: InputEvent) -> void:
 	if mouse_over_actions:
 		return
-
+	if event.is_action_released("Escape"):
+		get_tree().paused = true
+		$StartMenu.show()
+		$StartMenu/VBoxContainer/MainMenu/PauseMenu.show()
+		$StartMenu/VBoxContainer/MainMenu/StartButton.hide()
+		$StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame.show()
+		
 	var selected_char = get_selected_character()
 	#mouse selection handling
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selected_char != null:
@@ -106,6 +111,7 @@ func _on_action_bar_area_mouse_exited() -> void:
 
 func _on_start_button_button_up() -> void:
 	$StartMenu.hide()
+	get_tree().paused = false
 
 
 #region Instructions stuff

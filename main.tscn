@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7a6agmcejp1p" path="res://src/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="4_1bvp3"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://b7tff3a1g5o5o" path="res://assets/Primitive/GrayBox.png" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dqa85a3bsbaob" path="res://scenes/BasicExplanations.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
@@ -49,11 +50,23 @@ damage = 4.0
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=521100015]
 
 [node name="StartMenu" type="Panel" parent="." unique_id=613390001]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="StartMenu" unique_id=354588024]
+modulate = Color(0, 0, 0, 0.63529414)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_kek77")
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StartMenu" unique_id=1017478401]
 layout_mode = 1
@@ -82,11 +95,49 @@ theme = ExtResource("5_7mycd")
 theme_override_font_sizes/font_size = 32
 text = "GMTK 2026 - Party Healer"
 
-[node name="Label2" type="Label" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1442215105]
+[node name="Spacer" type="Label" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1442215105]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("5_7mycd")
+
+[node name="PauseMenu" type="VBoxContainer" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1191444597]
+visible = false
+layout_mode = 2
+
+[node name="Paused" type="Label" parent="StartMenu/VBoxContainer/MainMenu/PauseMenu" unique_id=1543578149]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("5_7mycd")
+text = "- Paused - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Label" parent="StartMenu/VBoxContainer/MainMenu/PauseMenu" unique_id=1135156952]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("5_7mycd")
+
+[node name="ReturnToGame" type="Button" parent="StartMenu/VBoxContainer/MainMenu/PauseMenu" unique_id=206275561]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_7mycd")
+text = "Return to Game"
+
+[node name="RestartGame" type="Button" parent="StartMenu/VBoxContainer/MainMenu/PauseMenu" unique_id=1878775203]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_7mycd")
+text = "Restart Game"
 
 [node name="StartButton" type="Button" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1358768156]
 custom_minimum_size = Vector2(300, 0)
@@ -118,9 +169,11 @@ visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/VBoxContainer" unique_id=1690243360]
+custom_minimum_size = Vector2(300, 0)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 6
 alignment = 1
 
 [node name="BackButton" type="Button" parent="StartMenu/VBoxContainer/HBoxContainer" unique_id=850201358]
@@ -139,6 +192,7 @@ text = "Next"
 
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_start_button_button_up"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/StartButton" to="." method="_on_start_button_button_up"]
 [connection signal="button_down" from="StartMenu/VBoxContainer/MainMenu/HowToPlay" to="." method="_on_how_to_play_button_down"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_button_up"]
