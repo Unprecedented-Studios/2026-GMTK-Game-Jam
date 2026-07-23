@@ -47,6 +47,8 @@ func take_damage(info:DamageInfo) -> void:
 	#loop through buff list for modifiers
 	for b:Buff in get_buffs():
 		if b.type == Buff.Buff_list.Shield:
+			$BlockSound.pitch_scale = randf_range(.95,1.05)
+			$BlockSound.play()
 			return
 		elif b.type == Buff.Buff_list.DefenseDown:
 			currDamage *= 1.5
@@ -54,6 +56,8 @@ func take_damage(info:DamageInfo) -> void:
 			currDamage *= .5
 	
 	$HitParticles.restart()
+	$HitSound.pitch_scale = randf_range(.95,1.05)
+	$HitSound.play()
 	if currDamage.damage > 0:
 		
 		current_hp -= currDamage.damage
@@ -72,6 +76,7 @@ func heal(amount:int) -> void:
 	var currHeal = amount;
 	
 	#loop through buff list for modifiers
+	$HealSound.play()
 	$HealParticles.restart()
 	current_hp += currHeal;
 	if current_hp > max_hp:

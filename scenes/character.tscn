@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://bn7h5wx3bavf2" path="res://assets/Characters/Hero_01.png" id="1_agfs1"]
 [ext_resource type="Script" uid="uid://celad0imcpjfg" path="res://src/Characters/character.gd" id="1_my7n2"]
 [ext_resource type="PackedScene" uid="uid://c3mmg5v2dxirm" path="res://scenes/health_bar.tscn" id="2_rkhd4"]
+[ext_resource type="AudioStream" uid="uid://ch46mtp5ficxi" path="res://assets/Sounds/GS1_Hit_3.mp3" id="4_0lw5n"]
+[ext_resource type="AudioStream" uid="uid://ctaabjvg30f63" path="res://assets/Sounds/GS1_Hit_1.mp3" id="4_dp8ca"]
+[ext_resource type="AudioStream" uid="uid://cvgqyplcfboo1" path="res://assets/Sounds/GS2_Swish_1.mp3" id="5_0lw5n"]
+[ext_resource type="AudioStream" uid="uid://co18uf80oo27o" path="res://assets/Sounds/GS2_Item_Acquire_3.mp3" id="7_2cgup"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
 size = Vector2(176, 155)
@@ -94,6 +98,23 @@ initial_velocity_max = 90.0
 scale_amount_min = 2.0
 scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_lrhn5")
+
+[node name="BlockSound" type="AudioStreamPlayer" parent="." unique_id=1664079221]
+stream = ExtResource("4_0lw5n")
+bus = &"Character Sounds"
+
+[node name="HitSound" type="AudioStreamPlayer" parent="." unique_id=2046378941]
+stream = ExtResource("4_dp8ca")
+bus = &"Character Sounds"
+
+[node name="MissSound" type="AudioStreamPlayer" parent="." unique_id=1656980467]
+stream = ExtResource("5_0lw5n")
+bus = &"Character Sounds"
+
+[node name="HealSound" type="AudioStreamPlayer" parent="." unique_id=345993427]
+stream = ExtResource("7_2cgup")
+volume_db = -5.231
+bus = &"Character Sounds"
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
