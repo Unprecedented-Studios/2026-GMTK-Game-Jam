@@ -104,10 +104,10 @@ region_rect = Rect2(64, 0, 32, 32)
 
 [node name="HotkeyLabel" type="Label" parent="." unique_id=532193354]
 layout_mode = 0
-offset_left = 31.333334
-offset_top = 32.666668
-offset_right = 71.333336
-offset_bottom = 57.666668
+offset_left = 29.333334
+offset_top = 28.666668
+offset_right = 69.333336
+offset_bottom = 53.666668
 theme = ExtResource("10_3r1b2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "A"

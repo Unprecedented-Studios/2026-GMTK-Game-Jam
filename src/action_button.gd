@@ -17,14 +17,14 @@ enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, AOEHeal,Dispell, 
 }
 
 var action_information:Dictionary = {
-	actions_list.BasicAttack:{"tooltip":"Basic magic attack - deals a small amount of damage", "mana":0, "key":"Q","cooldown":1},
-	actions_list.SmallHeal:{"tooltip":"Small Heal - small heal with short cooldown","mana":0, "key":"W","cooldown":1},
-	actions_list.Heal:{"tooltip":"Heal - a powerful single target heal","mana":0, "key":"E","cooldown":10},
-	actions_list.HealOverTime:{"tooltip":"Heal Over Time - applys a buff to an ally to heal them slowly","mana":0,"key":"R","cooldown":5},
-	actions_list.AOEHeal:{"tooltip":"Multi-heal - Heals all party members, but requires lots of mana","mana":0, "key":"A","cooldown":15},
-	actions_list.Dispell:{"tooltip":"Dispell - Removes all Debuffs on an ally","mana":0, "key":"S","cooldown":5},
-	actions_list.Shield:{"tooltip":"Shield - Provides a shield that blocks all damage on an ally for a short time","mana":0, "key":"D","cooldown":15},
-	actions_list.Resist:{"tooltip":"Resist - Provides a buff that prevents any debuffs from being applied to an ally.","mana":0, "key":"F","cooldown":5},
+	actions_list.BasicAttack:{"tooltip":"Basic magic attack - deals a small amount of damage", "mana":0, "key":"Q","key_code":KEY_Q,"cooldown":1},
+	actions_list.SmallHeal:{"tooltip":"Small Heal - small heal with short cooldown","mana":0, "key":"W","key_code":KEY_W,"cooldown":1},
+	actions_list.Heal:{"tooltip":"Heal - a powerful single target heal","mana":0, "key":"E","key_code":KEY_E,"cooldown":10},
+	actions_list.HealOverTime:{"tooltip":"Heal Over Time - applys a buff to an ally to heal them slowly","mana":0,"key":"R","key_code":KEY_R,"cooldown":5},
+	actions_list.AOEHeal:{"tooltip":"Multi-heal - Heals all party members, but requires lots of mana","mana":0, "key":"A","key_code":KEY_A,"cooldown":15},
+	actions_list.Dispell:{"tooltip":"Dispell - Removes all Debuffs on an ally","mana":0, "key":"S","key_code":KEY_S,"cooldown":5},
+	actions_list.Shield:{"tooltip":"Shield - Provides a shield that blocks all damage on an ally for a short time","mana":0, "key":"D","key_code":KEY_D,"cooldown":15},
+	actions_list.Resist:{"tooltip":"Resist - Provides a buff that prevents any debuffs from being applied to an ally.","mana":0, "key":"F","key_code":KEY_F,"cooldown":5},
 }
 
 func _ready() -> void:
@@ -38,11 +38,17 @@ func _ready() -> void:
 			$HotkeyLabel.text = action_information[action_type]["key"]
 
 var cooldown_count_down:int = 0
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 	
-	
+
+func _input(event: InputEvent) -> void:
+	if Input.is_key_pressed(action_information[action_type]["key_code"]):
+		activate()
+
 func activate():
 	if not $DurationTimer.is_stopped():
 		return
@@ -64,3 +70,4 @@ func _on_duration_timer_timeout() -> void:
 
 func _on_button_button_up() -> void:
 	activate()
+	
