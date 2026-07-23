@@ -24,7 +24,7 @@ script = ExtResource("1_1bvp3")
 [node name="Enemies" type="Node2D" parent="." unique_id=524587179]
 
 [node name="Bug" parent="Enemies" unique_id=2036031585 instance=ExtResource("5_lquwl")]
-position = Vector2(988, 218)
+position = Vector2(1068, 224)
 
 [node name="ActionBar" parent="." unique_id=1907554450 instance=ExtResource("6_7mycd")]
 offset_left = 434.0
@@ -43,17 +43,18 @@ shape = SubResource("RectangleShape2D_bareo")
 [node name="Allies" type="Node2D" parent="." unique_id=125489724]
 
 [node name="Basic2" parent="Allies" unique_id=1408439121 instance=ExtResource("4_1bvp3")]
-position = Vector2(182, 175)
+position = Vector2(313, 247)
 attack_rate = 2.0
 damage = 6.0
 
 [node name="Basic" parent="Allies" unique_id=2001436315 instance=ExtResource("4_1bvp3")]
-position = Vector2(677, 59)
+position = Vector2(579, 133)
 attack_rate = 1.5
 damage = 4.0
 
 [node name="StartMenu" type="Panel" parent="." unique_id=613390001]
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

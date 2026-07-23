@@ -3,7 +3,7 @@ extends Node
 var actions:Array[Action]
 func _ready():
 	get_tree().paused = true
-
+	$StartMenu.show()
 	actions = $ActionBar.get_actions()
 	for a:Action in actions:
 		a.action_attempt.connect(perform_action)
