@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d2umnxovkmjxx" path="res://src/health_bar.gd" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://bndj272ou4xq4" path="res://src/Characters/heros/basic.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node" unique_id=793544856]
 script = ExtResource("1_1bvp3")
@@ -21,3 +22,11 @@ script = ExtResource("4_1bvp3")
 
 [node name="Bug" parent="." unique_id=2036031585 instance=ExtResource("5_lquwl")]
 position = Vector2(988, 218)
+
+[node name="ActionBar" parent="." unique_id=1907554450 instance=ExtResource("6_7mycd")]
+offset_left = 434.0
+offset_top = 660.0
+offset_right = 846.0
+offset_bottom = 708.0
+size_flags_horizontal = 4
+size_flags_vertical = 8

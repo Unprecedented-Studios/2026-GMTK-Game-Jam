@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bv103jkwhfy68" path="res://assets/Abilities/Buffs & Debuffs/Defense_Up.png" id="7_57cb2"]
 [ext_resource type="Texture2D" uid="uid://bw8ds6sirbl6" path="res://assets/Abilities/Buffs & Debuffs/Speed_Down.png" id="8_ywpje"]
 [ext_resource type="Texture2D" uid="uid://sop4nsgiqe5k" path="res://assets/Abilities/Buffs & Debuffs/Speed_Up.png" id="9_1mfsv"]
+[ext_resource type="Texture2D" uid="uid://cgehs57r20blf" path="res://assets/Abilities/Buffs & Debuffs/Protect_Up.png" id="11_1mfsv"]
+[ext_resource type="Texture2D" uid="uid://d30pt38l6t822" path="res://assets/Abilities/Buffs & Debuffs/Health_Up.png" id="12_pisac"]
+[ext_resource type="Texture2D" uid="uid://dmhj252junhfw" path="res://assets/Abilities/Buffs & Debuffs/Resistance_Up.png" id="13_nt7q8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0tu5"]
 
@@ -34,6 +37,7 @@ stretch_mode = 2
 script = ExtResource("1_ixfor")
 
 [node name="AccuracyDown" type="Sprite2D" parent="." unique_id=308000399]
+visible = false
 position = Vector2(16, 16)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_npcpg")
@@ -95,6 +99,29 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_1mfsv")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
+
+[node name="Shield" type="Sprite2D" parent="." unique_id=642805596]
+visible = false
+position = Vector2(16, 16)
+texture = ExtResource("11_1mfsv")
+region_enabled = true
+region_rect = Rect2(160, 64, 32, 32)
+
+[node name="HealOverTime" type="Sprite2D" parent="." unique_id=1638426944]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_pisac")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="Resist" type="Sprite2D" parent="." unique_id=1564182168]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_nt7q8")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
 
 [node name="DurationTimer" type="Timer" parent="." unique_id=101613920]
 wait_time = 5.0

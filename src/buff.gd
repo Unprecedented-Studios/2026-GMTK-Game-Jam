@@ -2,7 +2,8 @@ extends TextureRect
 class_name Buff
 
 enum Buff_list {none,AccuracyUp, AccuracyDown, AttackUp, AttackDown, 
-				DefenseUp,DefenseDown,SpeedUp,SpeedDown}
+				DefenseUp,DefenseDown,SpeedUp,SpeedDown, Shield,HealOverTime, 
+				Resist}
 				
 @onready var buffs:Dictionary =\
 {
@@ -14,6 +15,10 @@ enum Buff_list {none,AccuracyUp, AccuracyDown, AttackUp, AttackDown,
 	Buff_list.DefenseDown:$DefenseDown,
 	Buff_list.SpeedUp:$SpeedUp,
 	Buff_list.SpeedDown:$SpeedDown,
+	Buff_list.Shield:$Shield,
+	Buff_list.HealOverTime:$HealOverTime,
+	Buff_list.Resist:$Resist
+	
 }
 
 
@@ -25,10 +30,11 @@ var buff_duration_seconds:float = 5:
 
 var type:Buff_list = Buff_list.none:
 	set(new_type):
-		for c:Sprite2D in buffs.values():
-			c.hide()
+		for c in buffs.keys():
+			if c != new_type:
+				buffs[c].queue_free()
 		if new_type != Buff_list.none:
-			buffs[type].show()
+			buffs[new_type].show()
 	get:
 		return type
 

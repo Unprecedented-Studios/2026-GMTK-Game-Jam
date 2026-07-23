@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d23nqt1ojta2" path="res://assets/Primitive/GrayBoxBorder.png" id="1_3r1b2"]
 [ext_resource type="Texture2D" uid="uid://diggkmxcohkl3" path="res://assets/Abilities/Other/Staff_Purple_41.png" id="2_3hqqe"]
+[ext_resource type="Script" uid="uid://cj1bjh8j6jqrm" path="res://src/action_button.gd" id="2_mjpwl"]
 [ext_resource type="Texture2D" uid="uid://b0xspo76cn0jt" path="res://assets/Abilities/Buffs & Debuffs/Charm_Up.png" id="3_kmmqg"]
 [ext_resource type="Texture2D" uid="uid://d30pt38l6t822" path="res://assets/Abilities/Buffs & Debuffs/Health_Up.png" id="4_3r1b2"]
 [ext_resource type="Texture2D" uid="uid://bpbqsoexqj41v" path="res://assets/Abilities/Light Spells/Lightning_Explosion.png" id="5_5d30t"]
@@ -23,72 +24,71 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_57cb2")
 
 [node name="ActionButton" type="TextureRect" unique_id=152885644]
 material = SubResource("ShaderMaterial_d0tu5")
-custom_minimum_size = Vector2(32, 32)
-custom_maximum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 offset_right = 32.0
 offset_bottom = 32.0
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 texture = ExtResource("1_3r1b2")
-stretch_mode = 2
+expand_mode = 2
+script = ExtResource("2_mjpwl")
 
 [node name="BasicAttack" type="Sprite2D" parent="." unique_id=308000399]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(0.8, 0.8)
+position = Vector2(24, 24)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_3hqqe")
 
 [node name="SmallHeal" type="Sprite2D" parent="." unique_id=455462391]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(1.5, 1.5)
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_kmmqg")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="Heal" type="Sprite2D" parent="." unique_id=654670819]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(1.5, 1.5)
+position = Vector2(24, 24)
+scale = Vector2(3, 3)
 texture = ExtResource("4_3r1b2")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="HealOverTime" type="Sprite2D" parent="." unique_id=1745423341]
-visible = false
-position = Vector2(16, 16)
-scale = Vector2(1.5, 1.5)
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
 texture = ExtResource("4_3r1b2")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
 [node name="AOEHeal" type="Sprite2D" parent="." unique_id=1174262519]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(1.5, 1.5)
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_kmmqg")
 region_enabled = true
 region_rect = Rect2(32, 64, 32, 32)
 
 [node name="Dispell" type="Sprite2D" parent="." unique_id=1047043901]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(0.8, 0.8)
+position = Vector2(24, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_5d30t")
 region_enabled = true
 region_rect = Rect2(96, 32, 32, 32)
 
 [node name="Shield" type="Sprite2D" parent="." unique_id=702065783]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(0.8, 0.8)
+position = Vector2(24, 24)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_7gkn4")
 region_enabled = true
 region_rect = Rect2(160, 64, 32, 32)
 
 [node name="Resist" type="Sprite2D" parent="." unique_id=2145839919]
 visible = false
-position = Vector2(16, 16)
-scale = Vector2(0.79999995, 0.79999995)
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("7_2c6a1")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
