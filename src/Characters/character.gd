@@ -52,10 +52,10 @@ func heal(amount:int) -> void:
 func die() -> void:
 	current_hp = 0;
 	
-	#TODO: death animation?
 	animation.play("die")
-	
 	_update_healthBar();
+	remove_from_group("allies");
+	remove_from_group("enemies");
 
 func attack_hit(_num:int):
 	pass;

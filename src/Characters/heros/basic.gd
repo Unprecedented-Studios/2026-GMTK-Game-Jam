@@ -29,5 +29,5 @@ func attack_hit(id:int) -> void:
 		var dmg = DamageInfo.new();
 		dmg.damage = damage;
 		dmg.type = type;
-		
-		target.take_damage(dmg)
+		if target:
+			target.take_damage(dmg)

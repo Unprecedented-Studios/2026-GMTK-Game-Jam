@@ -18,6 +18,59 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Status:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_t77sq"]
+resource_name = "die"
+length = 1.2000200178816913
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Status:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.20000336, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.2000201)
+}
 
 [sub_resource type="Animation" id="Animation_1cphh"]
 resource_name = "hurt"
@@ -57,12 +110,12 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t77sq"]
 _data = {
 &"RESET": SubResource("Animation_evhp6"),
+&"die": SubResource("Animation_t77sq"),
 &"hurt": SubResource("Animation_1cphh"),
 &"idle": SubResource("Animation_0t6l1")
 }
 
 [node name="Bug" unique_id=2001436315 node_paths=PackedStringArray("animation") groups=["enemies"] instance=ExtResource("1_evhp6")]
-max_hp = null
 animation = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" parent="." index="1" unique_id=215155055]
