@@ -9,6 +9,7 @@ size = Vector2(176, 155)
 
 [node name="Character" type="Node2D" unique_id=2001436315]
 script = ExtResource("1_my7n2")
+max_hp = null
 
 [node name="Status" type="VBoxContainer" parent="." unique_id=2098837675]
 offset_left = -88.0

@@ -45,7 +45,14 @@ func take_damage(info:DamageInfo) -> void:
 				return;
 	var currDamage = info;
 	#loop through buff list for modifiers
-	
+	for b:Buff in get_buffs():
+		if b.type == Buff.Buff_list.Shield:
+			return
+		elif b.type == Buff.Buff_list.DefenseDown:
+			currDamage *= 1.5
+		elif b.type == Buff.Buff_list.DefenseUp:
+			currDamage *= .5
+		
 	if currDamage.damage > 0:
 		
 		current_hp -= currDamage.damage
@@ -84,6 +91,12 @@ func apply_buff(new_buff:Buff):
 	for b:Buff in buff_display.get_children():
 		if b.type == new_buff.type:
 			b.queue_free()
+	if new_buff.type == Buff.Buff_list.HealOverTime:
+		new_buff.heal_tick.connect(heal)
+	if new_buff.debuff:
+		for b:Buff in get_buffs():
+			if b.type == Buff.Buff_list.Resist:
+				return
 	buff_display.add_child(new_buff)
 	
 func dispell():
@@ -95,7 +108,12 @@ func _input(event: InputEvent) -> void:
 	if mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		select_box.show()
 
-
+func get_buffs() -> Array[Buff]:
+	var buffs:Array[Buff] = []
+	for b:Buff in buff_display.get_children():
+		buffs.append(b)
+	return buffs
+		
 
 func _on_area_2d_mouse_entered() -> void:
 	mouse_over_me = true
