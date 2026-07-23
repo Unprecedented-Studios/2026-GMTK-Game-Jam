@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1kpckr43gxh0"]
 
 [ext_resource type="Texture2D" uid="uid://bn7h5wx3bavf2" path="res://assets/Characters/Hero_01.png" id="1_agfs1"]
+[ext_resource type="Script" uid="uid://celad0imcpjfg" path="res://src/Characters/character.gd" id="1_my7n2"]
 [ext_resource type="PackedScene" uid="uid://grm1n1j5ar5" path="res://scenes/buff.tscn" id="2_lrhn5"]
 [ext_resource type="PackedScene" uid="uid://c3mmg5v2dxirm" path="res://scenes/health_bar.tscn" id="2_rkhd4"]
 
@@ -227,6 +228,7 @@ animations = [{
 }]
 
 [node name="Character" type="Node2D" unique_id=2001436315]
+script = ExtResource("1_my7n2")
 
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=1116749280]
 scale = Vector2(4, 4)
