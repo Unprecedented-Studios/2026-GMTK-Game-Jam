@@ -1,8 +1,10 @@
 extends TextureRect
-
+class_name Action
 
 enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, AOEHeal,Dispell, Shield,Resist}
 @export var action_type:actions_list = actions_list.BasicAttack
+
+signal action_attempt(Action)
 
 @onready var actions:Dictionary = \
 {
@@ -41,14 +43,19 @@ var cooldown_count_down:int = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	if self_modulate.a < 1:
+		self_modulate.a += delta
 	
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(action_information[action_type]["key_code"]):
-		activate()
+		act()
 
+func act():
+	action_attempt.emit(self)
+	self_modulate.a = .7
+	
 func activate():
 	if not $DurationTimer.is_stopped():
 		return
@@ -69,5 +76,5 @@ func _on_duration_timer_timeout() -> void:
 
 
 func _on_button_button_up() -> void:
-	activate()
+	act()
 	

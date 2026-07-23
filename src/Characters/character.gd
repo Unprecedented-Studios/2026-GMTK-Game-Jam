@@ -83,9 +83,7 @@ func attack_hit(_num:int):
 
 
 func _input(event: InputEvent) -> void:
-	if not mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $SelectBox.visible:
-		select_box.hide()
-	elif mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		select_box.show()
 
 

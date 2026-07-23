@@ -1,0 +1,17 @@
+extends HBoxContainer
+class_name ActionBar
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func get_actions() -> Array[Action]:
+	var actions:Array[Action] = []
+	for c:Action in get_children():
+		actions.append(c)
+	return actions
