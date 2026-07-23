@@ -40,7 +40,9 @@ func _ready() -> void:
 			$HotkeyLabel.text = action_information[action_type]["key"]
 
 var cooldown_count_down:int = 0
-
+var is_ready:bool:
+	get:
+		return $DurationTimer.is_stopped()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -55,10 +57,9 @@ func _input(_event: InputEvent) -> void:
 func act():
 	action_attempt.emit(self)
 	self_modulate.a = .7
+
 	
 func activate():
-	if not $DurationTimer.is_stopped():
-		return
 	$DurationTimer.start()
 	$DurationCover.show()
 	cooldown_count_down = action_information[action_type]["cooldown"]

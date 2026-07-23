@@ -49,10 +49,8 @@ func _input(event: InputEvent) -> void:
 			else:
 				tabbable_targets[selected_index+1].selected = true
 			selected_char.selected = false
-			
-		
-				
-	
+
+
 func get_selected_character() -> Character:
 	for c:Character in get_characters():
 		if c.selected:
@@ -61,12 +59,32 @@ func get_selected_character() -> Character:
 
 #function used by all the action buttons.  determine if action is possible
 #then use it.
+var small_heal_amount:int = 10
+var heal_amount:int = 50
+var aoe_heal_amount:int = 20
+var basic_attack_damage:DamageInfo = DamageInfo.new()
+
 func perform_action(act:Action):
 	var selected_character = get_selected_character()
 	if selected_character == null:
 		return
-	else:
+	elif act.is_ready:
 		act.activate()
+		if act.action_type == Action.actions_list.SmallHeal:
+			selected_character.heal(small_heal_amount)
+		elif act.action_type == Action.actions_list.Heal:
+			selected_character.heal(heal_amount)
+		elif act.action_type == Action.actions_list.BasicAttack:
+			basic_attack_damage.damage = 5.0
+			selected_character.take_damage(basic_attack_damage)
+		elif act.action_type == Action.actions_list.HealOverTime:
+			pass
+		elif act.action_type == Action.actions_list.Dispell:
+			pass
+		elif act.action_type == Action.actions_list.Shield:
+			pass
+		elif act.action_type == Action.actions_list.Resist:
+			pass
 
 var mouse_over_actions:bool = false
 func _on_action_bar_area_mouse_entered() -> void:
