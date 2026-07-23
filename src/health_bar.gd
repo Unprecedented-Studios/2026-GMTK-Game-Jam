@@ -9,7 +9,7 @@ extends VBoxContainer
 var max_health:int = 100:
 	set(new_max_health):
 		max_health = new_max_health
-		max_health_label.value = str(max_health)
+		max_health_label.text = str(max_health)
 		
 		
 var health: int = 100:

@@ -22,6 +22,11 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+enemies="Stuff that wants to kill us so we kill it first"
+allies="The Player's Allies "
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
