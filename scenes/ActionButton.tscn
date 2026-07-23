@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://c57yspa5arglx"]
+
+[ext_resource type="Texture2D" uid="uid://d23nqt1ojta2" path="res://assets/Primitive/GrayBoxBorder.png" id="1_3r1b2"]
+[ext_resource type="Texture2D" uid="uid://diggkmxcohkl3" path="res://assets/Abilities/Other/Staff_Purple_41.png" id="2_3hqqe"]
+[ext_resource type="Texture2D" uid="uid://b0xspo76cn0jt" path="res://assets/Abilities/Buffs & Debuffs/Charm_Up.png" id="3_kmmqg"]
+[ext_resource type="Texture2D" uid="uid://d30pt38l6t822" path="res://assets/Abilities/Buffs & Debuffs/Health_Up.png" id="4_3r1b2"]
+[ext_resource type="Texture2D" uid="uid://bpbqsoexqj41v" path="res://assets/Abilities/Light Spells/Lightning_Explosion.png" id="5_5d30t"]
+[ext_resource type="Texture2D" uid="uid://cgehs57r20blf" path="res://assets/Abilities/Buffs & Debuffs/Protect_Up.png" id="6_7gkn4"]
+[ext_resource type="Texture2D" uid="uid://dmhj252junhfw" path="res://assets/Abilities/Buffs & Debuffs/Resistance_Up.png" id="7_2c6a1"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="10_3r1b2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0tu5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p74uo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57cb2"]
+bg_color = Color(0, 0, 0, 0.70980394)
+
+[sub_resource type="Theme" id="Theme_bareo"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_p74uo")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_57cb2")
+
+[node name="ActionButton" type="TextureRect" unique_id=152885644]
+material = SubResource("ShaderMaterial_d0tu5")
+custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_3r1b2")
+stretch_mode = 2
+
+[node name="BasicAttack" type="Sprite2D" parent="." unique_id=308000399]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_3hqqe")
+
+[node name="SmallHeal" type="Sprite2D" parent="." unique_id=455462391]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_kmmqg")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="Heal" type="Sprite2D" parent="." unique_id=654670819]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_3r1b2")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="HealOverTime" type="Sprite2D" parent="." unique_id=1745423341]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_3r1b2")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="AOEHeal" type="Sprite2D" parent="." unique_id=1174262519]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_kmmqg")
+region_enabled = true
+region_rect = Rect2(32, 64, 32, 32)
+
+[node name="Dispell" type="Sprite2D" parent="." unique_id=1047043901]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_5d30t")
+region_enabled = true
+region_rect = Rect2(96, 32, 32, 32)
+
+[node name="Shield" type="Sprite2D" parent="." unique_id=702065783]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_7gkn4")
+region_enabled = true
+region_rect = Rect2(160, 64, 32, 32)
+
+[node name="Resist" type="Sprite2D" parent="." unique_id=2145839919]
+visible = false
+position = Vector2(16, 16)
+scale = Vector2(0.79999995, 0.79999995)
+texture = ExtResource("7_2c6a1")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="DurationTimer" type="Timer" parent="." unique_id=101613920]
+wait_time = 5.0
+one_shot = true
+
+[node name="DurationCover" type="ProgressBar" parent="." unique_id=823223496]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+theme = SubResource("Theme_bareo")
+max_value = 1.0
+value = 1.0
+fill_mode = 1
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1609112760]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -12.5
+offset_right = 20.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_3r1b2")
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
