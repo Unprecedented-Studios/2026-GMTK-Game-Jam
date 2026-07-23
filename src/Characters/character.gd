@@ -2,18 +2,14 @@ extends Node2D
 class_name Character
 
 @export var max_hp: int = 100;
+@export var animation:AnimationPlayer;
 var current_hp;
 
 @onready var health_bar:StatusBox = get_node("Status/HealthBar");
 @onready var buff_display:GridContainer = get_node("Status/BuffsAndDebuffs");
-@onready var sprite:AnimatedSprite2D = get_node("Character");
-@onready var animation:AnimationPlayer = get_node("AnimationPlayer");
 
 func _ready():
 	current_hp = max_hp;
-	sprite.play("idle")
-	sprite.animation_finished.connect(_on_character_animation_finished);
-	pass
 	
 func _update_healthBar():
 	health_bar.max_health = max_hp;
@@ -31,9 +27,11 @@ func take_damage(info:DamageInfo) -> void:
 	
 	if currDamage.damage > 0:
 		
-		sprite.play("hurt")
-		sprite.frame=0
 		current_hp -= currDamage.damage
+		if animation:
+			animation.play("hurt");
+			animation.seek(0,true)
+			animation.queue("idle");
 		
 		if current_hp <= 0:
 			die();
@@ -55,18 +53,9 @@ func die() -> void:
 	current_hp = 0;
 	
 	#TODO: death animation?
-	sprite.play("die")
+	animation.play("die")
 	
 	_update_healthBar();
 
-
-func _on_character_animation_finished():
-	if current_hp == 0:
-		queue_free();
-	else:
-		sprite.play("idle")
-
-	pass # Replace with function body.
-
-func attack_hit(num:int):
+func attack_hit(_num:int):
 	pass;

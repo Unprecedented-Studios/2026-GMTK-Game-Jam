@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 	pass
 	
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(action_information[action_type]["key_code"]):
 		activate()
 

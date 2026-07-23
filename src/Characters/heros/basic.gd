@@ -22,6 +22,7 @@ func _attack() -> void:
 	if enemies.size() > 0:
 		target = enemies.pick_random();
 		animation.play("attack1");
+		animation.queue("idle");
 		
 func attack_hit(id:int) -> void:
 	if id == 1:
