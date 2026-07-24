@@ -78,27 +78,13 @@ tracks/0/keys = {
 "update": 1,
 "values": [30, 31, 32, 33, 34, 35]
 }
-tracks/1/type = "method"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("Status:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Status:modulate:a")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, 0, 0, 0.20000336, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1.2000201)
@@ -150,7 +136,6 @@ _data = {
 
 [node name="Bug" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_evhp6")]
 script = ExtResource("2_0t6l1")
-max_hp = 20
 animation = NodePath("AnimationPlayer")
 attackList = [NodePath("Attack")]
 

@@ -2,20 +2,14 @@ extends Node
 
 var actions:Array[Action]
 func _ready():
-	get_tree().paused = true
 	$StartMenu.show()
 	actions = $ActionBar.get_actions()
 	for a:Action in actions:
 		a.action_attempt.connect(perform_action)
 		
 func get_characters() -> Array[Character]:
-	var characters:Array[Character] =[]
-	for a:Character in $Allies.get_children():
-		characters.append(a)
-	for e:Character in $Enemies.get_children():
-		characters.append(e)
-	return characters
-
+	return $GameState.all_characters
+	
 func _input(event: InputEvent) -> void:
 	if mouse_over_actions:
 		return
@@ -36,7 +30,7 @@ func _input(event: InputEvent) -> void:
 	#tab_targeting.
 	if event.is_action_released("tab"):
 		if selected_char == null:
-			var a:Character = $Allies.get_child(0)
+			var a:Character = $GameState.active_allies[0]
 			a.selected = true
 			return
 		if Input.is_key_pressed(KEY_SHIFT):
@@ -59,7 +53,7 @@ func _input(event: InputEvent) -> void:
 
 func get_selected_character() -> Character:
 	for c:Character in get_characters():
-		if c.selected:
+		if c and c.selected:
 			return c
 	return null
 
@@ -84,7 +78,7 @@ func perform_action(act:Action):
 		elif act.action_type == Action.actions_list.Heal:
 			selected_character.heal(heal_amount)
 		elif act.action_type == Action.actions_list.AOEHeal:
-			for a:Character in $Allies.get_children():
+			for a:Character in $GameState.active_allies:
 				a.heal(aoe_heal_amount)
 		elif act.action_type == Action.actions_list.BasicAttack:
 			basic_attack_damage.damage = 5.0
@@ -113,7 +107,7 @@ func _on_action_bar_area_mouse_exited() -> void:
 
 func _on_start_button_button_up() -> void:
 	$StartMenu.hide()
-	get_tree().paused = false
+	$GameState.start_game()
 
 
 #region Instructions stuff
@@ -161,21 +155,26 @@ func _on_next_button_button_up() -> void:
 		instructions[active_instruction].show()
 #endregion
 
-
 func _on_v_slider_drag_ended(value_changed: bool) -> void:
 	AudioServer.set_bus_volume_linear(0,$StartMenu/VBoxContainer/MainMenu/HBoxContainer/VolumeSlider.value/100.0)
-
 
 func _on_background_music_finished() -> void:
 	$StartMenu/BackgroundMusic.play()
 
-
 func _on_game_state_game_over():
 	$StartMenu.show()
+	$StartMenu/VBoxContainer/MainMenu/PauseMenu.hide()
 	$StartMenu/VBoxContainer/MainMenu/EndingMenu.show()
 	$StartMenu/VBoxContainer/MainMenu/RestartGame.show()
 	$StartMenu/VBoxContainer/MainMenu/StartButton.hide()
 
-
 func _on_restart_game_button_up():
-	get_tree().reload_current_scene();
+	$StartMenu.hide()
+	$StartMenu/VBoxContainer/MainMenu/EndingMenu.hide()
+	$StartMenu/VBoxContainer/MainMenu/RestartGame.hide()
+	$StartMenu/VBoxContainer/MainMenu/StartButton.show()
+	$GameState.start_game()
+
+func _on_return_to_game_button_up():
+	$StartMenu.hide()
+	get_tree().paused = false;

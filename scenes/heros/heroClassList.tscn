@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dt60l0xnnugic"]
+
+[ext_resource type="Script" uid="uid://bskrobffpan8l" path="res://src/Characters/heros/hero_class_list.gd" id="1_h3uiw"]
+[ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="2_fseos"]
+
+[node name="HeroClassList" type="Node" unique_id=655837084]
+script = ExtResource("1_h3uiw")
+classes = Array[PackedScene]([ExtResource("2_fseos")])
