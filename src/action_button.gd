@@ -44,7 +44,7 @@ static var action_information:Dictionary = {
 	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "cooldown":10,"amount":30},
 	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"cooldown":10,"duration":5,"amount":5.0},
 	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0,"cooldown":20,"amount":15},
-	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0,"cooldown":20, "duration":5},
+	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0,"cooldown":20, "duration":3},
 	actions_list.AttackUp:{"info":"Attack Up - Increases attack damage","mana":0,"cooldown":10, "duration":5,"amount":1.25},
 	actions_list.AttackDown:{"info":"Attack Down - Decrease attack damage","mana":0,"cooldown":10, "duration":5,"amount":0.75},
 	actions_list.DefenseUp:{"info":"Defense Up - Increases attack speed","mana":0,"cooldown":10, "duration":5,"amount":1.25},

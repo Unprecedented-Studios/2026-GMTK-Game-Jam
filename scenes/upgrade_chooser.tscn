@@ -42,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="GameNameLabel" type="Label" parent="vbox" unique_id=265845143]
+[node name="ChooseUpgradeLabel" type="Label" parent="vbox" unique_id=265845143]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -53,6 +53,15 @@ text = "Choose an upgrade"
 [node name="Upgrade_Options" type="VBoxContainer" parent="vbox" unique_id=668459083]
 layout_mode = 2
 alignment = 1
+
+[node name="NoMoreUpgradesLabel" type="Label" parent="vbox/Upgrade_Options" unique_id=1577468160]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_wieoa")
+theme_override_font_sizes/font_size = 20
+text = "- No More Upgrades - "
 
 [node name="UpgradeOption" parent="vbox/Upgrade_Options" unique_id=1799864452 instance=ExtResource("3_wieoa")]
 layout_mode = 2
@@ -72,7 +81,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_wieoa")
-disabled = true
 text = "Confirm"
 
 [connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption" to="." method="_on_upgrade_option_chosen"]
