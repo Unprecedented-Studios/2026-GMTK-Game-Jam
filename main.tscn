@@ -37,6 +37,7 @@ offset_right = 846.0
 offset_bottom = 708.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
+alignment = 1
 
 [node name="ActionBarArea" type="Area2D" parent="." unique_id=591660478]
 
