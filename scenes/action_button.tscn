@@ -114,7 +114,6 @@ offset_right = 69.333336
 offset_bottom = 53.666668
 theme = ExtResource("10_3r1b2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "A"
 
 [node name="DurationCover" type="ProgressBar" parent="." unique_id=823223496]
 visible = false
