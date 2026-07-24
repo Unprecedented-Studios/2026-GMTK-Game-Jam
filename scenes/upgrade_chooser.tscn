@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dr0l58iupnuyq"]
+
+[ext_resource type="Script" uid="uid://bp2vhm1xp70d4" path="res://src/upgrade_chooser.gd" id="1_humcu"]
+[ext_resource type="Texture2D" uid="uid://b7tff3a1g5o5o" path="res://assets/Primitive/GrayBox.png" id="1_wieoa"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="2_wieoa"]
+[ext_resource type="PackedScene" uid="uid://bv5qloru4dy16" path="res://scenes/upgrade_option.tscn" id="3_wieoa"]
+
+[node name="UpgradeChooser" type="Panel" unique_id=2059601794]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_humcu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1063515569]
+modulate = Color(1, 1, 1, 0.4862745)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wieoa")
+expand_mode = 2
+
+[node name="vbox" type="VBoxContainer" parent="." unique_id=1255875672]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -31.0
+offset_right = 171.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameNameLabel" type="Label" parent="vbox" unique_id=265845143]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_wieoa")
+theme_override_font_sizes/font_size = 32
+text = "Choose an upgrade"
+
+[node name="Upgrade_Options" type="VBoxContainer" parent="vbox" unique_id=668459083]
+layout_mode = 2
+alignment = 1
+
+[node name="UpgradeOption" parent="vbox/Upgrade_Options" unique_id=1799864452 instance=ExtResource("3_wieoa")]
+layout_mode = 2
+
+[node name="UpgradeOption2" parent="vbox/Upgrade_Options" unique_id=1748516727 instance=ExtResource("3_wieoa")]
+layout_mode = 2
+option_number = 1
+action_type = 2
+
+[node name="UpgradeOption3" parent="vbox/Upgrade_Options" unique_id=691157579 instance=ExtResource("3_wieoa")]
+layout_mode = 2
+option_number = 2
+action_type = 5
+
+[node name="Confirm" type="Button" parent="vbox/Upgrade_Options" unique_id=1301099310]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_wieoa")
+text = "Confirm"
+
+[connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption" to="." method="_on_upgrade_option_chosen"]
+[connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption2" to="." method="_on_upgrade_option_chosen"]
+[connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption3" to="." method="_on_upgrade_option_chosen"]

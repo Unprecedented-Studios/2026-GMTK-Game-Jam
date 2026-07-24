@@ -39,7 +39,7 @@ var is_ready:bool:
 func set_icon():
 	for c in actions.keys():
 		if c != action_type:
-			actions[c].queue_free()
+			actions[c].hide()
 		else:
 			actions[c].show()
 			if instructional:
@@ -58,6 +58,8 @@ func _input(_event: InputEvent) -> void:
 		act()
 
 func act():
+	if instructional:
+		return
 	action_attempt.emit(self)
 	self_modulate.a = .7
 
