@@ -2,15 +2,25 @@ extends TextureRect
 class_name Action
 
 enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, 
-AOEHeal,Dispell, Shield, Resist}
+AOEHeal, Shield,AttackUp,AttackDown, 
+DefenseUp,DefenseDown,SpeedUp,SpeedDown}
 
 static func get_array_of_actions() -> Array[actions_list]:
-	return [actions_list.BasicAttack,actions_list.SmallHeal, actions_list.Heal,actions_list.HealOverTime,
-	actions_list.AOEHeal,actions_list.Dispell, actions_list.Shield,actions_list.Resist]
+	return [actions_list.BasicAttack, actions_list.SmallHeal, actions_list.Heal, actions_list.HealOverTime,
+	actions_list.AOEHeal, actions_list.Shield,actions_list.AttackUp,actions_list.AttackDown, 
+	actions_list.DefenseUp,actions_list.DefenseDown,actions_list.SpeedUp,actions_list.SpeedDown]
 @export var action_type:actions_list = actions_list.BasicAttack
 @export var instructional:bool = false
 signal action_attempt(Action)
 
+var upgrade_level:int = 0
+var duration:int = 0
+var cooldown:int = 0
+var cooldown_count_down:int = 0
+var amount:float = 0.0
+var is_ready:bool:
+	get:
+		return $DurationTimer.is_stopped()
 @onready var actions:Dictionary = \
 {
 	actions_list.BasicAttack:$BasicAttack,
@@ -18,30 +28,33 @@ signal action_attempt(Action)
 	actions_list.Heal:$Heal,
 	actions_list.HealOverTime:$HealOverTime,
 	actions_list.AOEHeal:$AOEHeal,
-	actions_list.Dispell:$Dispell,
 	actions_list.Shield:$Shield,
-	actions_list.Resist:$Resist
+	actions_list.AttackUp:$AttackUp,
+	actions_list.AttackDown:$AttackDown,
+	actions_list.DefenseUp:$DefenseUp,
+	actions_list.DefenseDown:$DefenseDown,
+	actions_list.SpeedUp:$SpeedUp,
+	actions_list.SpeedDown:$SpeedDown,
 }
 
 static var action_information:Dictionary = {
 	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "cooldown":1},
 	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0,"cooldown":1},
 	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "cooldown":10},
-	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"cooldown":5},
+	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"cooldown":10,"duration":5,"amount":5.0},
 	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0,"cooldown":15},
-	actions_list.Dispell:{"info":"Dispell - Removes all Debuffs on an ally","mana":0,"cooldown":5},
-	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0,"cooldown":15},
-	actions_list.Resist:{"info":"Resist - Prevents any debuffs from being applied","mana":0,"cooldown":5},
+	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0,"cooldown":20, "duration":5},
+	actions_list.AttackUp:{"info":"Attack Up - Increases attack damage","mana":0,"cooldown":10, "duration":5,"amount":1.25},
+	actions_list.AttackDown:{"info":"Attack Down - Decrease attack damage","mana":0,"cooldown":10, "duration":5,"amount":0.75},
+	actions_list.DefenseUp:{"info":"Defense Up - Increases attack speed","mana":0,"cooldown":10, "duration":5,"amount":1.25},
+	actions_list.DefenseDown:{"info":"Defense Down - Increases attack speed","mana":0,"cooldown":10, "duration":5,"amount":0.75},
+	actions_list.SpeedUp:{"info":"Speed Up - Increases attack speed","mana":0,"cooldown":10, "duration":5,"amount":1.25},
+	actions_list.SpeedDown:{"info":"Speed Down - Decreases attack speed","mana":0,"cooldown":10, "duration":0.75},
 }
 
 func _ready() -> void:
 	pass
-var cooldown_count_down:int = 0
-var is_ready:bool:
-	get:
-		return $DurationTimer.is_stopped()
 
-	
 func set_icon():
 	for c in actions.keys():
 		if c != action_type:
@@ -51,8 +64,15 @@ func set_icon():
 			if instructional:
 				continue
 			self.tooltip_text = action_information[action_type]["info"]
-			cooldown_count_down = action_information[action_type]["cooldown"]
+			cooldown = action_information[action_type]["cooldown"]
+			if action_information[action_type].has("duration"):
+				duration = action_information[action_type]["duration"]
+			if action_information[action_type].has("amount"):
+				amount = action_information[action_type]["amount"]
 
+func set_upgrade_level(new_level:int=0):
+	upgrade_level = new_level
+	$UpgradeLabel.text = "+" + str(new_level)
 var assigned_key:Key = KEY_0
 
 func set_key(key_text:String, key_code:Key):
@@ -88,7 +108,7 @@ func activate():
 	$ActionSound.play()
 	$DurationTimer.start()
 	$DurationCover.show()
-	cooldown_count_down = action_information[action_type]["cooldown"]
+	cooldown_count_down = cooldown
 	$TimerLabel.text = str(cooldown_count_down)
 	$TimerLabel.show()
 

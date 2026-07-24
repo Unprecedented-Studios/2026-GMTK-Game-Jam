@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d2yfg5eivrkmo"]
 
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="1_nisbi"]
-[ext_resource type="PackedScene" uid="uid://dulox8xwe0tf0" path="res://scenes/BuffDisplay.tscn" id="2_m0uw1"]
 
 [node name="Instructions" type="VBoxContainer" unique_id=403647643]
 size_flags_horizontal = 4
@@ -27,11 +26,3 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("1_nisbi")
 text = "Information about Buffs will show up here once you encounter them"
-
-[node name="BuffDisplays" parent="." unique_id=182094526 instance=ExtResource("2_m0uw1")]
-layout_mode = 2
-buff_type = 0
-
-[node name="BuffDisplays2" parent="." unique_id=573130063 instance=ExtResource("2_m0uw1")]
-layout_mode = 2
-buff_type = 3

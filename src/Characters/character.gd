@@ -46,7 +46,11 @@ func _ready():
 		var attack_timer = Timer.new()
 		add_child(attack_timer)
 		attack_timer.one_shot = false;
-		attack_timer.start(attack_rate)
+		var curr_attack_rate:float = attack_rate
+		for b in get_buffs():
+			if b.type == Action.actions_list.SpeedUp or b.type == Action.actions_list.SpeedDown:
+				curr_attack_rate /= b.buff_amount
+		attack_timer.start(curr_attack_rate)
 		attack_timer.timeout.connect(_attack);
 
 	
@@ -73,14 +77,12 @@ func take_damage(info:DamageInfo) -> void:
 	var currDamage = info;
 	#loop through buff list for modifiers
 	for b:Buff in get_buffs():
-		if b.type == Buff.Buff_list.Shield:
+		if b.type == Action.actions_list.Shield:
 			$BlockSound.pitch_scale = randf_range(.95,1.05)
 			$BlockSound.play()
 			return
-		elif b.type == Buff.Buff_list.DefenseDown:
-			currDamage *= 1.5
-		elif b.type == Buff.Buff_list.DefenseUp:
-			currDamage *= .5
+		elif b.type == Action.actions_list.DefenseDown or b.type == Action.actions_list.DefenseUp:
+			currDamage.damage /= b.buff_amount
 	
 	$HitSound.pitch_scale = randf_range(.95,1.05)
 	$HitSound.play()
@@ -127,18 +129,18 @@ func _attack():
 
 func attack_hit(_num:int):
 	if (target && attackList[_num]):
-		attackList[_num].attack(target)
+		var attack_mod:float = 1.0
+		for b:Buff in get_buffs():
+			if b.type == Action.actions_list.AttackUp or b.type == Action.actions_list.AttackDown:
+				attack_mod *= b.buff_amount
+		attackList[_num].attack(target,attack_mod)
 
 func apply_buff(new_buff:Buff):
 	for b:Buff in buff_display.get_children():
 		if b.type == new_buff.type:
 			b.queue_free()
-	if new_buff.type == Buff.Buff_list.HealOverTime:
+	if new_buff.type == Action.actions_list.HealOverTime:
 		new_buff.heal_tick.connect(heal)
-	if new_buff.debuff:
-		for b:Buff in get_buffs():
-			if b.type == Buff.Buff_list.Resist:
-				return
 	buff_display.add_child(new_buff)
 	
 func dispell():

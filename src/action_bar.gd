@@ -13,6 +13,10 @@ func _ready() -> void:
 	add_action(small_heal)
 	
 
+func reset():
+	for a:Action in get_children():
+		if a.action_type != Action.actions_list.BasicAttack and a.action_type != Action.actions_list.SmallHeal:
+			a.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

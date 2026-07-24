@@ -8,8 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bpbqsoexqj41v" path="res://assets/Abilities/Light Spells/Lightning_Explosion.png" id="5_5d30t"]
 [ext_resource type="Texture2D" uid="uid://cgehs57r20blf" path="res://assets/Abilities/Buffs & Debuffs/Protect_Up.png" id="6_7gkn4"]
 [ext_resource type="Texture2D" uid="uid://dmhj252junhfw" path="res://assets/Abilities/Buffs & Debuffs/Resistance_Up.png" id="7_2c6a1"]
+[ext_resource type="Texture2D" uid="uid://2bhyc3lfutvt" path="res://assets/Abilities/Buffs & Debuffs/Attack_Up.png" id="9_jpd4j"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="10_3r1b2"]
+[ext_resource type="Texture2D" uid="uid://1ap26a28p54l" path="res://assets/Abilities/Buffs & Debuffs/Attack_Down.png" id="10_jm4t3"]
 [ext_resource type="AudioStream" uid="uid://c1hfkov62f0pw" path="res://assets/Sounds/UI_Keypad_Rejected.mp3" id="10_npg4v"]
+[ext_resource type="Texture2D" uid="uid://bv103jkwhfy68" path="res://assets/Abilities/Buffs & Debuffs/Defense_Up.png" id="11_br5ua"]
+[ext_resource type="Texture2D" uid="uid://bg77ga07ewxfu" path="res://assets/Abilities/Buffs & Debuffs/Defense_Down.png" id="12_lxroo"]
+[ext_resource type="Texture2D" uid="uid://sop4nsgiqe5k" path="res://assets/Abilities/Buffs & Debuffs/Speed_Up.png" id="13_vn1uo"]
+[ext_resource type="Texture2D" uid="uid://bw8ds6sirbl6" path="res://assets/Abilities/Buffs & Debuffs/Speed_Down.png" id="14_iembj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0tu5"]
 
@@ -47,6 +53,7 @@ visible = false
 position = Vector2(24, 24)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_3hqqe")
+flip_h = true
 
 [node name="SmallHeal" type="Sprite2D" parent="." unique_id=455462391]
 visible = false
@@ -104,6 +111,54 @@ texture = ExtResource("7_2c6a1")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
+[node name="AttackUp" type="Sprite2D" parent="." unique_id=1077736232]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_jpd4j")
+region_enabled = true
+region_rect = Rect2(128, 0, 32, 32)
+
+[node name="AttackDown" type="Sprite2D" parent="." unique_id=1032285703]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_jm4t3")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="DefenseUp" type="Sprite2D" parent="." unique_id=2058512704]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("11_br5ua")
+region_enabled = true
+region_rect = Rect2(128, 0, 32, 32)
+
+[node name="DefenseDown" type="Sprite2D" parent="." unique_id=166254488]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("12_lxroo")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="SpeedUp" type="Sprite2D" parent="." unique_id=1612464003]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("13_vn1uo")
+region_enabled = true
+region_rect = Rect2(128, 0, 32, 32)
+
+[node name="SpeedDown" type="Sprite2D" parent="." unique_id=1219514902]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("14_iembj")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
 [node name="DurationTimer" type="Timer" parent="." unique_id=101613920]
 
 [node name="HotkeyLabel" type="Label" parent="." unique_id=532193354]
@@ -152,6 +207,17 @@ stream = SubResource("AudioStreamMP3_mjpwl")
 [node name="ActionRejectedSound" type="AudioStreamPlayer" parent="." unique_id=347413765]
 stream = ExtResource("10_npg4v")
 volume_db = -3.0
+
+[node name="UpgradeLabel" type="Label" parent="." unique_id=1390332754]
+layout_mode = 0
+offset_left = -1.000001
+offset_top = -11.666666
+offset_right = 47.0
+offset_bottom = 24.333334
+theme = ExtResource("10_3r1b2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

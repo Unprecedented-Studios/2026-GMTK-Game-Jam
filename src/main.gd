@@ -84,20 +84,14 @@ func perform_action(act:Action):
 		elif act.action_type == Action.actions_list.BasicAttack:
 			basic_attack_damage.damage = 5.0
 			selected_character.take_damage(basic_attack_damage)
-		elif act.action_type == Action.actions_list.HealOverTime:
-			var new_HOT:Buff = buff_preload.instantiate()
-			new_HOT.type = Buff.Buff_list.HealOverTime
-			selected_character.apply_buff(new_HOT)
-		elif act.action_type == Action.actions_list.Dispell:
-			selected_character.dispell()
-		elif act.action_type == Action.actions_list.Shield:
-			var new_shield:Buff = buff_preload.instantiate()
-			new_shield.type = Buff.Buff_list.Shield
-			selected_character.apply_buff(new_shield)
-		elif act.action_type == Action.actions_list.Resist:
-			var new_resist:Buff = buff_preload.instantiate()
-			new_resist.type = Buff.Buff_list.Resist
-			selected_character.apply_buff(new_resist)
+		#if it's a buff...
+		elif act.duration >0:
+			var new_buff = buff_preload.instantiate()
+			new_buff.type = act.action_type
+			new_buff.buff_duration_seconds = float(act.duration)
+			new_buff.buff_amount = act.amount
+			selected_character.apply_buff(new_buff)
+
 
 var mouse_over_actions:bool = false
 func _on_action_bar_area_mouse_entered() -> void:
@@ -175,6 +169,7 @@ func _on_restart_game_button_up():
 	$StartMenu/VBoxContainer/MainMenu/RestartGame.hide()
 	$StartMenu/VBoxContainer/MainMenu/StartButton.show()
 	$GameState.start_game()
+	$ActionBar.reset()
 
 func _on_return_to_game_button_up():
 	$StartMenu.hide()
