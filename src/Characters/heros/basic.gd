@@ -10,5 +10,6 @@ func _attack() -> void:
 	var enemies:Array = get_tree().get_nodes_in_group("enemies");
 	if enemies.size() > 0:
 		target = enemies.pick_random();
-		animation.play("attack1");
+		
+		animation.play(attackList.pick_random().animationName);
 		animation.queue("idle");

@@ -3,8 +3,8 @@ class_name Attack
 
 @export var damage: float = 1;
 @export var type: DamageInfo.damage_types = DamageInfo.damage_types.NORMAL;
-
 @export var hitAnimation:PackedScene;
+@export var animationName:String;
 
 func attack(target:Node2D):
 	
