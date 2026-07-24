@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 	#mouse selection handling
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selected_char != null:
 		for c:Character in get_characters():
-			if c.selected and !c.mouse_over_me:
+			if c and c.selected and !c.mouse_over_me:
 				c.selected = false
 	#tab_targeting.
 	if event.is_action_released("tab"):
@@ -155,7 +155,7 @@ func _on_next_button_button_up() -> void:
 		instructions[active_instruction].show()
 #endregion
 
-func _on_v_slider_drag_ended(value_changed: bool) -> void:
+func _on_v_slider_drag_ended(_value_changed: bool) -> void:
 	AudioServer.set_bus_volume_linear(0,$StartMenu/VBoxContainer/MainMenu/HBoxContainer/VolumeSlider.value/100.0)
 
 func _on_background_music_finished() -> void:

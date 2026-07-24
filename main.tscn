@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/BuffExplanations.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
-[ext_resource type="Script" uid="uid://bnoygts6kmabq" path="res://src/player_power_ups.gd" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://dr0l58iupnuyq" path="res://scenes/upgrade_chooser.tscn" id="13_ycdy4"]
 [ext_resource type="Script" uid="uid://2lv1rdmid5j3" path="res://src/game_state.gd" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://2tnkk6vufvtq" path="res://scenes/enemies/enemiesList.tscn" id="15_vivmo"]
@@ -22,27 +21,27 @@ size = Vector2(418.5, 55.5)
 [node name="Main" type="Node" unique_id=793544856]
 script = ExtResource("1_1bvp3")
 
-[node name="AllySpawnLocations" type="Node" parent="." unique_id=2117248463]
-
-[node name="Spawn1" type="Marker2D" parent="AllySpawnLocations" unique_id=2074245475]
-position = Vector2(610, 242)
-
-[node name="Spawn2" type="Marker2D" parent="AllySpawnLocations" unique_id=1793182815]
-position = Vector2(358, 419)
-
-[node name="Spawn3" type="Marker2D" parent="AllySpawnLocations" unique_id=2104258150]
-position = Vector2(339, 229)
-
-[node name="Spawn4" type="Marker2D" parent="AllySpawnLocations" unique_id=1289620429]
-position = Vector2(133, 292)
-
-[node name="Spawn5" type="Marker2D" parent="AllySpawnLocations" unique_id=1236832446]
-position = Vector2(432, 15)
-
 [node name="Map" parent="." unique_id=1809714923 instance=ExtResource("2_dg77c")]
 
-[node name="Enemies" type="Node2D" parent="." unique_id=524587179]
+[node name="SpawnLocations" type="Node" parent="." unique_id=2117248463]
+
+[node name="EnemySpawn" type="Marker2D" parent="SpawnLocations" unique_id=1863972081]
 position = Vector2(1000, 204)
+
+[node name="Spawn1" type="Marker2D" parent="SpawnLocations" unique_id=2074245475]
+position = Vector2(610, 242)
+
+[node name="Spawn2" type="Marker2D" parent="SpawnLocations" unique_id=1793182815]
+position = Vector2(358, 419)
+
+[node name="Spawn3" type="Marker2D" parent="SpawnLocations" unique_id=2104258150]
+position = Vector2(339, 229)
+
+[node name="Spawn4" type="Marker2D" parent="SpawnLocations" unique_id=1289620429]
+position = Vector2(133, 292)
+
+[node name="Spawn5" type="Marker2D" parent="SpawnLocations" unique_id=1236832446]
+position = Vector2(432, 15)
 
 [node name="ActionBar" parent="." unique_id=1907554450 instance=ExtResource("6_7mycd")]
 offset_left = 434.0
@@ -58,8 +57,6 @@ alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionBarArea" unique_id=1629689746]
 position = Vector2(638.75, 685.25)
 shape = SubResource("RectangleShape2D_bareo")
-
-[node name="Allies" type="Node2D" parent="." unique_id=125489724]
 
 [node name="StartMenu" type="Panel" parent="." unique_id=613390001]
 process_mode = 3
@@ -263,11 +260,12 @@ stream = ExtResource("11_efxa6")
 pitch_scale = 1.54
 bus = &"UI sounds"
 
-[node name="PlayerPowerUps" type="Node" parent="." unique_id=790232382]
-script = ExtResource("13_w48qg")
-
-[node name="GameState" type="Node" parent="." unique_id=123523947]
+[node name="GameState" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemySpawns", "alliesSpawns", "enemyListNode", "heroClassListNode")]
 script = ExtResource("14_vivmo")
+enemySpawns = [NodePath("../SpawnLocations/EnemySpawn")]
+alliesSpawns = [NodePath("../SpawnLocations/Spawn1"), NodePath("../SpawnLocations/Spawn2"), NodePath("../SpawnLocations/Spawn3"), NodePath("../SpawnLocations/Spawn4"), NodePath("../SpawnLocations/Spawn5")]
+enemyListNode = NodePath("../EnemiesList")
+heroClassListNode = NodePath("../HeroClassList")
 
 [node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
 
@@ -276,7 +274,6 @@ script = ExtResource("14_vivmo")
 [node name="UpgradeChooser" parent="." unique_id=2059601794 instance=ExtResource("13_ycdy4")]
 visible = false
 
-[connection signal="child_exiting_tree" from="Enemies" to="GameState" method="_on_enemies_child_exiting_tree"]
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_return_to_game_button_up"]

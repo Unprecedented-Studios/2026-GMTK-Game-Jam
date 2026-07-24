@@ -12,8 +12,8 @@ var maleHeroNames = [
 var availibleNames:Array[String] = [];
 
 func resetNameList():
-	for name:String in maleHeroNames:
-		availibleNames.push_back(name)
+	for heroName:String in maleHeroNames:
+		availibleNames.push_back(heroName)
 
 func get_hero_name() -> String:
 	if availibleNames.size() == 0:

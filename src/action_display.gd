@@ -6,12 +6,8 @@ extends HBoxContainer
 func _ready() -> void:
 	set_action_display(action_type)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func set_action_display(action_type: Action.actions_list):
-	$ActionButton.action_type = action_type
+func set_action_display(_type: Action.actions_list):
+	$ActionButton.action_type = _type
 	$ActionButton.set_icon()
 	$Label.text = $ActionButton.action_information[action_type]["info"]
 	

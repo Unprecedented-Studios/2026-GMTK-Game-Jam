@@ -1,12 +1,12 @@
 extends Node
 signal game_over;
 
-@onready var enemies:Node2D = get_node("../Enemies")
-@onready var allies:Node = get_node("../Allies");
+@export var enemySpawns:Array[Marker2D]
+@export var alliesSpawns:Array[Marker2D]
+@export var enemyListNode:Node;
+@export var heroClassListNode:Node;
 
 var enemyList:Array[PackedScene];
-@onready var enemyListNode:Node = get_node("../EnemiesList");
-@onready var heroListNode:Node = get_node("../HeroClassList");
 
 var active_allies: Array[Character]=[];
 var active_enemies: Array[Character]=[];
@@ -45,7 +45,9 @@ func spawn_next_enemy():
 		active_enemies.push_back(newEnemy);
 		newEnemy.level = player_level;
 		
-		enemies.add_child(newEnemy);
+		$"../SpawnLocations".add_child(newEnemy);
+		var spawn_point = enemySpawns.pick_random();
+		newEnemy.global_position = spawn_point.global_position;
 		newEnemy.died.connect(_on_enemy_died)
 		
 
@@ -69,14 +71,14 @@ func start_game():
 	active_allies = [];
 	player_level = 0;
 	spawn_next_enemy()
-	var heroNode = heroListNode.classes[0] as PackedScene;
+	var heroNode = heroClassListNode.classes[0] as PackedScene;
 	spawn_hero(heroNode)
 
 func spawn_hero(heroNode:PackedScene):
 	var hero = heroNode.instantiate() as Character;
-	var spawn_point = $"../AllySpawnLocations".get_child(active_allies.size()) as Marker2D;
+	var spawn_point = alliesSpawns[active_allies.size()];
 	active_allies.push_back(hero);
-	allies.add_child(hero)
+	$"../SpawnLocations".add_child(hero)
 	hero.global_position = spawn_point.global_position;
 	hero.died.connect(_on_ally_died)
 	hero.show();

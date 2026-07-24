@@ -51,8 +51,8 @@ func _ready():
 
 	
 func _update_healthBar():
-	health_bar.max_health = max_hp;
-	health_bar.health = current_hp;
+	health_bar.max_health = max_hp as int;
+	health_bar.health = current_hp as int;
 
 var selected:bool = false:
 	get():
@@ -146,7 +146,7 @@ func dispell():
 		if b.debuff:
 			b.queue_free()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if mouse_over_me and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		select_box.show()
 
