@@ -207,6 +207,8 @@ func _on_debug_pressed() -> void:
 func transition_to_next_enemy():
 	$MapTreadmill.shift_map()
 	$TransitionTimer.start(2)
+	for c:Character in $GameState.active_allies:
+		c.walk()
 	
 
 func _on_transition_timer_timeout() -> void:
