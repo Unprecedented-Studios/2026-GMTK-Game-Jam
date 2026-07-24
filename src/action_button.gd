@@ -13,6 +13,7 @@ static func get_array_of_actions() -> Array[actions_list]:
 @export var instructional:bool = false
 signal action_attempt(Action)
 
+var assigned_key:Key = KEY_0
 var upgrade_level:int = 0
 var duration:int = 0
 var cooldown:int = 0
@@ -38,11 +39,11 @@ var is_ready:bool:
 }
 
 static var action_information:Dictionary = {
-	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "cooldown":1},
-	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0,"cooldown":1},
-	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "cooldown":10},
+	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "cooldown":2,"amount":5},
+	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0,"cooldown":2,"amount":10},
+	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "cooldown":10,"amount":30},
 	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"cooldown":10,"duration":5,"amount":5.0},
-	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0,"cooldown":15},
+	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0,"cooldown":20,"amount":15},
 	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0,"cooldown":20, "duration":5},
 	actions_list.AttackUp:{"info":"Attack Up - Increases attack damage","mana":0,"cooldown":10, "duration":5,"amount":1.25},
 	actions_list.AttackDown:{"info":"Attack Down - Decrease attack damage","mana":0,"cooldown":10, "duration":5,"amount":0.75},
@@ -54,6 +55,7 @@ static var action_information:Dictionary = {
 
 func _ready() -> void:
 	pass
+	
 
 func set_icon():
 	for c in actions.keys():
@@ -70,10 +72,36 @@ func set_icon():
 			if action_information[action_type].has("amount"):
 				amount = action_information[action_type]["amount"]
 
+func upgrade():
+	upgrade_level +=1
+	if upgrade_level ==1:
+		cooldown *= .5
+	elif upgrade_level ==2:
+		if duration >0:
+			duration *=2
+		else:
+			amount *= 2
+	elif upgrade_level == 3:
+		if duration >0 and amount >1:
+			amount *= 1.5
+		elif duration >0 and amount <1:
+			amount *= .6
+		else:
+			amount *= 2
+	set_upgrade_level(upgrade_level)
+
 func set_upgrade_level(new_level:int=0):
 	upgrade_level = new_level
-	$UpgradeLabel.text = "+" + str(new_level)
-var assigned_key:Key = KEY_0
+	if upgrade_level == 0:
+		$UpgradeLabel.text = ""
+		cooldown = action_information[action_type]["cooldown"]
+		if action_information[action_type].has("duration"):
+			duration = action_information[action_type]["duration"]
+		if action_information[action_type].has("amount"):
+			amount = action_information[action_type]["amount"]
+	else:
+		$UpgradeLabel.text = "+" + str(new_level)
+
 
 func set_key(key_text:String, key_code:Key):
 	$HotkeyLabel.text = key_text

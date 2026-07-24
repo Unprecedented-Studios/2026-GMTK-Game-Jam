@@ -15,21 +15,34 @@ var selected_option:int = -1
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
-func display_upgrade_chooser(options_taken:Array[Action.actions_list]):
+func display_upgrade_chooser(options_taken:Array[Action]):
 	get_tree().paused = true
 	var upgrade_bag:Array[Action.actions_list] = Action.get_array_of_actions()
 	#if they already have a full bar, we start upgrades for what they have,
 	#otherwise we'll remove the options they have.
 	self.show()
 	if options_taken.size() == 8:
-		upgrade_bag = options_taken
+		upgrade_bag = []
+		for a:Action in options_taken:
+			if a.upgrade_level < 3:
+				upgrade_bag.append(a.action_type)
 	else:
-		for u:Action.actions_list in options_taken:
-			upgrade_bag.remove_at(upgrade_bag.find(u))
+		for a:Action in options_taken:
+			upgrade_bag.remove_at(upgrade_bag.find(a.action_type))
 	randomize()
 	upgrade_bag.shuffle()
 	for opt:UpgradeOption in options_array:
-		opt.set_upgrade_option(upgrade_bag.pop_front())
+		var upgrade_type = upgrade_bag.pop_front()
+		if options_taken.size() == 8:
+			var current_action_level:int = 1
+			for a:Action in options_taken:
+				if a.action_type == upgrade_type:
+					current_action_level = a.upgrade_level
+			opt.set_upgrade_option(upgrade_type,current_action_level+1)
+		else:
+			opt.set_upgrade_option(upgrade_type)
+		
+		
 	$vbox/Upgrade_Options/Confirm.disabled = true
 
 	

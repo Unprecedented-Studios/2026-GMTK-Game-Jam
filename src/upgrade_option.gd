@@ -7,9 +7,9 @@ func _ready() -> void:
 	$Button.custom_minimum_size = size
 	set_upgrade_option(action_type)
 
-func set_upgrade_option(type:Action.actions_list):
+func set_upgrade_option(type:Action.actions_list, level:int = 0):
 	action_type = type
-	$MarginContainer/ActionDisplay.set_action_display(type)
+	$MarginContainer/ActionDisplay.set_action_display(type,level)
 	clear_selection()
 
 signal option_chosen

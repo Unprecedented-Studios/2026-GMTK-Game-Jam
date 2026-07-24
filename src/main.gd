@@ -179,7 +179,7 @@ func _on_return_to_game_button_up():
 func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
 	var current_player_action_types:Array[Action.actions_list] = $ActionBar.get_action_types()
 	if current_player_action_types.find(type) > -1:
-		pass #upgrade the action
+		$ActionBar.get_action(type).upgrade()
 	else:
 		var new_action:Action = action_preload.instantiate()
 		new_action.action_type = type
@@ -189,4 +189,8 @@ func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
 		
 
 func _on_game_state_enemy_died() -> void:
-	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_action_types())
+	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
+
+
+func _on_debug_pressed() -> void:
+	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())

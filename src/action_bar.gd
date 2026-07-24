@@ -17,6 +17,8 @@ func reset():
 	for a:Action in get_children():
 		if a.action_type != Action.actions_list.BasicAttack and a.action_type != Action.actions_list.SmallHeal:
 			a.queue_free()
+		else:
+			a.set_upgrade_level(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -27,6 +29,12 @@ func get_actions() -> Array[Action]:
 	for c:Action in get_children():
 		actions.append(c)
 	return actions
+	
+func get_action(type: Action.actions_list) -> Action:
+	for c:Action in get_children():
+		if c.action_type == type:
+			return c
+	return null
 
 func get_action_types() -> Array[Action.actions_list]:
 	var actions:Array[Action.actions_list] = []
