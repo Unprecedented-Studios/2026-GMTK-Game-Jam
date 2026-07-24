@@ -8,17 +8,17 @@ enum Buff_list {AccuracyUp, AccuracyDown, AttackUp, AttackDown,
 				
 var buff_info:Dictionary =\
 {
-	Buff_list.AccuracyUp:{"info":""},
-	Buff_list.AccuracyDown:{"info":""},
-	Buff_list.AttackUp:{"info":""},
-	Buff_list.AttackDown:{"info":""},
-	Buff_list.DefenseUp:{"info":""},
-	Buff_list.DefenseDown:{"info":""},
-	Buff_list.SpeedUp:{"info":""},
-	Buff_list.SpeedDown:{"info":""},
-	Buff_list.Shield:{"info":""},
-	Buff_list.HealOverTime:{"info":""},
-	Buff_list.Resist:{"info":""},
+	Buff_list.AccuracyUp:{"info":"Accuracy Up - Increases chances of hitting"},
+	Buff_list.AccuracyDown:{"info":"Accuracy Down - Decreases chances of hitting"},
+	Buff_list.AttackUp:{"info":"Attack Up - Increases damage of attacks"},
+	Buff_list.AttackDown:{"info":"Attack Down - Decreases Damage of Attacks"},
+	Buff_list.DefenseUp:{"info":"Defense Up - Decreases damage taken from attacks"},
+	Buff_list.DefenseDown:{"info":"Defense Down - Increases Damage taken from attacks"},
+	Buff_list.SpeedUp:{"info":"Speed Up - Increases frequency of attacks"},
+	Buff_list.SpeedDown:{"info":"Speed Down - Decreases Frequency of attacks"},
+	Buff_list.Shield:{"info":"Shield - Prevents damage from attacks"},
+	Buff_list.HealOverTime:{"info":"Heal Over Time - Slowly heals"},
+	Buff_list.Resist:{"info":"Resist - Prevents Debuffs from being applied"},
 	
 }
 
@@ -69,6 +69,7 @@ func set_icon():
 		if c != type:
 			buff_icons[c].queue_free()
 	buff_icons[type].show()
+	$DurationCover.tooltip_text = buff_info[type]["info"]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if instructional:
