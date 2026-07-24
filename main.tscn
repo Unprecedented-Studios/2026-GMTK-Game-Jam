@@ -114,7 +114,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("5_7mycd")
 theme_override_font_sizes/font_size = 24
-text = "Victory!"
+text = "Game Over!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -155,7 +155,7 @@ size_flags_vertical = 4
 theme = ExtResource("5_7mycd")
 text = "Return to Game"
 
-[node name="RestartGame" type="Button" parent="StartMenu/VBoxContainer/MainMenu/PauseMenu" unique_id=1878775203]
+[node name="RestartGame" type="Button" parent="StartMenu/VBoxContainer/MainMenu" unique_id=1878775203]
 visible = false
 custom_minimum_size = Vector2(300, 0)
 custom_maximum_size = Vector2(300, -1)
@@ -262,14 +262,18 @@ script = ExtResource("14_vivmo")
 [node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
 
 [node name="UpgradeChooser" parent="." unique_id=2059601794 instance=ExtResource("13_ycdy4")]
+visible = false
 
 [connection signal="child_exiting_tree" from="Enemies" to="GameState" method="_on_enemies_child_exiting_tree"]
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
+[connection signal="child_entered_tree" from="Allies" to="GameState" method="_on_allies_child_entered_tree"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/RestartGame" to="." method="_on_restart_game_button_up"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/StartButton" to="." method="_on_start_button_button_up"]
 [connection signal="button_down" from="StartMenu/VBoxContainer/MainMenu/HowToPlay" to="." method="_on_how_to_play_button_down"]
 [connection signal="drag_ended" from="StartMenu/VBoxContainer/MainMenu/HBoxContainer/VolumeSlider" to="." method="_on_v_slider_drag_ended"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_button_up"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_button_up"]
 [connection signal="finished" from="StartMenu/BackgroundMusic" to="." method="_on_background_music_finished"]
+[connection signal="game_over" from="GameState" to="." method="_on_game_state_game_over"]

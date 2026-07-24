@@ -168,3 +168,14 @@ func _on_v_slider_drag_ended(value_changed: bool) -> void:
 
 func _on_background_music_finished() -> void:
 	$StartMenu/BackgroundMusic.play()
+
+
+func _on_game_state_game_over():
+	$StartMenu.show()
+	$StartMenu/VBoxContainer/MainMenu/EndingMenu.show()
+	$StartMenu/VBoxContainer/MainMenu/RestartGame.show()
+	$StartMenu/VBoxContainer/MainMenu/StartButton.hide()
+
+
+func _on_restart_game_button_up():
+	get_tree().reload_current_scene();

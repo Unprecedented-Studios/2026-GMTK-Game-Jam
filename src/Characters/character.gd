@@ -1,13 +1,26 @@
 extends Node2D
 class_name Character
 
-@export var max_hp: int = 100;
+signal died
+
+var current_hp:float;
+var level:int = 1;
+var target:Character;
+
+@export var base_hp: float = 10;
+@export var hp_per_level: float = 10;
+var max_hp: float:
+	get():
+		return base_hp + hp_per_level * level;
+
+var is_alive: bool:
+	get():
+		return current_hp > 0;
+		
 @export var animation:AnimationPlayer;
 @export var attack_rate:float = 1;
 @export var attackList:Array[Attack];
 
-var current_hp;
-var target:Character;
 
 @onready var health_bar:StatusBox = get_node("Status/HealthBar");
 @onready var buff_display:GridContainer = get_node("Status/BuffsAndDebuffs");
@@ -55,8 +68,8 @@ func _process(_delta: float) -> void:
 	select_box.modulate.a = .8 + (sin(Time.get_ticks_msec()*SELECT_FLASH_SPEED)*.2)
 	
 func take_damage(info:DamageInfo) -> void:
-	if current_hp == 0:
-				return;
+	if !is_alive:
+		return;
 	var currDamage = info;
 	#loop through buff list for modifiers
 	for b:Buff in get_buffs():
@@ -85,7 +98,7 @@ func take_damage(info:DamageInfo) -> void:
 		_update_healthBar();
 		
 func heal(amount:int) -> void:
-	if current_hp == 0:
+	if !is_alive:
 		return #return cause you can't heal someone who's dead...
 	var currHeal = amount;
 	
@@ -105,6 +118,9 @@ func die() -> void:
 	_update_healthBar();
 	remove_from_group("allies");
 	remove_from_group("enemies");
+	
+	await animation.animation_finished
+	died.emit();
 
 func _attack():
 	pass;
