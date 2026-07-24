@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_b70xo"]
 [ext_resource type="Script" uid="uid://bndj272ou4xq4" path="res://src/Characters/heros/basic.gd" id="2_1sctg"]
+[ext_resource type="PackedScene" uid="uid://55c8dbewhco2" path="res://scenes/attacks/attack.tscn" id="3_hp65v"]
 
 [sub_resource type="Animation" id="Animation_my7n2"]
 length = 0.001
@@ -72,15 +73,22 @@ _data = {
 &"idle": SubResource("Animation_0lw5n")
 }
 
-[node name="Basic" unique_id=2001436315 node_paths=PackedStringArray("animation") groups=["allies"] instance=ExtResource("1_b70xo")]
+[node name="Basic" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["allies"] instance=ExtResource("1_b70xo")]
 script = ExtResource("2_1sctg")
 damage = 1.0
 type = 0
 animation = NodePath("AnimationPlayer")
+attackList = [NodePath("Attack"), NodePath("Attack2")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=57246697]
 libraries/ = SubResource("AnimationLibrary_2cgup")
 autoplay = &"idle"
 
-[node name="HealParticles" parent="." index="3" unique_id=893944888]
+[node name="HealParticles" parent="." index="5" unique_id=893944888]
 position = Vector2(0, 8)
+
+[node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("3_hp65v")]
+damage = 5.0
+
+[node name="Attack2" parent="." index="12" unique_id=994366047 instance=ExtResource("3_hp65v")]
+damage = 10.0
