@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://55c8dbewhco2"]
+
+[ext_resource type="Script" uid="uid://b1gfeph6te47m" path="res://src/Abilities/attacks/attack.gd" id="1_dpljn"]
+[ext_resource type="PackedScene" uid="uid://syiux7qxlmov" path="res://scenes/attacks/animations/basic_hit.tscn" id="2_dpljn"]
+
+[node name="Attack" type="Node2D" unique_id=1836769189]
+script = ExtResource("1_dpljn")
+hitAnimation = ExtResource("2_dpljn")

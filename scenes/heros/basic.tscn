@@ -74,7 +74,6 @@ _data = {
 
 [node name="Basic" unique_id=2001436315 node_paths=PackedStringArray("animation") groups=["allies"] instance=ExtResource("1_b70xo")]
 script = ExtResource("2_1sctg")
-attack_rate = 1.0
 damage = 1.0
 type = 0
 animation = NodePath("AnimationPlayer")
@@ -82,3 +81,6 @@ animation = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=57246697]
 libraries/ = SubResource("AnimationLibrary_2cgup")
 autoplay = &"idle"
+
+[node name="HealParticles" parent="." index="3" unique_id=893944888]
+position = Vector2(0, 8)

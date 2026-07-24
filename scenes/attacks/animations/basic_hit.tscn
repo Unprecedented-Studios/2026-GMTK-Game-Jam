@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://syiux7qxlmov"]
+
+[ext_resource type="Texture2D" uid="uid://cg2s1yjf01k7o" path="res://assets/Abilities/Buffs & Debuffs/Hit03.png" id="1_yw1tg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ixp5"]
+atlas = ExtResource("1_yw1tg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ff8n"]
+atlas = ExtResource("1_yw1tg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soo8n"]
+atlas = ExtResource("1_yw1tg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmnyd"]
+atlas = ExtResource("1_yw1tg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eep8d"]
+atlas = ExtResource("1_yw1tg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_reyql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ixp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ff8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soo8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmnyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eep8d")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HitAnimation" type="AnimatedSprite2D" unique_id=184564592]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_reyql")
+frame = 4

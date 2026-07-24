@@ -44,13 +44,13 @@ shape = SubResource("RectangleShape2D_bareo")
 
 [node name="Basic2" parent="Allies" unique_id=1408439121 instance=ExtResource("4_1bvp3")]
 position = Vector2(313, 247)
-attack_rate = 2.0
 damage = 6.0
+attack_rate = 2.0
 
 [node name="Basic" parent="Allies" unique_id=2001436315 instance=ExtResource("4_1bvp3")]
 position = Vector2(579, 133)
-attack_rate = 1.5
 damage = 4.0
+attack_rate = 1.5
 
 [node name="StartMenu" type="Panel" parent="." unique_id=613390001]
 process_mode = 3

@@ -3,10 +3,15 @@ class_name Character
 
 @export var max_hp: int = 100;
 @export var animation:AnimationPlayer;
+@export var attack_rate:float = 1;
+@export var attackList:Array[Attack];
+
 var current_hp;
+var target:Character;
 
 @onready var health_bar:StatusBox = get_node("Status/HealthBar");
 @onready var buff_display:GridContainer = get_node("Status/BuffsAndDebuffs");
+@onready var hitPos:Node2D = get_node("HitAnimationTarget");
 
 @onready var select_box:Line2D = $SelectBox
 
@@ -21,6 +26,13 @@ func _ready():
 		select_box.add_point(Vector2(100,-40))
 		select_box.add_point(Vector2(100,80))
 		select_box.add_point(Vector2(-100,80))
+	
+	if (attack_rate > 0):
+		var attack_timer = Timer.new()
+		add_child(attack_timer)
+		attack_timer.one_shot = false;
+		attack_timer.start(attack_rate)
+		attack_timer.timeout.connect(_attack);
 
 	
 func _update_healthBar():
@@ -55,16 +67,16 @@ func take_damage(info:DamageInfo) -> void:
 		elif b.type == Buff.Buff_list.DefenseUp:
 			currDamage *= .5
 	
-	$HitParticles.restart()
 	$HitSound.pitch_scale = randf_range(.95,1.05)
 	$HitSound.play()
 	if currDamage.damage > 0:
 		
 		current_hp -= currDamage.damage
 		if animation:
-			animation.play("hurt");
-			animation.seek(0,true)
-			animation.queue("idle");
+			if (animation.current_animation == "idle"):
+				animation.play("hurt");
+				animation.seek(0,true)
+				animation.queue("idle");
 		
 		if current_hp <= 0:
 			die();
@@ -92,8 +104,12 @@ func die() -> void:
 	remove_from_group("allies");
 	remove_from_group("enemies");
 
-func attack_hit(_num:int):
+func _attack():
 	pass;
+
+func attack_hit(_num:int):
+	if (target && attackList[_num]):
+		attackList[_num].attack(target)
 
 func apply_buff(new_buff:Buff):
 	for b:Buff in buff_display.get_children():
