@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cehw4bk7ebn00"]
+
+[ext_resource type="PackedScene" uid="uid://drs4p6kc11ino" path="res://scenes/map.tscn" id="1_pnat6"]
+[ext_resource type="Script" uid="uid://ohymv54sx8dl" path="res://src/map_treadmill.gd" id="1_s6tj5"]
+
+[node name="MapTreadmill" type="Node2D" unique_id=2076479112]
+script = ExtResource("1_s6tj5")
+
+[node name="Map" parent="." unique_id=1809714923 instance=ExtResource("1_pnat6")]
+
+[node name="Map2" parent="." unique_id=2025892976 instance=ExtResource("1_pnat6")]
+position = Vector2(2560, 0)

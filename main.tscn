@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4m228n38ary8"]
 
 [ext_resource type="Script" uid="uid://b7a6agmcejp1p" path="res://src/main.gd" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://drs4p6kc11ino" path="res://scenes/map.tscn" id="2_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cehw4bk7ebn00" path="res://scenes/map_treadmill.tscn" id="2_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://0lfld60o4qw7" path="res://assets/Sounds/Phat Phrog Studios - Modern Chiptune - Loop.mp3" id="5_4c57u"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://b7tff3a1g5o5o" path="res://assets/Primitive/GrayBox.png" id="5_kek77"]
@@ -20,7 +20,7 @@ size = Vector2(418.5, 55.5)
 [node name="Main" type="Node" unique_id=793544856]
 script = ExtResource("1_1bvp3")
 
-[node name="Map" parent="." unique_id=1809714923 instance=ExtResource("2_dg77c")]
+[node name="MapTreadmill" parent="." unique_id=2076479112 instance=ExtResource("2_ycdy4")]
 
 [node name="SpawnLocations" type="Node" parent="." unique_id=2117248463]
 
@@ -272,7 +272,7 @@ visible = false
 [node name="debug" type="Button" parent="." unique_id=1250204788]
 offset_right = 8.0
 offset_bottom = 8.0
-text = "upgrade!"
+text = "move!"
 
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]

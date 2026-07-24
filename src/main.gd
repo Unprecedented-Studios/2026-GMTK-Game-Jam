@@ -196,4 +196,6 @@ func _on_game_state_enemy_died() -> void:
 
 
 func _on_debug_pressed() -> void:
-	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
+	$MapTreadmill.shift_map()
+	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
+	
