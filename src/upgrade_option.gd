@@ -1,17 +1,16 @@
 extends CenterContainer
 class_name UpgradeOption
 @export var option_number:int = 0
-@export var action_type:Action.actions_list
+var action_type:Action.actions_list
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Button.custom_minimum_size = size
 	set_upgrade_option(action_type)
 
-func update_button_size():
-	$Button.custom_minimum_size = size
-
 func set_upgrade_option(type:Action.actions_list):
+	action_type = type
 	$MarginContainer/ActionDisplay.set_action_display(type)
+	clear_selection()
 
 signal option_chosen
 
@@ -31,3 +30,4 @@ func draw_selection():
 func clear_selection():
 	$Line2D.hide()
 	$Line2D.clear_points()
+	

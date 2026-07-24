@@ -60,12 +60,10 @@ layout_mode = 2
 [node name="UpgradeOption2" parent="vbox/Upgrade_Options" unique_id=1748516727 instance=ExtResource("3_wieoa")]
 layout_mode = 2
 option_number = 1
-action_type = 2
 
 [node name="UpgradeOption3" parent="vbox/Upgrade_Options" unique_id=691157579 instance=ExtResource("3_wieoa")]
 layout_mode = 2
 option_number = 2
-action_type = 5
 
 [node name="Confirm" type="Button" parent="vbox/Upgrade_Options" unique_id=1301099310]
 custom_minimum_size = Vector2(300, 0)

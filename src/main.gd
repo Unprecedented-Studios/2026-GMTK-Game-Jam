@@ -65,6 +65,7 @@ var aoe_heal_amount:int = 20
 var basic_attack_damage:DamageInfo = DamageInfo.new()
 
 var buff_preload = preload("res://scenes/buff.tscn")
+var action_preload = preload("res://scenes/action_button.tscn")
 
 func perform_action(act:Action):
 	var selected_character = get_selected_character()
@@ -178,3 +179,19 @@ func _on_restart_game_button_up():
 func _on_return_to_game_button_up():
 	$StartMenu.hide()
 	get_tree().paused = false;
+
+
+func _on_button_button_up() -> void:
+	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_action_types())
+
+
+func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
+	var current_player_action_types:Array[Action.actions_list] = $ActionBar.get_action_types()
+	if current_player_action_types.find(type) > -1:
+		pass #upgrade the action
+	else:
+		var new_action:Action = action_preload.instantiate()
+		new_action.action_type = type
+		$ActionBar.add_child(new_action)
+		new_action.set_icon()
+		

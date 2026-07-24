@@ -274,6 +274,11 @@ heroClassListNode = NodePath("../HeroClassList")
 [node name="UpgradeChooser" parent="." unique_id=2059601794 instance=ExtResource("13_ycdy4")]
 visible = false
 
+[node name="Button" type="Button" parent="." unique_id=40652638]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "upgrade!"
+
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_return_to_game_button_up"]
@@ -285,3 +290,5 @@ visible = false
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_button_up"]
 [connection signal="finished" from="StartMenu/BackgroundMusic" to="." method="_on_background_music_finished"]
 [connection signal="game_over" from="GameState" to="." method="_on_game_state_game_over"]
+[connection signal="upgrade_chosen" from="UpgradeChooser" to="." method="_on_upgrade_chooser_upgrade_chosen"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

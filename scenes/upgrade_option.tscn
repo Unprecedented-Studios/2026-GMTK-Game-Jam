@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bc13a0tv2ophy" path="res://src/upgrade_option.gd" id="1_8wlfj"]
 
 [node name="UpgradeOption" type="CenterContainer" unique_id=691157579]
+custom_minimum_size = Vector2(850, 60)
 offset_right = 600.0
 offset_bottom = 48.0
 size_flags_horizontal = 3
@@ -23,7 +24,6 @@ theme_override_constants/margin_right = 10
 [node name="ActionDisplay" parent="MarginContainer" unique_id=534277534 instance=ExtResource("1_4noig")]
 layout_mode = 2
 mouse_filter = 2
-action_type = 4
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1903789960]
 closed = true

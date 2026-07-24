@@ -1,7 +1,8 @@
 extends TextureRect
 class_name Action
 
-enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, AOEHeal,Dispell, Shield,Resist}
+enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, 
+AOEHeal,Dispell, Shield, Resist}
 
 static func get_array_of_actions() -> Array[actions_list]:
 	return [actions_list.BasicAttack,actions_list.SmallHeal, actions_list.Heal,actions_list.HealOverTime,
@@ -22,14 +23,14 @@ signal action_attempt(Action)
 	actions_list.Resist:$Resist
 }
 
-var action_information:Dictionary = {
+static var action_information:Dictionary = {
 	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "key":"Q","key_code":KEY_Q,"cooldown":1},
 	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0, "key":"W","key_code":KEY_W,"cooldown":1},
 	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "key":"E","key_code":KEY_E,"cooldown":10},
 	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"key":"R","key_code":KEY_R,"cooldown":5},
 	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0, "key":"A","key_code":KEY_A,"cooldown":15},
 	actions_list.Dispell:{"info":"Dispell - Removes all Debuffs on an ally","mana":0, "key":"S","key_code":KEY_S,"cooldown":5},
-	actions_list.Shield:{"info":"Shield - Provides a shield that blocks all damage for a short time","mana":0, "key":"D","key_code":KEY_D,"cooldown":15},
+	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0, "key":"D","key_code":KEY_D,"cooldown":15},
 	actions_list.Resist:{"info":"Resist - Prevents any debuffs from being applied","mana":0, "key":"F","key_code":KEY_F,"cooldown":5},
 }
 
@@ -53,6 +54,7 @@ func set_icon():
 			self.tooltip_text = action_information[action_type]["info"]
 			cooldown_count_down = action_information[action_type]["cooldown"]
 			$HotkeyLabel.text = action_information[action_type]["key"]
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if self_modulate.a < 1:
