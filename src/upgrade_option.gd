@@ -7,6 +7,9 @@ func _ready() -> void:
 	$Button.custom_minimum_size = size
 	set_upgrade_option(action_type)
 
+func update_button_size():
+	$Button.custom_minimum_size = size
+
 func set_upgrade_option(type:Action.actions_list):
 	$MarginContainer/ActionDisplay.set_action_display(type)
 

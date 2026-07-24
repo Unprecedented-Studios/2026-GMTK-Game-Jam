@@ -16,3 +16,9 @@ func get_actions() -> Array[Action]:
 	for c:Action in get_children():
 		actions.append(c)
 	return actions
+
+func get_action_types() -> Array[Action.actions_list]:
+	var actions:Array[Action.actions_list] = []
+	for c:Action in get_children():
+		actions.append(c.action_type)
+	return actions

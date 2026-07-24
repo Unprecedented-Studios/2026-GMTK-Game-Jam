@@ -74,8 +74,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_wieoa")
+disabled = true
 text = "Confirm"
 
 [connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption" to="." method="_on_upgrade_option_chosen"]
 [connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption2" to="." method="_on_upgrade_option_chosen"]
 [connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption3" to="." method="_on_upgrade_option_chosen"]
+[connection signal="button_up" from="vbox/Upgrade_Options/Confirm" to="." method="_on_confirm_button_up"]
