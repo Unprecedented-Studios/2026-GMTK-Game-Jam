@@ -107,6 +107,7 @@ func set_upgrade_level(new_level:int=0):
 
 func set_key(key_text:String, key_code:Key):
 	$HotkeyLabel.text = key_text
+	$HotkeyLabel2.text = key_text
 	assigned_key = key_code
 	
 			
