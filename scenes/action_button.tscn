@@ -149,12 +149,10 @@ vertical_alignment = 1
 
 [node name="ActionSound" type="AudioStreamPlayer" parent="." unique_id=749332876]
 stream = SubResource("AudioStreamMP3_mjpwl")
-bus = &"UI sounds"
 
 [node name="ActionRejectedSound" type="AudioStreamPlayer" parent="." unique_id=347413765]
 stream = ExtResource("10_npg4v")
 volume_db = -3.0
-bus = &"UI sounds"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

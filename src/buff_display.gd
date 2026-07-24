@@ -1,18 +1,14 @@
 extends HBoxContainer
-class_name ActionBar
 
+@export var buff_type:Buff.Buff_list = Buff.Buff_list.AccuracyUp
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for a:Action in get_children():
-		a.set_icon()
+	pass # Replace with function body.
+	$Buff.type = buff_type
+	$Buff.set_icon()
+	$Label.text = $Buff.buff_info[buff_type]["info"]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-func get_actions() -> Array[Action]:
-	var actions:Array[Action] = []
-	for c:Action in get_children():
-		actions.append(c)
-	return actions

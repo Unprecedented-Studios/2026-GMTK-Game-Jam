@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2yfg5eivrkmo"]
 
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="1_nisbi"]
-[ext_resource type="PackedScene" uid="uid://grm1n1j5ar5" path="res://scenes/buff.tscn" id="2_njqp3"]
+[ext_resource type="PackedScene" uid="uid://dulox8xwe0tf0" path="res://scenes/BuffDisplay.tscn" id="2_m0uw1"]
 
 [node name="Instructions" type="VBoxContainer" unique_id=403647643]
 size_flags_horizontal = 4
@@ -21,173 +21,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("1_nisbi")
 
-[node name="AccuracyUp" type="HBoxContainer" parent="." unique_id=1905724735]
-layout_mode = 2
-
-[node name="Buff" parent="AccuracyUp" unique_id=152885644 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 0
-instructional = true
-
-[node name="Label" type="Label" parent="AccuracyUp" unique_id=1340719339]
+[node name="Label" type="Label" parent="." unique_id=1731304268]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("1_nisbi")
-text = "Accuracy Up - Increases chances that attacks hit"
+text = "Information about Buffs will show up here once you encounter them"
 
-[node name="AccuracyDown" type="HBoxContainer" parent="." unique_id=820552336]
+[node name="BuffDisplays" parent="." unique_id=182094526 instance=ExtResource("2_m0uw1")]
 layout_mode = 2
+buff_type = 0
 
-[node name="Buff" parent="AccuracyDown" unique_id=1836976748 instance=ExtResource("2_njqp3")]
+[node name="BuffDisplays2" parent="." unique_id=573130063 instance=ExtResource("2_m0uw1")]
 layout_mode = 2
-type = 1
-instructional = true
-
-[node name="Label" type="Label" parent="AccuracyDown" unique_id=207311550]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Accuracy Down - Decreastes chances that attacks hit"
-
-[node name="AttackUp" type="HBoxContainer" parent="." unique_id=2018750893]
-layout_mode = 2
-
-[node name="Buff" parent="AttackUp" unique_id=627048654 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 2
-instructional = true
-
-[node name="Label" type="Label" parent="AttackUp" unique_id=1813983327]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Attack Up - Attacks deal more damage"
-
-[node name="AttackDown" type="HBoxContainer" parent="." unique_id=344204763]
-layout_mode = 2
-
-[node name="Buff" parent="AttackDown" unique_id=1590953520 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 2
-instructional = true
-
-[node name="Label" type="Label" parent="AttackDown" unique_id=887873422]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Attack Down - Attacks deal less damage"
-
-[node name="DefenseUp" type="HBoxContainer" parent="." unique_id=735869840]
-layout_mode = 2
-
-[node name="Buff" parent="DefenseUp" unique_id=568455805 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 4
-instructional = true
-
-[node name="Label" type="Label" parent="DefenseUp" unique_id=1400313680]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Defense Up - Takes less damage"
-
-[node name="DefenseDown" type="HBoxContainer" parent="." unique_id=143056862]
-layout_mode = 2
-
-[node name="Buff" parent="DefenseDown" unique_id=1435114119 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 5
-instructional = true
-
-[node name="Label" type="Label" parent="DefenseDown" unique_id=461370925]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Defense Down - Takes more damage"
-
-[node name="SpeedUp" type="HBoxContainer" parent="." unique_id=1099058597]
-layout_mode = 2
-
-[node name="Buff" parent="SpeedUp" unique_id=916876302 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 6
-instructional = true
-
-[node name="Label" type="Label" parent="SpeedUp" unique_id=317801704]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Speed Up - Attacks more often"
-
-[node name="SpeedDown" type="HBoxContainer" parent="." unique_id=611582122]
-layout_mode = 2
-
-[node name="Buff" parent="SpeedDown" unique_id=697078771 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 7
-instructional = true
-
-[node name="Label" type="Label" parent="SpeedDown" unique_id=603397961]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Speed Down - Attacks less often"
-
-[node name="Shield" type="HBoxContainer" parent="." unique_id=1570148246]
-layout_mode = 2
-
-[node name="Buff" parent="Shield" unique_id=354989521 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 8
-instructional = true
-
-[node name="Label" type="Label" parent="Shield" unique_id=199450328]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Sheild - Won't take damage from attacks"
-
-[node name="Resist" type="HBoxContainer" parent="." unique_id=881153571]
-layout_mode = 2
-
-[node name="Buff" parent="Resist" unique_id=620738952 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 10
-instructional = true
-
-[node name="Label" type="Label" parent="Resist" unique_id=1835837638]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Resist - Can't receive debuffs"
-
-[node name="Heal" type="HBoxContainer" parent="." unique_id=1102602524]
-layout_mode = 2
-
-[node name="Buff" parent="Heal" unique_id=712884875 instance=ExtResource("2_njqp3")]
-layout_mode = 2
-type = 7
-instructional = true
-
-[node name="Label" type="Label" parent="Heal" unique_id=2043109765]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
-text = "Heal Over Time - Slowly heals"
-
-[node name="spacer2" type="Label" parent="." unique_id=1221266369]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_nisbi")
+buff_type = 3

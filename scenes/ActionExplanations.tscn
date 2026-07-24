@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2m6kmyliixk7"]
 
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="1_w3yiq"]
-[ext_resource type="PackedScene" uid="uid://c57yspa5arglx" path="res://scenes/action_button.tscn" id="2_w3yiq"]
+[ext_resource type="PackedScene" uid="uid://j8tss5xga1ha" path="res://scenes/ActionDisplay.tscn" id="2_w3yiq"]
 
 [node name="Instructions" type="VBoxContainer" unique_id=403647643]
 size_flags_horizontal = 4
@@ -21,124 +21,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("1_w3yiq")
 
-[node name="BasicAttack" type="HBoxContainer" parent="." unique_id=1905724735]
+[node name="Action1" parent="." unique_id=534277534 instance=ExtResource("2_w3yiq")]
 layout_mode = 2
 
-[node name="ActionButton" parent="BasicAttack" unique_id=152885644 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-instructional = true
-
-[node name="Label" type="Label" parent="BasicAttack" unique_id=1340719339]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Basic Attack - Does a small amount of damage"
-
-[node name="SmallHeal" type="HBoxContainer" parent="." unique_id=1795523651]
-layout_mode = 2
-
-[node name="ActionButton" parent="SmallHeal" unique_id=817192735 instance=ExtResource("2_w3yiq")]
+[node name="Action2" parent="." unique_id=1441911663 instance=ExtResource("2_w3yiq")]
 layout_mode = 2
 action_type = 1
-instructional = true
-
-[node name="Label" type="Label" parent="SmallHeal" unique_id=1447309115]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Small Heal - Small Heal with a short Cooldown"
-
-[node name="Heal" type="HBoxContainer" parent="." unique_id=262792819]
-layout_mode = 2
-
-[node name="ActionButton" parent="Heal" unique_id=310232130 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 2
-instructional = true
-
-[node name="Label" type="Label" parent="Heal" unique_id=921901089]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Heal - Large heal with a longer cooldown"
-
-[node name="HealOverTime" type="HBoxContainer" parent="." unique_id=466414496]
-layout_mode = 2
-
-[node name="ActionButton" parent="HealOverTime" unique_id=1706749415 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 3
-instructional = true
-
-[node name="Label" type="Label" parent="HealOverTime" unique_id=805828863]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Heal Over Time - Applys a buff that heals slowly"
-
-[node name="AOE Heal" type="HBoxContainer" parent="." unique_id=1266906888]
-layout_mode = 2
-
-[node name="ActionButton" parent="AOE Heal" unique_id=1280191712 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 4
-instructional = true
-
-[node name="Label" type="Label" parent="AOE Heal" unique_id=1354752101]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Team Heal - Team heal with a long cooldown"
-
-[node name="Dispell" type="HBoxContainer" parent="." unique_id=206588545]
-layout_mode = 2
-
-[node name="ActionButton" parent="Dispell" unique_id=2063146027 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 5
-instructional = true
-
-[node name="Label" type="Label" parent="Dispell" unique_id=1238338631]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Dispell - Removes all negatives buffs"
-
-[node name="Shield" type="HBoxContainer" parent="." unique_id=1185384216]
-layout_mode = 2
-
-[node name="ActionButton" parent="Shield" unique_id=349802156 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 6
-instructional = true
-
-[node name="Label" type="Label" parent="Shield" unique_id=1517891463]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Shield - Applies shield buff"
-
-[node name="Shield2" type="HBoxContainer" parent="." unique_id=512916024]
-layout_mode = 2
-
-[node name="ActionButton" parent="Shield2" unique_id=80386706 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 7
-instructional = true
-
-[node name="Label" type="Label" parent="Shield2" unique_id=1567915553]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = ExtResource("1_w3yiq")
-text = "Resist - Applies resist buff"
 
 [node name="spacer2" type="Label" parent="." unique_id=1906716038]
 layout_mode = 2

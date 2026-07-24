@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dulox8xwe0tf0"]
+
+[ext_resource type="Script" uid="uid://dm823cootq7r7" path="res://src/buff_display.gd" id="1_mf6er"]
+[ext_resource type="PackedScene" uid="uid://grm1n1j5ar5" path="res://scenes/buff.tscn" id="1_w0tp5"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="2_mf6er"]
+
+[node name="BuffDisplays" type="HBoxContainer" unique_id=182094526]
+script = ExtResource("1_mf6er")
+buff_type = null
+
+[node name="Buff" parent="." unique_id=152885644 instance=ExtResource("1_w0tp5")]
+layout_mode = 2
+type = 0
+instructional = true
+
+[node name="Label" type="Label" parent="." unique_id=1820884463]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_mf6er")
+text = "Accuracy Up - Increases chances that attacks hit"

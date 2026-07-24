@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://j8tss5xga1ha"]
+
+[ext_resource type="Script" uid="uid://dw380c16tc0eu" path="res://src/action_display.gd" id="1_b2ej4"]
+[ext_resource type="PackedScene" uid="uid://c57yspa5arglx" path="res://scenes/action_button.tscn" id="1_r0vpu"]
+[ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="2_b2ej4"]
+
+[node name="ActionDisplay" type="HBoxContainer" unique_id=534277534]
+script = ExtResource("1_b2ej4")
+
+[node name="ActionButton" parent="." unique_id=152885644 instance=ExtResource("1_r0vpu")]
+layout_mode = 2
+instructional = true
+
+[node name="Label" type="Label" parent="." unique_id=1001541730]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("2_b2ej4")
+text = "Basic Attack - Does a small amount of damage"
