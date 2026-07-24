@@ -75,3 +75,4 @@ func _on_confirm_button_up() -> void:
 	if $vbox/Upgrade_Options/NoMoreUpgradesLabel.visible:
 		return
 	upgrade_chosen.emit(options_array[selected_option].action_type)
+	

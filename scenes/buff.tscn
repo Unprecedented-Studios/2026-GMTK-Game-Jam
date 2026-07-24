@@ -38,6 +38,7 @@ stretch_mode = 2
 script = ExtResource("1_ixfor")
 
 [node name="AccuracyDown" type="Sprite2D" parent="." unique_id=308000399]
+visible = false
 position = Vector2(16, 16)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_npcpg")

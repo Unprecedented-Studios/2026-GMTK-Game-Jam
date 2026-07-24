@@ -189,6 +189,9 @@ func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
 		new_action.set_icon()
 		new_action.action_attempt.connect(perform_action)
 		$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
+	transition_to_next_enemy()
+
+
 		
 
 func _on_game_state_enemy_died() -> void:
@@ -199,3 +202,12 @@ func _on_debug_pressed() -> void:
 	$MapTreadmill.shift_map()
 	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
 	
+	
+	
+func transition_to_next_enemy():
+	$MapTreadmill.shift_map()
+	$TransitionTimer.start(2)
+	
+
+func _on_transition_timer_timeout() -> void:
+	$GameState.spawn_next_enemy()

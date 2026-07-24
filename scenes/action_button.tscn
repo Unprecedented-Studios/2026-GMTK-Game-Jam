@@ -56,6 +56,7 @@ texture = ExtResource("2_3hqqe")
 flip_h = true
 
 [node name="SmallHeal" type="Sprite2D" parent="." unique_id=455462391]
+visible = false
 position = Vector2(24, 24)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_kmmqg")

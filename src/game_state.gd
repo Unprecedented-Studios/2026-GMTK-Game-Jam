@@ -31,8 +31,9 @@ func _on_enemy_died():
 		
 		#select upgrade
 		enemy_died.emit()
-		#spawn next enemy
-		spawn_next_enemy();
+		
+		##spawn next enemy
+		#spawn_next_enemy();
 		
 func spawn_next_enemy():
 		player_level += 1;

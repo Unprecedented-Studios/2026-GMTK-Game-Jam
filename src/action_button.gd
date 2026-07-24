@@ -40,7 +40,7 @@ var is_ready:bool:
 
 static var action_information:Dictionary = {
 	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "cooldown":2,"amount":5},
-	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0,"cooldown":2,"amount":10},
+	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0,"cooldown":4,"amount":10},
 	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "cooldown":10,"amount":30},
 	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"cooldown":10,"duration":5,"amount":5.0},
 	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0,"cooldown":20,"amount":15},
