@@ -203,13 +203,14 @@ func _on_debug_pressed() -> void:
 	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
 	
 	
-	
+var pause_attacks:bool = true
 func transition_to_next_enemy():
 	$MapTreadmill.shift_map()
-	$TransitionTimer.start(2)
+	$TransitionTimer.start(3)
+	$GameState.spawn_next_enemy()
 	for c:Character in $GameState.active_allies:
 		c.walk()
-	
-
+	pause_attacks  = true
+		
 func _on_transition_timer_timeout() -> void:
-	$GameState.spawn_next_enemy()
+	pause_attacks = false

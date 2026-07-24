@@ -7,7 +7,6 @@ class_name Attack
 @export var animationName:String;
 
 func attack(target:Node2D, attack_mod:float = 1.0):
-	
 	var dmg = DamageInfo.new();
 	dmg.damage = damage*attack_mod;
 	dmg.type = type;

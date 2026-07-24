@@ -49,6 +49,8 @@ func spawn_next_enemy():
 		var spawn_point = enemySpawns.pick_random();
 		newEnemy.global_position = spawn_point.global_position;
 		newEnemy.died.connect(_on_enemy_died)
+		var tween = get_tree().create_tween()
+		tween.tween_property(newEnemy,"position",Vector2(newEnemy.position.x-512,newEnemy.position.y),2)
 		
 
 func gameover():

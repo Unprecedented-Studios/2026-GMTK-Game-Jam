@@ -25,7 +25,7 @@ script = ExtResource("1_1bvp3")
 [node name="SpawnLocations" type="Node" parent="." unique_id=2117248463]
 
 [node name="EnemySpawn" type="Marker2D" parent="SpawnLocations" unique_id=1863972081]
-position = Vector2(1000, 204)
+position = Vector2(1512, 204)
 
 [node name="Spawn1" type="Marker2D" parent="SpawnLocations" unique_id=2074245475]
 position = Vector2(610, 242)
@@ -274,9 +274,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "move!"
 
-[node name="TransitionTimer" type="Timer" parent="." unique_id=83213077]
-wait_time = 2.0
-one_shot = true
+[node name="TransitionTimer" type="Timer" parent="." unique_id=1377453550]
 
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]

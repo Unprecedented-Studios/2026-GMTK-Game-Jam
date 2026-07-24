@@ -6,7 +6,6 @@ signal died
 var current_hp:float;
 var level:int = 1;
 var target:Character;
-
 @export var base_hp: float = 10;
 @export var hp_per_level: float = 10;
 var max_hp: float:
@@ -72,7 +71,6 @@ func _process(_delta: float) -> void:
 	select_box.modulate.a = .8 + (sin(Time.get_ticks_msec()*SELECT_FLASH_SPEED)*.2)
 
 func walk():
-	#need a walk animation?
 	animation.play("walk")
 
 func take_damage(info:DamageInfo) -> void:
