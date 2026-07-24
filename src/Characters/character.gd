@@ -19,6 +19,8 @@ var mouse_over_me:bool = false
 
 func _ready():
 	current_hp = max_hp;
+	_update_healthBar();
+	
 	if self.is_in_group("enemies"):
 		select_box.default_color = Color.RED
 		select_box.clear_points()

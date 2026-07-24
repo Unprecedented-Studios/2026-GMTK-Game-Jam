@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://2tnkk6vufvtq"]
+
+[ext_resource type="Script" uid="uid://bd1tfvhbfxwbh" path="res://src/Characters/enemies/enemies_list.gd" id="1_4a34f"]
+[ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="2_hav5p"]
+
+[node name="EnemiesList" type="Node" unique_id=827189623]
+script = ExtResource("1_4a34f")
+enemys = Array[PackedScene]([ExtResource("2_hav5p")])

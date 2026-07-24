@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/BuffExplanations.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://bnoygts6kmabq" path="res://src/player_power_ups.gd" id="13_w48qg"]
+[ext_resource type="Script" uid="uid://2lv1rdmid5j3" path="res://src/game_state.gd" id="14_vivmo"]
+[ext_resource type="PackedScene" uid="uid://2tnkk6vufvtq" path="res://scenes/enemies/enemiesList.tscn" id="15_vivmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bareo"]
 size = Vector2(418.5, 55.5)
@@ -22,9 +25,9 @@ script = ExtResource("1_1bvp3")
 [node name="Map" parent="." unique_id=1809714923 instance=ExtResource("2_dg77c")]
 
 [node name="Enemies" type="Node2D" parent="." unique_id=524587179]
+position = Vector2(1000, 204)
 
 [node name="Bug" parent="Enemies" unique_id=2036031585 instance=ExtResource("5_lquwl")]
-position = Vector2(1068, 224)
 
 [node name="ActionBar" parent="." unique_id=1907554450 instance=ExtResource("6_7mycd")]
 offset_left = 434.0
@@ -42,13 +45,8 @@ shape = SubResource("RectangleShape2D_bareo")
 
 [node name="Allies" type="Node2D" parent="." unique_id=125489724]
 
-[node name="Basic2" parent="Allies" unique_id=1408439121 instance=ExtResource("4_1bvp3")]
-position = Vector2(313, 247)
-damage = 6.0
-attack_rate = 2.0
-
 [node name="Basic" parent="Allies" unique_id=2001436315 instance=ExtResource("4_1bvp3")]
-position = Vector2(579, 133)
+position = Vector2(544, 151)
 damage = 4.0
 attack_rate = 1.5
 
@@ -254,6 +252,15 @@ stream = ExtResource("11_efxa6")
 pitch_scale = 1.54
 bus = &"UI sounds"
 
+[node name="PlayerPowerUps" type="Node" parent="." unique_id=790232382]
+script = ExtResource("13_w48qg")
+
+[node name="GameState" type="Node" parent="." unique_id=123523947]
+script = ExtResource("14_vivmo")
+
+[node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
+
+[connection signal="child_exiting_tree" from="Enemies" to="GameState" method="_on_enemies_child_exiting_tree"]
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_start_button_button_up"]

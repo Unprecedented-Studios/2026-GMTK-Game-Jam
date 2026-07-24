@@ -150,6 +150,7 @@ _data = {
 
 [node name="Bug" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_evhp6")]
 script = ExtResource("2_0t6l1")
+max_hp = 20
 animation = NodePath("AnimationPlayer")
 attackList = [NodePath("Attack")]
 
