@@ -24,14 +24,14 @@ signal action_attempt(Action)
 }
 
 static var action_information:Dictionary = {
-	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "key":"Q","key_code":KEY_Q,"cooldown":1},
-	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0, "key":"W","key_code":KEY_W,"cooldown":1},
-	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "key":"E","key_code":KEY_E,"cooldown":10},
-	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"key":"R","key_code":KEY_R,"cooldown":5},
-	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0, "key":"A","key_code":KEY_A,"cooldown":15},
-	actions_list.Dispell:{"info":"Dispell - Removes all Debuffs on an ally","mana":0, "key":"S","key_code":KEY_S,"cooldown":5},
-	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0, "key":"D","key_code":KEY_D,"cooldown":15},
-	actions_list.Resist:{"info":"Resist - Prevents any debuffs from being applied","mana":0, "key":"F","key_code":KEY_F,"cooldown":5},
+	actions_list.BasicAttack:{"info":"Basic magic attack - deals a small amount of damage", "mana":0, "cooldown":1},
+	actions_list.SmallHeal:{"info":"Small Heal - small heal with short cooldown","mana":0,"cooldown":1},
+	actions_list.Heal:{"info":"Heal - a powerful single target heal","mana":0, "cooldown":10},
+	actions_list.HealOverTime:{"info":"Heal Over Time - Heals slowly","mana":0,"cooldown":5},
+	actions_list.AOEHeal:{"info":"Multi-heal - Heals all party members","mana":0,"cooldown":15},
+	actions_list.Dispell:{"info":"Dispell - Removes all Debuffs on an ally","mana":0,"cooldown":5},
+	actions_list.Shield:{"info":"Shield - A shield that blocks all damage for a short time","mana":0,"cooldown":15},
+	actions_list.Resist:{"info":"Resist - Prevents any debuffs from being applied","mana":0,"cooldown":5},
 }
 
 func _ready() -> void:
@@ -40,7 +40,6 @@ var cooldown_count_down:int = 0
 var is_ready:bool:
 	get:
 		return $DurationTimer.is_stopped()
-
 
 	
 func set_icon():
@@ -53,7 +52,13 @@ func set_icon():
 				continue
 			self.tooltip_text = action_information[action_type]["info"]
 			cooldown_count_down = action_information[action_type]["cooldown"]
-			$HotkeyLabel.text = action_information[action_type]["key"]
+
+var assigned_key:Key = KEY_0
+
+func set_key(key_text:String, key_code:Key):
+	$HotkeyLabel.text = key_text
+	assigned_key = key_code
+	
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -62,7 +67,9 @@ func _process(delta: float) -> void:
 	
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_key_pressed(action_information[action_type]["key_code"]):
+	if assigned_key == KEY_0:
+		return
+	if Input.is_key_pressed(assigned_key):
 		act()
 
 func act():

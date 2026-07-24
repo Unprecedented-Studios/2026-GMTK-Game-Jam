@@ -19,9 +19,8 @@ var player_level = 0;
 func _ready():
 	enemyList = enemyListNode.enemys;
 
-
+signal enemy_died
 func _on_enemy_died():
-
 	for enemy in active_enemies:
 		if !enemy.is_alive:
 			enemy.queue_free();
@@ -31,7 +30,7 @@ func _on_enemy_died():
 		#last enemy died
 		
 		#select upgrade
-		
+		enemy_died.emit()
 		#spawn next enemy
 		spawn_next_enemy();
 		

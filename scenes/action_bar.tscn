@@ -1,14 +1,6 @@
 [gd_scene format=3 uid="uid://caimmv7m3kk87"]
 
 [ext_resource type="Script" uid="uid://kbk1efk4c6qy" path="res://src/action_bar.gd" id="1_ayqex"]
-[ext_resource type="PackedScene" uid="uid://c57yspa5arglx" path="res://scenes/action_button.tscn" id="1_bc4oh"]
 
 [node name="ActionBar" type="HBoxContainer" unique_id=1907554450]
 script = ExtResource("1_ayqex")
-
-[node name="ActionButton" parent="." unique_id=152885644 instance=ExtResource("1_bc4oh")]
-layout_mode = 2
-
-[node name="ActionButton2" parent="." unique_id=190418780 instance=ExtResource("1_bc4oh")]
-layout_mode = 2
-action_type = 1

@@ -3,7 +3,7 @@ extends Node
 var actions:Array[Action]
 func _ready():
 	$StartMenu.show()
-	actions = $ActionBar.get_actions()
+	var actions = $ActionBar.get_actions()
 	for a:Action in actions:
 		a.action_attempt.connect(perform_action)
 		
@@ -181,10 +181,6 @@ func _on_return_to_game_button_up():
 	get_tree().paused = false;
 
 
-func _on_button_button_up() -> void:
-	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_action_types())
-
-
 func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
 	var current_player_action_types:Array[Action.actions_list] = $ActionBar.get_action_types()
 	if current_player_action_types.find(type) > -1:
@@ -192,6 +188,10 @@ func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
 	else:
 		var new_action:Action = action_preload.instantiate()
 		new_action.action_type = type
-		$ActionBar.add_child(new_action)
+		$ActionBar.add_action(new_action)
 		new_action.set_icon()
+		new_action.action_attempt.connect(perform_action)
 		
+
+func _on_game_state_enemy_died() -> void:
+	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_action_types())
