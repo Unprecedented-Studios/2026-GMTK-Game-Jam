@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://bnoygts6kmabq" path="res://src/player_power_ups.gd" id="13_w48qg"]
+[ext_resource type="PackedScene" uid="uid://dr0l58iupnuyq" path="res://scenes/upgrade_chooser.tscn" id="13_ycdy4"]
 [ext_resource type="Script" uid="uid://2lv1rdmid5j3" path="res://src/game_state.gd" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://2tnkk6vufvtq" path="res://scenes/enemies/enemiesList.tscn" id="15_vivmo"]
 
@@ -259,6 +260,8 @@ script = ExtResource("13_w48qg")
 script = ExtResource("14_vivmo")
 
 [node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
+
+[node name="UpgradeChooser" parent="." unique_id=2059601794 instance=ExtResource("13_ycdy4")]
 
 [connection signal="child_exiting_tree" from="Enemies" to="GameState" method="_on_enemies_child_exiting_tree"]
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
