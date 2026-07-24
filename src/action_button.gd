@@ -94,6 +94,7 @@ func set_upgrade_level(new_level:int=0):
 	upgrade_level = new_level
 	if upgrade_level == 0:
 		$UpgradeLabel.text = ""
+		$UpgradeLabel2.text = ""
 		cooldown = action_information[action_type]["cooldown"]
 		if action_information[action_type].has("duration"):
 			duration = action_information[action_type]["duration"]
@@ -101,6 +102,7 @@ func set_upgrade_level(new_level:int=0):
 			amount = action_information[action_type]["amount"]
 	else:
 		$UpgradeLabel.text = "+" + str(new_level)
+		$UpgradeLabel2.text = $UpgradeLabel.text
 
 
 func set_key(key_text:String, key_code:Key):

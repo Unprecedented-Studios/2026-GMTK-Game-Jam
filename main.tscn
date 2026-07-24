@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b7tff3a1g5o5o" path="res://assets/Primitive/GrayBox.png" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://dqa85a3bsbaob" path="res://scenes/BasicExplanations.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://d2yfg5eivrkmo" path="res://scenes/BuffExplanations.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dr0l58iupnuyq" path="res://scenes/upgrade_chooser.tscn" id="13_ycdy4"]
@@ -221,10 +220,6 @@ visible = false
 layout_mode = 2
 
 [node name="ActionInstructions" parent="StartMenu/VBoxContainer" unique_id=972011276 instance=ExtResource("7_kek77")]
-visible = false
-layout_mode = 2
-
-[node name="BuffInstructions" parent="StartMenu/VBoxContainer" unique_id=1173691565 instance=ExtResource("6_272bh")]
 visible = false
 layout_mode = 2
 

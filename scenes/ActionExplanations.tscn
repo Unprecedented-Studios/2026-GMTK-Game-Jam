@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://d2m6kmyliixk7"]
 
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="1_w3yiq"]
-[ext_resource type="PackedScene" uid="uid://j8tss5xga1ha" path="res://scenes/ActionDisplay.tscn" id="2_w3yiq"]
+[ext_resource type="Script" uid="uid://dri7j2i8geeqi" path="res://src/action_explanations.gd" id="1_ydbps"]
 
 [node name="Instructions" type="VBoxContainer" unique_id=403647643]
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_ydbps")
 
 [node name="Title" type="Label" parent="." unique_id=2108974237]
 layout_mode = 2
@@ -21,12 +22,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme = ExtResource("1_w3yiq")
 
-[node name="Action1" parent="." unique_id=534277534 instance=ExtResource("2_w3yiq")]
+[node name="ActionList" type="VBoxContainer" parent="." unique_id=1482038993]
 layout_mode = 2
-
-[node name="Action2" parent="." unique_id=1441911663 instance=ExtResource("2_w3yiq")]
-layout_mode = 2
-action_type = 1
 
 [node name="spacer2" type="Label" parent="." unique_id=1906716038]
 layout_mode = 2

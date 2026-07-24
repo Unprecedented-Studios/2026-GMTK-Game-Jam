@@ -56,7 +56,6 @@ texture = ExtResource("2_3hqqe")
 flip_h = true
 
 [node name="SmallHeal" type="Sprite2D" parent="." unique_id=455462391]
-visible = false
 position = Vector2(24, 24)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_kmmqg")
@@ -210,12 +209,23 @@ volume_db = -3.0
 
 [node name="UpgradeLabel" type="Label" parent="." unique_id=1390332754]
 layout_mode = 0
-offset_left = -1.000001
-offset_top = -11.666666
+offset_left = -1.0
+offset_top = 2.333334
 offset_right = 47.0
-offset_bottom = 24.333334
+offset_bottom = 55.333336
 theme = ExtResource("10_3r1b2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "
+"
+horizontal_alignment = 2
+
+[node name="UpgradeLabel2" type="Label" parent="." unique_id=1219223558]
+layout_mode = 0
+offset_left = -3.3333335
+offset_right = 44.666668
+offset_bottom = 53.0
+theme = ExtResource("10_3r1b2")
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 2
 

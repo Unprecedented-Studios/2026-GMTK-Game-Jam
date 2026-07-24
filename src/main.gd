@@ -110,8 +110,7 @@ var active_instruction = 0
 @onready var instructions:Array[VBoxContainer] =\
 [
 	$StartMenu/VBoxContainer/BasicInstructions, 
-	$StartMenu/VBoxContainer/ActionInstructions,
-	$StartMenu/VBoxContainer/BuffInstructions
+	$StartMenu/VBoxContainer/ActionInstructions
 ]
 
 func _on_how_to_play_button_down() -> void:
@@ -120,6 +119,8 @@ func _on_how_to_play_button_down() -> void:
 		i.hide()
 	instructions[active_instruction].show()
 	$StartMenu/VBoxContainer/HBoxContainer/BackButton.show()
+	# for now I'm thinking we just have the basic instructions since the 
+	# upgrade window tells you what things do.
 	$StartMenu/VBoxContainer/HBoxContainer/NextButton.show()
 	$StartMenu/VBoxContainer/MainMenu.hide()
 
@@ -170,6 +171,7 @@ func _on_restart_game_button_up():
 	$StartMenu/VBoxContainer/MainMenu/StartButton.show()
 	$GameState.start_game()
 	$ActionBar.reset()
+	$StartMenu/VBoxContainer/ActionInstructions.reset()
 
 func _on_return_to_game_button_up():
 	$StartMenu.hide()
@@ -186,6 +188,7 @@ func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
 		$ActionBar.add_action(new_action)
 		new_action.set_icon()
 		new_action.action_attempt.connect(perform_action)
+		$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
 		
 
 func _on_game_state_enemy_died() -> void:
