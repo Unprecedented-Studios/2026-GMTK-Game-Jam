@@ -1,10 +1,10 @@
 extends Node
 
-var actions:Array[Action]
+var actions:Array[Action_Button]
 func _ready():
 	$StartMenu.show()
 	var actions = $ActionBar.get_actions()
-	for a:Action in actions:
+	for a:Action_Button in actions:
 		a.action_attempt.connect(perform_action)
 		
 func get_characters() -> Array[Character]:
@@ -67,21 +67,21 @@ var basic_attack_damage:DamageInfo = DamageInfo.new()
 var buff_preload = preload("res://scenes/buff.tscn")
 var action_preload = preload("res://scenes/action_button.tscn")
 
-func perform_action(act:Action):
+func perform_action(act:Action_Button):
 	var selected_character = get_selected_character()
 	if selected_character == null or not act.is_ready:
 		act.play_rejected_sound()
 		return
 	elif act.is_ready:
 		act.activate()
-		if act.action_type == Action.actions_list.SmallHeal:
+		if act.action_type == Action_Button.actions_list.SmallHeal:
 			selected_character.heal(small_heal_amount)
-		elif act.action_type == Action.actions_list.Heal:
+		elif act.action_type == Action_Button.actions_list.Heal:
 			selected_character.heal(heal_amount)
-		elif act.action_type == Action.actions_list.AOEHeal:
+		elif act.action_type == Action_Button.actions_list.AOEHeal:
 			for a:Character in $GameState.active_allies:
 				a.heal(aoe_heal_amount)
-		elif act.action_type == Action.actions_list.BasicAttack:
+		elif act.action_type == Action_Button.actions_list.BasicAttack:
 			basic_attack_damage.damage = 5.0
 			selected_character.take_damage(basic_attack_damage)
 		#if it's a buff...
@@ -178,12 +178,12 @@ func _on_return_to_game_button_up():
 	get_tree().paused = false;
 
 
-func _on_upgrade_chooser_upgrade_chosen(type:Action.actions_list) -> void:
-	var current_player_action_types:Array[Action.actions_list] = $ActionBar.get_action_types()
+func _on_upgrade_chooser_upgrade_chosen(type:Action_Button.actions_list) -> void:
+	var current_player_action_types:Array[Action_Button.actions_list] = $ActionBar.get_action_types()
 	if current_player_action_types.find(type) > -1:
 		$ActionBar.get_action(type).upgrade()
 	else:
-		var new_action:Action = action_preload.instantiate()
+		var new_action:Action_Button = action_preload.instantiate()
 		new_action.action_type = type
 		$ActionBar.add_action(new_action)
 		new_action.set_icon()

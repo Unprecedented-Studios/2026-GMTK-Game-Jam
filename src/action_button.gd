@@ -1,5 +1,7 @@
 extends TextureRect
-class_name Action
+class_name Action_Button
+
+@export var action: Action; 
 
 enum actions_list {BasicAttack, SmallHeal, Heal, HealOverTime, 
 AOEHeal, Shield,AttackUp,AttackDown, 
@@ -11,7 +13,7 @@ static func get_array_of_actions() -> Array[actions_list]:
 	actions_list.DefenseUp,actions_list.DefenseDown,actions_list.SpeedUp,actions_list.SpeedDown]
 @export var action_type:actions_list = actions_list.BasicAttack
 @export var instructional:bool = false
-signal action_attempt(Action)
+signal action_attempt(Action_Button)
 
 var assigned_key:Key = KEY_0
 var upgrade_level:int = 0
@@ -151,7 +153,6 @@ func _on_duration_timer_timeout() -> void:
 		$DurationTimer.stop()
 		$DurationCover.hide()
 		$TimerLabel.hide()
-
 
 func _on_button_button_up() -> void:
 	act()

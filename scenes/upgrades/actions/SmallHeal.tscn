@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dcpw552n3f3po"]
+
+[ext_resource type="Script" uid="uid://kc3h1lfwtgs8" path="res://src/upgrades/action.gd" id="1_6gw5l"]
+[ext_resource type="Texture2D" uid="uid://b0xspo76cn0jt" path="res://assets/Abilities/Buffs & Debuffs/Charm_Up.png" id="2_4oqi2"]
+
+[node name="SmallHeal" type="Node" unique_id=1456688898 node_paths=PackedStringArray("icon")]
+script = ExtResource("1_6gw5l")
+icon = NodePath("SmallHeal")
+metadata/_custom_type_script = "uid://kc3h1lfwtgs8"
+
+[node name="SmallHeal" type="Sprite2D" parent="." unique_id=1881505213]
+position = Vector2(24, 24)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_4oqi2")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)

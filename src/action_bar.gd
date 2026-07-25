@@ -5,17 +5,17 @@ class_name ActionBar
 var action_preload = preload("res://scenes/action_button.tscn")
 
 func _ready() -> void:
-	var basic_attack:Action = action_preload.instantiate()
-	basic_attack.action_type = Action.actions_list.BasicAttack
+	var basic_attack:Action_Button = action_preload.instantiate()
+	basic_attack.action_type = Action_Button.actions_list.BasicAttack
 	add_action(basic_attack)
-	var small_heal:Action = action_preload.instantiate()
-	small_heal.action_type = Action.actions_list.SmallHeal
+	var small_heal:Action_Button = action_preload.instantiate()
+	small_heal.action_type = Action_Button.actions_list.SmallHeal
 	add_action(small_heal)
 	
 
 func reset():
-	for a:Action in get_children():
-		if a.action_type != Action.actions_list.BasicAttack and a.action_type != Action.actions_list.SmallHeal:
+	for a:Action_Button in get_children():
+		if a.action_type != Action_Button.actions_list.BasicAttack and a.action_type != Action_Button.actions_list.SmallHeal:
 			a.queue_free()
 		else:
 			a.set_upgrade_level(0)
@@ -24,21 +24,21 @@ func reset():
 func _process(_delta: float) -> void:
 	pass
 
-func get_actions() -> Array[Action]:
-	var actions:Array[Action] = []
-	for c:Action in get_children():
+func get_actions() -> Array[Action_Button]:
+	var actions:Array[Action_Button] = []
+	for c:Action_Button in get_children():
 		actions.append(c)
 	return actions
 	
-func get_action(type: Action.actions_list) -> Action:
-	for c:Action in get_children():
+func get_action(type: Action_Button.actions_list) -> Action_Button:
+	for c:Action_Button in get_children():
 		if c.action_type == type:
 			return c
 	return null
 
-func get_action_types() -> Array[Action.actions_list]:
-	var actions:Array[Action.actions_list] = []
-	for c:Action in get_children():
+func get_action_types() -> Array[Action_Button.actions_list]:
+	var actions:Array[Action_Button.actions_list] = []
+	for c:Action_Button in get_children():
 		actions.append(c.action_type)
 	return actions
 
@@ -55,7 +55,7 @@ var keys:Array[Dictionary] =\
 	
 ]
 
-func add_action(new_action:Action):
+func add_action(new_action:Action_Button):
 	add_child(new_action)
 	var child_num = get_child_count()-1
 	new_action.set_key(keys[child_num]["key"],keys[child_num]["key_code"])
