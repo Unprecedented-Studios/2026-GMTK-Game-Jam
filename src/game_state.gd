@@ -34,6 +34,14 @@ func _on_enemy_died():
 		
 		##spawn next enemy
 		#spawn_next_enemy();
+
+signal select_character(Character)
+
+func _on_character_selected(c:Character):
+	for character in all_characters:
+		character.selected = false;
+	c.selected = true;
+	select_character.emit(c)
 		
 func spawn_next_enemy():
 		player_level += 1;
@@ -49,6 +57,7 @@ func spawn_next_enemy():
 		var spawn_point = enemySpawns.pick_random();
 		newEnemy.global_position = spawn_point.global_position;
 		newEnemy.died.connect(_on_enemy_died)
+		newEnemy.clicked_on.connect(_on_character_selected)
 		var tween = get_tree().create_tween()
 		tween.tween_property(newEnemy,"position",Vector2(newEnemy.position.x-512,newEnemy.position.y),2)
 		newEnemy.can_attack = false;
@@ -86,6 +95,7 @@ func spawn_hero(heroNode:PackedScene):
 	$"../SpawnLocations".add_child(hero)
 	hero.global_position = spawn_point.global_position;
 	hero.died.connect(_on_ally_died)
+	hero.clicked_on.connect(_on_character_selected)
 	hero.show();
 
 func allow_attacks(value:bool):

@@ -1,18 +1,17 @@
 extends Node
 
 var actions:Array[Action_Button]
+
 func _ready():
 	$StartMenu.show()
-	var actions = $ActionBar.get_actions()
-	for a:Action_Button in actions:
+	var load_actions = $ActionBar.get_actions()
+	for a:Action_Button in load_actions:
 		a.action_attempt.connect(perform_action)
 		
 func get_characters() -> Array[Character]:
 	return $GameState.all_characters
 	
 func _input(event: InputEvent) -> void:
-	if mouse_over_actions:
-		return
 	if event.is_action_released("Escape"):
 		$StartMenu/MenuSound.play()
 		get_tree().paused = true
@@ -21,14 +20,10 @@ func _input(event: InputEvent) -> void:
 		$StartMenu/VBoxContainer/MainMenu/StartButton.hide()
 		$StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame.show()
 		
-	var selected_char = get_selected_character()
-	#mouse selection handling
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selected_char != null:
-		for c:Character in get_characters():
-			if c and c.selected and !c.mouse_over_me:
-				c.selected = false
+	
 	#tab_targeting.
 	if event.is_action_released("tab"):
+		var selected_char = get_selected_character()
 		if selected_char == null:
 			var a:Character = $GameState.active_allies[0]
 			a.selected = true
@@ -91,14 +86,6 @@ func perform_action(act:Action_Button):
 			new_buff.buff_duration_seconds = float(act.duration)
 			new_buff.buff_amount = act.amount
 			selected_character.apply_buff(new_buff)
-
-
-var mouse_over_actions:bool = false
-func _on_action_bar_area_mouse_entered() -> void:
-	mouse_over_actions = true
-func _on_action_bar_area_mouse_exited() -> void:
-	mouse_over_actions = false
-
 
 func _on_start_button_button_up() -> void:
 	$StartMenu.hide()

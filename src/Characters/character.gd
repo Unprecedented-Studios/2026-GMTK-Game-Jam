@@ -2,6 +2,7 @@ extends Node2D
 class_name Character
 
 signal died
+signal clicked_on(Character)
 
 var current_hp:float;
 var level:int = 1;
@@ -183,3 +184,8 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	mouse_over_me = false
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			clicked_on.emit(self)
