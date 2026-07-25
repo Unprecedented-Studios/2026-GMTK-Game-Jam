@@ -1,6 +1,7 @@
 extends Upgrade
 class_name Action
 
-@export var mana: int = 0
-@export var cooldown:int = 4
-@export var amount: int = 10
+var action_button_id:Action_Button.actions_list;
+
+func type() -> String:
+  return "action"

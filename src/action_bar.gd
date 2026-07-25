@@ -11,7 +11,6 @@ func _ready() -> void:
 	var small_heal:Action_Button = action_preload.instantiate()
 	small_heal.action_type = Action_Button.actions_list.SmallHeal
 	add_action(small_heal)
-	
 
 func reset():
 	for a:Action_Button in get_children():

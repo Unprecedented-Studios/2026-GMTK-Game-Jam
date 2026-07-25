@@ -5,12 +5,13 @@ var action_type:Action_Button.actions_list
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Button.custom_minimum_size = size
-	set_upgrade_option(action_type)
+	#set_upgrade_option(action_type)
 
-func set_upgrade_option(type:Action_Button.actions_list, level:int = 0):
-	action_type = type
-	$MarginContainer/ActionDisplay.set_action_display(type,level)
-	clear_selection()
+func set_upgrade_option(upgrade:Upgrade, level:int = 0):
+	if (upgrade.type() == "action"):
+		action_type = (upgrade as Action).action_button_id;
+		$MarginContainer/ActionDisplay.set_action_display(action_type,level)
+		clear_selection()
 
 signal option_chosen
 

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7tff3a1g5o5o" path="res://assets/Primitive/GrayBox.png" id="1_wieoa"]
 [ext_resource type="Theme" uid="uid://vkag71ghbux6" path="res://game_theme.tres" id="2_wieoa"]
 [ext_resource type="PackedScene" uid="uid://bv5qloru4dy16" path="res://scenes/upgrade_option.tscn" id="3_wieoa"]
+[ext_resource type="PackedScene" uid="uid://d1xkcskhp6e81" path="res://scenes/upgrades/upgradeLists.tscn" id="5_yjd4v"]
 
 [node name="UpgradeChooser" type="Panel" unique_id=2059601794]
 process_mode = 3
@@ -82,6 +83,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_wieoa")
 text = "Confirm"
+
+[node name="UpgradeLists" parent="." unique_id=886247655 instance=ExtResource("5_yjd4v")]
 
 [connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption" to="." method="_on_upgrade_option_chosen"]
 [connection signal="option_chosen" from="vbox/Upgrade_Options/UpgradeOption2" to="." method="_on_upgrade_option_chosen"]

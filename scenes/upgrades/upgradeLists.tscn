@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d1xkcskhp6e81"]
+
+[ext_resource type="Script" uid="uid://blc5u72sdjgli" path="res://src/upgrades/upgrade_listing.gd" id="1_40k2v"]
+[ext_resource type="Script" uid="uid://b7etcurocjtll" path="res://src/upgrades/newCharacter.gd" id="2_sqx2t"]
+[ext_resource type="PackedScene" uid="uid://bf32h7mumg8qm" path="res://scenes/heros/swordBro.tscn" id="3_2oop6"]
+[ext_resource type="Texture2D" uid="uid://bclgp2ce5v73s" path="res://assets/Characters/Hero_03.png" id="3_uglg3"]
+
+[node name="UpgradeLists" type="Node" unique_id=886247655]
+script = ExtResource("1_40k2v")
+
+[node name="characters" type="Node" parent="." unique_id=2033780298]
+
+[node name="SwordBro" type="Node" parent="characters" unique_id=1769493586 node_paths=PackedStringArray("icon")]
+script = ExtResource("2_sqx2t")
+character_class = ExtResource("3_2oop6")
+info = "Bro with a big sword, less armor"
+icon = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://b7etcurocjtll"
+
+[node name="Sprite2D" type="Sprite2D" parent="characters/SwordBro" unique_id=2096935080]
+visible = false
+texture = ExtResource("3_uglg3")
+hframes = 6
+vframes = 12

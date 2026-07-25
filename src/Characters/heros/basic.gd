@@ -4,6 +4,10 @@ class_name basicHero
 @export var damage: float = 1;
 @export var type: DamageInfo.damage_types = DamageInfo.damage_types.NORMAL;
 
+func _choose_attack(_target:Character):
+		animation.play("attack0");
+
+
 func _attack() -> void:
 	if current_hp == 0:
 		return #return cause you can't attack someone when you're dead...
@@ -11,6 +15,5 @@ func _attack() -> void:
 	enemies = enemies.filter(_can_i_attack)
 	if enemies.size() > 0:
 		target = enemies.pick_random();
-		
-		animation.play(attackList.pick_random().animationName);
+		_choose_attack(target)
 		animation.queue("idle");
