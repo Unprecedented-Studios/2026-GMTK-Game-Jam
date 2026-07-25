@@ -31,7 +31,7 @@ position = Vector2(1512, 204)
 position = Vector2(610, 242)
 
 [node name="Spawn2" type="Marker2D" parent="SpawnLocations" unique_id=1793182815]
-position = Vector2(358, 419)
+position = Vector2(363, 384)
 
 [node name="Spawn3" type="Marker2D" parent="SpawnLocations" unique_id=2104258150]
 position = Vector2(339, 229)
@@ -40,7 +40,7 @@ position = Vector2(339, 229)
 position = Vector2(133, 292)
 
 [node name="Spawn5" type="Marker2D" parent="SpawnLocations" unique_id=1236832446]
-position = Vector2(432, 15)
+position = Vector2(769, 317)
 
 [node name="ActionBar" parent="." unique_id=1907554450 instance=ExtResource("6_7mycd")]
 offset_left = 434.0
@@ -276,6 +276,7 @@ text = "move!"
 
 [node name="TransitionTimer" type="Timer" parent="." unique_id=1377453550]
 
+[connection signal="walk_done" from="MapTreadmill" to="." method="_on_map_treadmill_walk_done"]
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_exited"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/MainMenu/PauseMenu/ReturnToGame" to="." method="_on_return_to_game_button_up"]
@@ -290,4 +291,3 @@ text = "move!"
 [connection signal="game_over" from="GameState" to="." method="_on_game_state_game_over"]
 [connection signal="upgrade_chosen" from="UpgradeChooser" to="." method="_on_upgrade_chooser_upgrade_chosen"]
 [connection signal="pressed" from="debug" to="." method="_on_debug_pressed"]
-[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]

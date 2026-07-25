@@ -22,7 +22,7 @@ func _ready():
 signal enemy_died
 func _on_enemy_died():
 	for enemy in active_enemies:
-		if !enemy.is_alive:
+		if enemy and !enemy.is_alive:
 			enemy.queue_free();
 			active_enemies.erase(enemy)
 			
@@ -51,7 +51,9 @@ func spawn_next_enemy():
 		newEnemy.died.connect(_on_enemy_died)
 		var tween = get_tree().create_tween()
 		tween.tween_property(newEnemy,"position",Vector2(newEnemy.position.x-512,newEnemy.position.y),2)
-		
+		newEnemy.can_attack = false;
+		await tween.finished
+		newEnemy.can_attack = true;
 
 func gameover():
 	game_over.emit();
@@ -84,5 +86,7 @@ func spawn_hero(heroNode:PackedScene):
 	hero.global_position = spawn_point.global_position;
 	hero.died.connect(_on_ally_died)
 	hero.show();
-	
-	
+
+func allow_attacks(value:bool):
+	for char in all_characters:
+		char.can_attack = value;

@@ -6,6 +6,7 @@ signal died
 var current_hp:float;
 var level:int = 1;
 var target:Character;
+
 @export var base_hp: float = 10;
 @export var hp_per_level: float = 10;
 var max_hp: float:
@@ -28,7 +29,17 @@ var is_alive: bool:
 @onready var select_box:Line2D = $SelectBox
 
 var mouse_over_me:bool = false
+var attack_timer:Timer;
 
+var can_attack:bool:
+	get():
+		return !attack_timer.is_stopped()
+	set(value):
+		if value:
+			attack_timer.start();
+		else:
+			attack_timer.stop()
+		
 func _ready():
 	current_hp = max_hp;
 	_update_healthBar();
@@ -42,7 +53,7 @@ func _ready():
 		select_box.add_point(Vector2(-100,80))
 	
 	if (attack_rate > 0):
-		var attack_timer = Timer.new()
+		attack_timer = Timer.new()
 		add_child(attack_timer)
 		attack_timer.one_shot = false;
 		var curr_attack_rate:float = attack_rate
@@ -72,6 +83,9 @@ func _process(_delta: float) -> void:
 
 func walk():
 	animation.play("walk")
+
+func stop():
+	animation.play("idle")
 
 func take_damage(info:DamageInfo) -> void:
 	if !is_alive:
@@ -125,6 +139,9 @@ func die() -> void:
 	
 	await animation.animation_finished
 	died.emit();
+
+func _can_i_attack(c:Character)->bool:
+	return c.can_attack;
 
 func _attack():
 	pass;

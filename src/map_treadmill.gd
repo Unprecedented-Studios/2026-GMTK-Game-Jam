@@ -1,4 +1,5 @@
 extends Node2D
+signal walk_done
 
 @onready var maps:Array[TileMapLayer] = [$Map, $Map2]
 
@@ -20,3 +21,5 @@ func shift_map():
 	for map:TileMapLayer in maps:
 		var tween = get_tree().create_tween()
 		tween.tween_property(map,"position",Vector2(map.position.x -512.0,0),2.0)
+		await tween.finished
+		walk_done.emit();
