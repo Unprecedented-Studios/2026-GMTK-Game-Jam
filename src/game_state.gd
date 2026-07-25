@@ -76,10 +76,10 @@ func _on_ally_died():
 		gameover();
 		
 func start_game():
-	for child:Node in active_enemies:
-		child.queue_free();
-	for child:Node in active_allies:
-		child.queue_free();
+	for child_enemy:Character in active_enemies:
+		child_enemy.queue_free();
+	for child_ally:Character in active_allies:
+		child_ally.queue_free();
 		
 	active_enemies = [];
 	active_allies = [];
@@ -99,5 +99,5 @@ func spawn_hero(heroNode:PackedScene):
 	hero.show();
 
 func allow_attacks(value:bool):
-	for char in all_characters:
-		char.can_attack = value;
+	for character in all_characters:
+		character.can_attack = value;

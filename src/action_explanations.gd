@@ -17,10 +17,6 @@ func reset():
 		c.queue_free()
 	_ready()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func add_explanation(new_explanation:Action_Button.actions_list):
 	for ad:ActionDisplay in $ActionList.get_children():
 		if ad.type == new_explanation:

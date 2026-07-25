@@ -186,6 +186,6 @@ func _on_area_2d_mouse_exited() -> void:
 	mouse_over_me = false
 
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int):
+func _on_area_2d_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			clicked_on.emit(self)

@@ -17,9 +17,9 @@ signal action_attempt(Action_Button)
 
 var assigned_key:Key = KEY_0
 var upgrade_level:int = 0
-var duration:int = 0
-var cooldown:int = 0
-var cooldown_count_down:int = 0
+var duration:float = 0
+var cooldown:float = 0
+var cooldown_count_down:float = 0
 var amount:float = 0.0
 var is_ready:bool:
 	get:
