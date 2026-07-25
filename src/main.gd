@@ -165,29 +165,34 @@ func _on_return_to_game_button_up():
 	get_tree().paused = false;
 
 
-func _on_upgrade_chooser_upgrade_chosen(type:Action_Button.actions_list) -> void:
-	var current_player_action_types:Array[Action_Button.actions_list] = $ActionBar.get_action_types()
-	if current_player_action_types.find(type) > -1:
-		$ActionBar.get_action(type).upgrade()
-	else:
-		var new_action:Action_Button = action_preload.instantiate()
-		new_action.action_type = type
-		$ActionBar.add_action(new_action)
-		new_action.set_icon()
-		new_action.action_attempt.connect(perform_action)
-		$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
+func _on_upgrade_chooser_upgrade_chosen(upgrade:Upgrade) -> void:
+
+	if (upgrade.type() == 'action'):
+		var type:Action_Button.actions_list = (upgrade as Action).action_button_id; 
+		var current_player_action_types:Array[Action_Button.actions_list] = $ActionBar.get_action_types()
+		if current_player_action_types.find(type) > -1:
+			$ActionBar.get_action(type).upgrade()
+		else:
+			var new_action:Action_Button = action_preload.instantiate()
+			new_action.action_type = type
+			$ActionBar.add_action(new_action)
+			new_action.set_icon()
+			new_action.action_attempt.connect(perform_action)
+			$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
+	elif upgrade.type() == 'character':
+		$GameState.spawn_hero((upgrade as NewCharacter).character_class, upgrade.upgradeID)
 	transition_to_next_enemy()
 
 
 		
 
 func _on_game_state_enemy_died() -> void:
-	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
+	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies)
 
 
 func _on_debug_pressed() -> void:
-	$MapTreadmill.shift_map()
-	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions())
+	#$MapTreadmill.shift_map()
+	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies);
 	
 	
 func transition_to_next_enemy():

@@ -15,6 +15,7 @@ script = ExtResource("2_sqx2t")
 character_class = ExtResource("3_2oop6")
 info = "Bro with a big sword, less armor"
 icon = NodePath("Sprite2D")
+upgradeID = "swordBro"
 metadata/_custom_type_script = "uid://b7etcurocjtll"
 
 [node name="Sprite2D" type="Sprite2D" parent="characters/SwordBro" unique_id=2096935080]

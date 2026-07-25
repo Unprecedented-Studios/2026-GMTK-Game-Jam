@@ -86,12 +86,13 @@ func start_game():
 	player_level = 0;
 	spawn_next_enemy()
 	var heroNode = heroClassListNode.classes[0] as PackedScene;
-	spawn_hero(heroNode)
+	spawn_hero(heroNode, "base")
 
-func spawn_hero(heroNode:PackedScene):
+func spawn_hero(heroNode:PackedScene, _upgradeID: String):
 	var hero = heroNode.instantiate() as Character;
 	var spawn_point = alliesSpawns[active_allies.size()];
 	active_allies.push_back(hero);
+	hero.char_class = _upgradeID;
 	$"../SpawnLocations".add_child(hero)
 	hero.global_position = spawn_point.global_position;
 	hero.died.connect(_on_ally_died)

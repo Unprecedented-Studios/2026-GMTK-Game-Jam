@@ -7,6 +7,7 @@ signal clicked_on(Character)
 var current_hp:float;
 var level:int = 1;
 var target:Character;
+var char_class:String = 'base'
 
 @export var base_hp: float = 10;
 @export var hp_per_level: float = 10;

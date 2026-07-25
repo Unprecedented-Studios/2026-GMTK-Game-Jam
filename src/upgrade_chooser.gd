@@ -9,17 +9,12 @@ extends Panel
 
 
 var selected_option:int = -1
-var character_list: Array[NewCharacter]
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	character_list = $UpgradeLists.get_new_allies();
 
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
-func display_upgrade_chooser(options_taken:Array[Action_Button]):
+func display_upgrade_chooser(options_taken:Array[Action_Button], allies:Array[Character]):
 	get_tree().paused = true
 	var available_actions = Action_Button.get_array_of_actions()
 	var upgrade_bag:Array[Upgrade] = []
@@ -45,25 +40,25 @@ func display_upgrade_chooser(options_taken:Array[Action_Button]):
 				action_upgrade.action_button_id = a_type
 				upgrade_bag.append(action_upgrade)
 
+	var character_list = $UpgradeLists.get_available_allies(allies);
+
+	upgrade_bag.append_array(character_list)
+
 	randomize()
 	upgrade_bag.shuffle()
 	
 	#options for upgrades
 	for opt:UpgradeOption in options_array:
 		var upgrade_type:Upgrade = upgrade_bag.pop_front()
-		if upgrade_type.type() == "action":
-			action_upgrade = upgrade_type as Action;
-			if options_taken.size() == available_actions.size():
+		if upgrade_type && upgrade_type.type() == "action" && options_taken.size() == available_actions.size():
+				action_upgrade = upgrade_type as Action;
 				var current_action_level:int = 1
 				for a:Action_Button in options_taken:
 					if a.action_type == action_upgrade.action_button_id:
 						current_action_level = a.upgrade_level
-				if upgrade_type == null:
-					opt.hide()
-				else:
-					opt.set_upgrade_option(upgrade_type,current_action_level+1)
-			else:
-				opt.set_upgrade_option(upgrade_type)
+				opt.set_upgrade_option(upgrade_type,current_action_level+1)
+		else:
+			opt.set_upgrade_option(upgrade_type)
 		
 		
 	$vbox/Upgrade_Options/Confirm.disabled = true
@@ -82,12 +77,12 @@ func _on_upgrade_option_chosen(option_num:int = -1) -> void:
 	options_array[selected_option].draw_selection()
 	$vbox/Upgrade_Options/Confirm.disabled = false
 
-signal upgrade_chosen
+signal upgrade_chosen(upgrade:Upgrade)
 
 func _on_confirm_button_up() -> void:
 	hide()
 	get_tree().paused = false
 	if $vbox/Upgrade_Options/NoMoreUpgradesLabel.visible:
 		return
-	upgrade_chosen.emit(options_array[selected_option].action_type)
+	upgrade_chosen.emit(options_array[selected_option].my_upgrade)
 	
