@@ -72,6 +72,7 @@ func start_game():
 	for child:Node in active_allies:
 		child.queue_free();
 		
+	active_enemies = [];
 	active_allies = [];
 	player_level = 0;
 	spawn_next_enemy()
