@@ -9,8 +9,8 @@ func shift_map():
 	if int(round($Map2.position.x)) <= -2560:
 		$Map2.position.x = $Map.position.x + 2560
 
-	for map:TileMapLayer in maps:
-		var tween = get_tree().create_tween()
-		tween.tween_property(map,"position",Vector2(map.position.x -512.0,0),2.0)
-		await tween.finished
-		walk_done.emit();
+	var tween = get_tree().create_tween()
+	tween.tween_property(maps[0],"position",Vector2(maps[0].position.x -512.0,0),2.0)
+	tween.parallel().tween_property(maps[1],"position",Vector2(maps[1].position.x -512.0,0),2.0)
+	await tween.finished
+	walk_done.emit();

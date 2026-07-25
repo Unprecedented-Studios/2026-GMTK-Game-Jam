@@ -191,8 +191,8 @@ func _on_game_state_enemy_died() -> void:
 
 
 func _on_debug_pressed() -> void:
-	#$MapTreadmill.shift_map()
-	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies);
+	$MapTreadmill.shift_map()
+	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies);
 	
 	
 func transition_to_next_enemy():
