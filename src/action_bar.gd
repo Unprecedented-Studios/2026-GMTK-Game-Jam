@@ -29,6 +29,10 @@ func get_actions() -> Array[Action_Button]:
 		actions.append(c)
 	return actions
 	
+func reset_timers():
+	for aButton in get_actions():
+		aButton.reset_timer();
+	
 func get_action(type: Action_Button.actions_list) -> Action_Button:
 	for c:Action_Button in get_children():
 		if c.action_type == type:

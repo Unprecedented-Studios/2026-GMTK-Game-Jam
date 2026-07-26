@@ -198,6 +198,7 @@ func _on_upgrade_chooser_upgrade_chosen(upgrade:Upgrade) -> void:
 	else:
 		GameState.no_more_upgrades = true;
 		
+	$ActionBar.reset_timers()
 	GameState.increase_player_level();
 	transition_to_next_enemy()
 

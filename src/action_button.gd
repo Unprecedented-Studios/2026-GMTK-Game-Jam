@@ -156,6 +156,13 @@ func activate():
 	$TimerLabel.text = str(cooldown_count_down)
 	$TimerLabel.show()
 
+func reset_timer():
+	cooldown_count_down = 0
+	$DurationTimer.stop()
+	$DurationCover.hide()
+	$TimerLabel.hide()
+	
+
 func _on_duration_timer_timeout() -> void:
 	if cooldown_count_down > 0.1:
 		cooldown_count_down -= 0.1
