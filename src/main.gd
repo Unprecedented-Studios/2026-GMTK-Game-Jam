@@ -205,15 +205,12 @@ func _on_upgrade_chooser_upgrade_chosen(upgrade:Upgrade) -> void:
 		
 
 func _on_game_state_enemy_died() -> void:
+	if $TutorialInfo.visible:
+		$TutorialInfo.hide()
 	if GameState.no_more_upgrades:
 		_on_upgrade_chooser_upgrade_chosen(null)
 	else:
 		$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), GameState.active_allies)
-	if $TutorialInfo.visible:
-			var tween = get_tree().create_tween()
-			tween.parallel().tween_property($TutorialInfo,"position",Vector2($TutorialInfo.position.x - 512.0,$TutorialInfo.position.y),2.0)
-			tween.parallel().tween_property($TutorialInfo, "modulate:a",0,1);
-			await tween.finished
 
 
 func _on_debug_pressed() -> void:
