@@ -2,13 +2,15 @@ extends Node
 class_name Attack
 
 @export var damage: float = 1;
+@export var damagePerLevel: float = 1;
 @export var type: DamageInfo.damage_types = DamageInfo.damage_types.NORMAL;
 @export var hitAnimation:PackedScene;
 @export var animationName:String;
 
-func attack(target:Node2D, attack_mod:float = 1.0):
+func attack(target:Node2D, attack_mod:float = 1.0, _level:float = 1.0):
 	var dmg = DamageInfo.new();
-	dmg.damage = damage*attack_mod;
+	
+	dmg.damage = (damage + _level * damagePerLevel) * attack_mod;
 	dmg.type = type;
 	if target:
 		target.take_damage(dmg)

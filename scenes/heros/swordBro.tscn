@@ -172,11 +172,13 @@ _data = {
 &"walk": SubResource("Animation_kmlwm")
 }
 
-[node name="Basic" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["allies"] instance=ExtResource("1_7em4u")]
+[node name="SwordBro" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["allies"] instance=ExtResource("1_7em4u")]
 script = ExtResource("2_mpyc7")
 damage = 1.0
 type = 0
+hp_per_level = 5.0
 animation = NodePath("AnimationPlayer")
+attack_rate = 1.5
 attackList = [NodePath("Attack"), NodePath("Attack2")]
 
 [node name="Sprite2D" parent="." index="1" unique_id=215155055]
@@ -196,5 +198,6 @@ damage = 5.0
 animationName = "attack0"
 
 [node name="Attack2" parent="." index="12" unique_id=994366047 instance=ExtResource("3_kr42s")]
-damage = 10.0
+damage = 5.0
+damagePerLevel = 5.0
 animationName = "attack1"

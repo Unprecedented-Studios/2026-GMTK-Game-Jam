@@ -8,9 +8,20 @@ AOEHeal, Shield,AttackUp,AttackDown,
 DefenseUp,DefenseDown,SpeedUp,SpeedDown}
 
 static func get_array_of_actions() -> Array[actions_list]:
-	return [actions_list.BasicAttack, actions_list.SmallHeal, actions_list.Heal, actions_list.HealOverTime,
-	actions_list.AOEHeal, actions_list.Shield,actions_list.AttackUp,actions_list.AttackDown, 
-	actions_list.DefenseUp,actions_list.DefenseDown,actions_list.SpeedUp,actions_list.SpeedDown]
+	return [
+#		actions_list.BasicAttack, 
+		actions_list.SmallHeal, 
+		actions_list.Heal, 
+		actions_list.HealOverTime,
+#		actions_list.AOEHeal, 
+#		actions_list.Shield,
+#		actions_list.AttackUp,
+#		actions_list.AttackDown, 
+#		actions_list.DefenseUp,
+#		actions_list.DefenseDown,
+#		actions_list.SpeedUp,
+#		actions_list.SpeedDown
+		]
 @export var action_type:actions_list = actions_list.BasicAttack
 @export var instructional:bool = false
 signal action_attempt(Action_Button)
@@ -146,9 +157,9 @@ func activate():
 	$TimerLabel.show()
 
 func _on_duration_timer_timeout() -> void:
-	if cooldown_count_down > 1:
-		cooldown_count_down -= 1
-		$TimerLabel.text = str(cooldown_count_down)
+	if cooldown_count_down > 0.1:
+		cooldown_count_down -= 0.1
+		$TimerLabel.text = "%.1f" % cooldown_count_down
 	else:
 		$DurationTimer.stop()
 		$DurationCover.hide()

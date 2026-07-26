@@ -83,6 +83,7 @@ func _on_confirm_button_up() -> void:
 	hide()
 	get_tree().paused = false
 	if $vbox/Upgrade_Options/NoMoreUpgradesLabel.visible:
+		upgrade_chosen.emit(null)
 		return
 	upgrade_chosen.emit(options_array[selected_option].my_upgrade)
 	

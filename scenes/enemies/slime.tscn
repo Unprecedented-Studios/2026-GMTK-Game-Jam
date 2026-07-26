@@ -156,11 +156,13 @@ _data = {
 
 [node name="Slime" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_4h4y0")]
 script = ExtResource("2_b58ev")
+hp_per_level = 20.0
 animation = NodePath("AnimationPlayer")
+attack_rate = 2.0
 attackList = [NodePath("Attack")]
 
 [node name="Sprite2D" parent="." index="1" unique_id=215155055]
-position = Vector2(3, -9)
+position = Vector2(2, -41)
 texture = ExtResource("3_b58ev")
 flip_h = true
 vframes = 8
@@ -171,3 +173,5 @@ autoplay = &"idle"
 
 [node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("3_ankfk")]
 damage = 5.0
+damagePerLevel = 3.0
+animationName = "bite"

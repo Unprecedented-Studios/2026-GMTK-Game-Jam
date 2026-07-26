@@ -160,6 +160,7 @@ region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
 [node name="DurationTimer" type="Timer" parent="." unique_id=101613920]
+wait_time = 0.1
 
 [node name="HotkeyLabel" type="Label" parent="." unique_id=532193354]
 layout_mode = 0

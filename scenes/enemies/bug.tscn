@@ -153,3 +153,4 @@ autoplay = &"idle"
 
 [node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_0t6l1")]
 damage = 5.0
+damagePerLevel = 2.0

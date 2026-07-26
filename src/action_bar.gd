@@ -5,9 +5,9 @@ class_name ActionBar
 var action_preload = preload("res://scenes/action_button.tscn")
 
 func _ready() -> void:
-	var basic_attack:Action_Button = action_preload.instantiate()
-	basic_attack.action_type = Action_Button.actions_list.BasicAttack
-	add_action(basic_attack)
+	#var basic_attack:Action_Button = action_preload.instantiate()
+	#basic_attack.action_type = Action_Button.actions_list.BasicAttack
+	#add_action(basic_attack)
 	var small_heal:Action_Button = action_preload.instantiate()
 	small_heal.action_type = Action_Button.actions_list.SmallHeal
 	add_action(small_heal)

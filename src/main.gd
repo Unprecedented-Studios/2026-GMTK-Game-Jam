@@ -166,28 +166,35 @@ func _on_return_to_game_button_up():
 
 
 func _on_upgrade_chooser_upgrade_chosen(upgrade:Upgrade) -> void:
-
-	if (upgrade.type() == 'action'):
-		var type:Action_Button.actions_list = (upgrade as Action).action_button_id; 
-		var current_player_action_types:Array[Action_Button.actions_list] = $ActionBar.get_action_types()
-		if current_player_action_types.find(type) > -1:
-			$ActionBar.get_action(type).upgrade()
-		else:
-			var new_action:Action_Button = action_preload.instantiate()
-			new_action.action_type = type
-			$ActionBar.add_action(new_action)
-			new_action.set_icon()
-			new_action.action_attempt.connect(perform_action)
-			$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
-	elif upgrade.type() == 'character':
-		$GameState.spawn_hero((upgrade as NewCharacter).character_class, upgrade.upgradeID)
+	if upgrade:
+		if (upgrade.type() == 'action'):
+			var type:Action_Button.actions_list = (upgrade as Action).action_button_id; 
+			var current_player_action_types:Array[Action_Button.actions_list] = $ActionBar.get_action_types()
+			if current_player_action_types.find(type) > -1:
+				$ActionBar.get_action(type).upgrade()
+			else:
+				var new_action:Action_Button = action_preload.instantiate()
+				new_action.action_type = type
+				$ActionBar.add_action(new_action)
+				new_action.set_icon()
+				new_action.action_attempt.connect(perform_action)
+				$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
+		elif upgrade.type() == 'character':
+			$GameState.spawn_hero((upgrade as NewCharacter).character_class, upgrade.upgradeID)
+	else:
+		$GameState.no_more_upgrades = true;
+		
+	$GameState.increase_player_level();
 	transition_to_next_enemy()
 
 
 		
 
 func _on_game_state_enemy_died() -> void:
-	$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies)
+	if $GameState.no_more_upgrades:
+		_on_upgrade_chooser_upgrade_chosen(null)
+	else:
+		$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies)
 
 
 func _on_debug_pressed() -> void:
@@ -199,7 +206,16 @@ func transition_to_next_enemy():
 	$MapTreadmill.shift_map()
 	$GameState.spawn_next_enemy()
 	for c:Character in $GameState.active_allies:
-		c.walk()
+		if c.is_alive:
+			c.walk()
+		else:
+			var tween = get_tree().create_tween()
+			tween.tween_property(c,"position",Vector2(c.position.x - 512.0,c.position.y),2.0)
+			tween.parallel().tween_property(c,"modulate:a",0.0,1.0)
+			await tween.finished
+			$GameState.active_allies.erase(c) #probably te wrong way to do this
+			c.queue_free()
+			return;
 	$GameState.allow_attacks(false)
 		
 func _on_map_treadmill_walk_done() -> void:

@@ -70,6 +70,17 @@ func _update_healthBar():
 	health_bar.max_health = max_hp as int;
 	health_bar.health = current_hp as int;
 
+func set_level(new_level):
+	if current_hp > 0 && new_level > level:
+		current_hp += hp_per_level * (new_level - level);
+
+	level = new_level
+	
+	if current_hp > max_hp:
+		current_hp = max_hp
+	
+	_update_healthBar()
+
 var selected:bool = false:
 	get():
 		return select_box.visible
@@ -84,10 +95,12 @@ func _process(_delta: float) -> void:
 	select_box.modulate.a = .8 + (sin(Time.get_ticks_msec()*SELECT_FLASH_SPEED)*.2)
 
 func walk():
-	animation.play("walk")
+	if (current_hp > 0):
+		animation.play("walk")
 
 func stop():
-	animation.play("idle")
+	if (current_hp > 0):
+		animation.play("idle")
 
 func take_damage(info:DamageInfo) -> void:
 	if !is_alive:
@@ -154,7 +167,7 @@ func attack_hit(_num:int):
 		for b:Buff in get_buffs():
 			if b.type == Action_Button.actions_list.AttackUp or b.type == Action_Button.actions_list.AttackDown:
 				attack_mod *= b.buff_amount
-		attackList[_num].attack(target,attack_mod)
+		attackList[_num].attack(target,attack_mod, level)
 
 func apply_buff(new_buff:Buff):
 	for b:Buff in buff_display.get_children():
