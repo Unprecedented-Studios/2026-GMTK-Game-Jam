@@ -91,7 +91,7 @@ func start_game():
 
 func spawn_hero(heroNode:PackedScene, _upgradeID: String):
 	var hero = heroNode.instantiate() as Character;
-	var spawn_point:Marker2D
+	var spawn_point:Marker2D = null
 	for spoint in alliesSpawns:
 		if !spawn_point:
 			if -1 == active_allies.find_custom( func(a): 
