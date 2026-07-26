@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dqa85a3bsbaob" path="res://scenes/BasicExplanations.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://caimmv7m3kk87" path="res://scenes/action_bar.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
+[ext_resource type="Script" uid="uid://dm67hu2tuxudl" path="res://src/game_state_connector.gd" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dr0l58iupnuyq" path="res://scenes/upgrade_chooser.tscn" id="13_ycdy4"]
-[ext_resource type="Script" uid="uid://2lv1rdmid5j3" path="res://src/game_state.gd" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://2tnkk6vufvtq" path="res://scenes/enemies/enemiesList.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://dt60l0xnnugic" path="res://scenes/heros/heroClassList.tscn" id="16_yaehf"]
 
@@ -255,12 +255,13 @@ stream = ExtResource("11_efxa6")
 pitch_scale = 1.54
 bus = &"UI sounds"
 
-[node name="GameState" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemySpawns", "alliesSpawns", "enemyListNode", "heroClassListNode")]
-script = ExtResource("14_vivmo")
+[node name="GameStateSetupNode" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemySpawns", "alliesSpawns", "enemyListNode", "heroClassListNode", "spawnNode")]
+script = ExtResource("10_ycdy4")
 enemySpawns = [NodePath("../SpawnLocations/EnemySpawn")]
 alliesSpawns = [NodePath("../SpawnLocations/Spawn1"), NodePath("../SpawnLocations/Spawn2"), NodePath("../SpawnLocations/Spawn3"), NodePath("../SpawnLocations/Spawn4"), NodePath("../SpawnLocations/Spawn5")]
 enemyListNode = NodePath("../EnemiesList")
 heroClassListNode = NodePath("../HeroClassList")
+spawnNode = NodePath("../SpawnLocations")
 
 [node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
 
@@ -287,7 +288,5 @@ text = "move!"
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_button_up"]
 [connection signal="button_up" from="StartMenu/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_button_up"]
 [connection signal="finished" from="StartMenu/BackgroundMusic" to="." method="_on_background_music_finished"]
-[connection signal="enemy_died" from="GameState" to="." method="_on_game_state_enemy_died"]
-[connection signal="game_over" from="GameState" to="." method="_on_game_state_game_over"]
 [connection signal="upgrade_chosen" from="UpgradeChooser" to="." method="_on_upgrade_chooser_upgrade_chosen"]
 [connection signal="pressed" from="debug" to="." method="_on_debug_pressed"]

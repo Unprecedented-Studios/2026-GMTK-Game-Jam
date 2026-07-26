@@ -1,10 +1,11 @@
 extends Node
 signal game_over;
 
-@export var enemySpawns:Array[Marker2D]
-@export var alliesSpawns:Array[Marker2D]
-@export var enemyListNode:Node;
-@export var heroClassListNode:Node;
+var enemySpawns:Array[Marker2D]
+var alliesSpawns:Array[Marker2D]
+var enemyListNode:Node;
+var heroClassListNode:Node;
+var spawnNode:Node;
 
 var enemyList:Array[PackedScene];
 var no_more_upgrades: bool = false
@@ -16,9 +17,6 @@ var all_characters:Array[Character]:
 		return active_allies + active_enemies;
 		
 var player_level = 0;
-
-func _ready():
-	enemyList = enemyListNode.enemys;
 
 signal enemy_died
 func _on_enemy_died():
@@ -42,6 +40,8 @@ func _on_character_selected(c:Character):
 	select_character.emit(c)
 		
 func spawn_next_enemy():
+	if !enemyList:	
+		enemyList = enemyListNode.enemys;
 	var enemyScene = enemyList.pick_random() as PackedScene;
 	if not enemyScene:
 		push_error("No enemies to spawn!")
@@ -50,7 +50,7 @@ func spawn_next_enemy():
 	active_enemies.push_back(newEnemy);
 	newEnemy.level = player_level;
 	
-	$"../SpawnLocations".add_child(newEnemy);
+	spawnNode.add_child(newEnemy);
 	var spawn_point = enemySpawns.pick_random();
 	newEnemy.global_position = spawn_point.global_position;
 	newEnemy.died.connect(_on_enemy_died)
@@ -92,7 +92,7 @@ func spawn_hero(heroNode:PackedScene, _upgradeID: String):
 	var spawn_point = alliesSpawns[active_allies.size()];
 	active_allies.push_back(hero);
 	hero.char_class = _upgradeID;
-	$"../SpawnLocations".add_child(hero)
+	spawnNode.add_child(hero)
 	hero.global_position = spawn_point.global_position;
 	hero.died.connect(_on_ally_died)
 	hero.clicked_on.connect(_on_character_selected)

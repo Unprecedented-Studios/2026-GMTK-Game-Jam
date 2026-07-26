@@ -7,9 +7,11 @@ func _ready():
 	var load_actions = $ActionBar.get_actions()
 	for a:Action_Button in load_actions:
 		a.action_attempt.connect(perform_action)
+	GameState.game_over.connect(_on_game_state_game_over)
+	GameState.enemy_died.connect(_on_game_state_enemy_died)
 		
 func get_characters() -> Array[Character]:
-	return $GameState.all_characters
+	return GameState.all_characters
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("Escape"):
@@ -25,7 +27,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("tab"):
 		var selected_char = get_selected_character()
 		if selected_char == null:
-			var a:Character = $GameState.active_allies[0]
+			var a:Character = GameState.active_allies[0]
 			a.selected = true
 			return
 		if Input.is_key_pressed(KEY_SHIFT):
@@ -74,7 +76,7 @@ func perform_action(act:Action_Button):
 		elif act.action_type == Action_Button.actions_list.Heal:
 			selected_character.heal(heal_amount)
 		elif act.action_type == Action_Button.actions_list.AOEHeal:
-			for a:Character in $GameState.active_allies:
+			for a:Character in GameState.active_allies:
 				a.heal(aoe_heal_amount)
 		elif act.action_type == Action_Button.actions_list.BasicAttack:
 			basic_attack_damage.damage = 5.0
@@ -89,7 +91,7 @@ func perform_action(act:Action_Button):
 
 func _on_start_button_button_up() -> void:
 	$StartMenu.hide()
-	$GameState.start_game()
+	GameState.start_game()
 
 
 #region Instructions stuff
@@ -156,7 +158,7 @@ func _on_restart_game_button_up():
 	$StartMenu/VBoxContainer/MainMenu/EndingMenu.hide()
 	$StartMenu/VBoxContainer/MainMenu/RestartGame.hide()
 	$StartMenu/VBoxContainer/MainMenu/StartButton.show()
-	$GameState.start_game()
+	GameState.start_game()
 	$ActionBar.reset()
 	$StartMenu/VBoxContainer/ActionInstructions.reset()
 
@@ -180,32 +182,32 @@ func _on_upgrade_chooser_upgrade_chosen(upgrade:Upgrade) -> void:
 				new_action.action_attempt.connect(perform_action)
 				$StartMenu/VBoxContainer/ActionInstructions.add_explanation(type)
 		elif upgrade.type() == 'character':
-			$GameState.spawn_hero((upgrade as NewCharacter).character_class, upgrade.upgradeID)
+			GameState.spawn_hero((upgrade as NewCharacter).character_class, upgrade.upgradeID)
 	else:
-		$GameState.no_more_upgrades = true;
+		GameState.no_more_upgrades = true;
 		
-	$GameState.increase_player_level();
+	GameState.increase_player_level();
 	transition_to_next_enemy()
 
 
 		
 
 func _on_game_state_enemy_died() -> void:
-	if $GameState.no_more_upgrades:
+	if GameState.no_more_upgrades:
 		_on_upgrade_chooser_upgrade_chosen(null)
 	else:
-		$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies)
+		$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), GameState.active_allies)
 
 
 func _on_debug_pressed() -> void:
 	$MapTreadmill.shift_map()
-	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), $GameState.active_allies);
+	#$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), GameState.active_allies);
 	
 	
 func transition_to_next_enemy():
 	$MapTreadmill.shift_map()
-	$GameState.spawn_next_enemy()
-	for c:Character in $GameState.active_allies:
+	GameState.spawn_next_enemy()
+	for c:Character in GameState.active_allies:
 		if c.is_alive:
 			c.walk()
 		else:
@@ -213,12 +215,12 @@ func transition_to_next_enemy():
 			tween.tween_property(c,"position",Vector2(c.position.x - 512.0,c.position.y),2.0)
 			tween.parallel().tween_property(c,"modulate:a",0.0,1.0)
 			await tween.finished
-			$GameState.active_allies.erase(c) #probably te wrong way to do this
+			GameState.active_allies.erase(c) #probably te wrong way to do this
 			c.queue_free()
 			return;
-	$GameState.allow_attacks(false)
+	GameState.allow_attacks(false)
 		
 func _on_map_treadmill_walk_done() -> void:
-	$GameState.allow_attacks(true)
-	for c:Character in $GameState.active_allies:
+	GameState.allow_attacks(true)
+	for c:Character in GameState.active_allies:
 		c.stop()
