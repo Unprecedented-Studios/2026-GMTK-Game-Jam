@@ -258,10 +258,8 @@ stream = ExtResource("11_efxa6")
 pitch_scale = 1.54
 bus = &"UI sounds"
 
-[node name="GameStateSetupNode" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemySpawns", "alliesSpawns", "enemyListNode", "heroClassListNode", "spawnNode")]
+[node name="GameStateSetupNode" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemyListNode", "heroClassListNode", "spawnNode")]
 script = ExtResource("10_ycdy4")
-enemySpawns = [NodePath("../SpawnLocations/EnemySpawn")]
-alliesSpawns = [NodePath("../SpawnLocations/Spawn1"), NodePath("../SpawnLocations/Spawn2"), NodePath("../SpawnLocations/Spawn3"), NodePath("../SpawnLocations/Spawn4"), NodePath("../SpawnLocations/Spawn5")]
 enemyListNode = NodePath("../EnemiesList")
 heroClassListNode = NodePath("../HeroClassList")
 spawnNode = NodePath("../SpawnLocations")
@@ -275,6 +273,7 @@ enemys = Array[PackedScene]([ExtResource("12_2cqfq"), ExtResource("13_yaehf"), E
 visible = false
 
 [node name="debug" type="Button" parent="." unique_id=1250204788]
+visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 text = "move!"
