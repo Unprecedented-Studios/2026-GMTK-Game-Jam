@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://b7etcurocjtll" path="res://src/upgrades/newCharacter.gd" id="2_sqx2t"]
 [ext_resource type="PackedScene" uid="uid://bf32h7mumg8qm" path="res://scenes/heros/swordBro.tscn" id="3_2oop6"]
 [ext_resource type="Texture2D" uid="uid://bclgp2ce5v73s" path="res://assets/Characters/Hero_03.png" id="3_uglg3"]
+[ext_resource type="PackedScene" uid="uid://tf4tx3gxkjoc" path="res://scenes/heros/arrowGuy.tscn" id="5_fsr8d"]
+[ext_resource type="Texture2D" uid="uid://bqkxcop7avkj6" path="res://assets/Characters/Hero_30.png" id="6_l0oxy"]
 
 [node name="UpgradeLists" type="Node" unique_id=886247655]
 script = ExtResource("1_40k2v")
@@ -13,13 +15,28 @@ script = ExtResource("1_40k2v")
 [node name="SwordBro" type="Node" parent="characters" unique_id=1769493586 node_paths=PackedStringArray("icon")]
 script = ExtResource("2_sqx2t")
 character_class = ExtResource("3_2oop6")
-info = "Bro with a big sword, less armor"
+info = "Bro with a big sword, less health"
 icon = NodePath("Sprite2D")
 upgradeID = "swordBro"
 metadata/_custom_type_script = "uid://b7etcurocjtll"
 
 [node name="Sprite2D" type="Sprite2D" parent="characters/SwordBro" unique_id=2096935080]
-visible = false
 texture = ExtResource("3_uglg3")
 hframes = 6
 vframes = 12
+frame = 16
+
+[node name="ArrowDude" type="Node" parent="characters" unique_id=1925965395 node_paths=PackedStringArray("icon")]
+script = ExtResource("2_sqx2t")
+character_class = ExtResource("5_fsr8d")
+info = "Dude with a box, shoots fast but no big numbers"
+icon = NodePath("Sprite2D")
+upgradeID = "ArrowDude"
+metadata/_custom_type_script = "uid://b7etcurocjtll"
+
+[node name="Sprite2D" type="Sprite2D" parent="characters/ArrowDude" unique_id=1515835471]
+visible = false
+texture = ExtResource("6_l0oxy")
+hframes = 6
+vframes = 12
+frame = 24

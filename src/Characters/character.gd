@@ -97,6 +97,9 @@ func _process(_delta: float) -> void:
 func walk():
 	if (current_hp > 0):
 		animation.play("walk")
+		var anim_length = animation.get_animation("walk").length
+		var random_start_time = randf_range(0.0, anim_length)
+		animation.seek(random_start_time, true)
 
 func stop():
 	if (current_hp > 0):

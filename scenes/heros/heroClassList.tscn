@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://bskrobffpan8l" path="res://src/Characters/heros/hero_class_list.gd" id="1_h3uiw"]
 [ext_resource type="PackedScene" uid="uid://hgibkebfu2nk" path="res://scenes/heros/basic.tscn" id="2_fseos"]
 [ext_resource type="PackedScene" uid="uid://bf32h7mumg8qm" path="res://scenes/heros/swordBro.tscn" id="3_fseos"]
+[ext_resource type="PackedScene" uid="uid://tf4tx3gxkjoc" path="res://scenes/heros/arrowGuy.tscn" id="4_c4oov"]
 
 [node name="HeroClassList" type="Node" unique_id=655837084]
 script = ExtResource("1_h3uiw")
-classes = Array[PackedScene]([ExtResource("2_fseos"), ExtResource("3_fseos")])
+classes = Array[PackedScene]([ExtResource("2_fseos"), ExtResource("3_fseos"), ExtResource("4_c4oov")])
