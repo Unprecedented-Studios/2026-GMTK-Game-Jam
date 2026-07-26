@@ -11,7 +11,7 @@ func _ready():
 	GameState.enemy_died.connect(_on_game_state_enemy_died)
 		
 func get_characters() -> Array[Character]:
-	return GameState.all_characters
+	return GameState.active_allies
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("Escape"):
@@ -27,25 +27,25 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("tab"):
 		var selected_char = get_selected_character()
 		if selected_char == null:
-			var a:Character = GameState.active_allies[0]
-			a.selected = true
+			if GameState.active_allies.size() > 0:
+				var a:Character = GameState.active_allies[0]
+				a.selected = true
 			return
+		
+		
+		var tabbable_targets = get_characters()
+		var selected_index:int = tabbable_targets.find(selected_char)
+		selected_char.selected = false
 		if Input.is_key_pressed(KEY_SHIFT):
-			var tabbable_targets = get_characters()
-			var selected_index:int = tabbable_targets.find(selected_char)
 			if selected_index == 0:
 				tabbable_targets[tabbable_targets.size()-1].selected = true
 			else:
 				tabbable_targets[selected_index-1].selected = true
-			selected_char.selected = false
 		else: #shift isn't held and we should normal tab
-			var tabbable_targets = get_characters()
-			var selected_index:int = tabbable_targets.find(selected_char)
 			if selected_index == tabbable_targets.size()-1:
 				tabbable_targets[0].selected = true
 			else:
 				tabbable_targets[selected_index+1].selected = true
-			selected_char.selected = false
 
 
 func get_selected_character() -> Character:

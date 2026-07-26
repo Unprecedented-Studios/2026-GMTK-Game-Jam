@@ -203,4 +203,4 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			clicked_on.emit(self)
+		clicked_on.emit(self)

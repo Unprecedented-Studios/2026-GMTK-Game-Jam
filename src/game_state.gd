@@ -53,7 +53,7 @@ func spawn_next_enemy():
 	newEnemy.set_level(player_level);
 	newEnemy.global_position = spawn_point.global_position;
 	newEnemy.died.connect(_on_enemy_died)
-	newEnemy.clicked_on.connect(_on_character_selected)
+#	newEnemy.clicked_on.connect(_on_character_selected)
 	if (player_level == 1):
 		newEnemy.walk();
 	var tween = get_tree().create_tween()

@@ -254,7 +254,10 @@ vframes = 6
 libraries/ = SubResource("AnimationLibrary_t77sq")
 autoplay = &"idle"
 
-[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(736704528) index="0" unique_id=715550499]
+[node name="Area2D" parent="." index="3" unique_id=736704528]
+visible = false
+
+[node name="CollisionShape2D" parent="Area2D" index="0" unique_id=715550499]
 position = Vector2(2, 48.5)
 shape = SubResource("RectangleShape2D_vrtql")
 

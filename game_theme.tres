@@ -8,6 +8,7 @@
 bg_color = Color(0, 0.72156864, 0, 1)
 
 [resource]
+default_font = ExtResource("1_1fvms")
 Button/fonts/font = ExtResource("1_1fvms")
 HSlider/icons/grabber = ExtResource("2_pd6sc")
 HSlider/icons/grabber_highlight = ExtResource("3_2l2ys")
