@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://rlp30g5tcbts"]
+[gd_scene format=3 uid="uid://blrjequ8r3cdx"]
 
-[ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_4h4y0"]
-[ext_resource type="Script" uid="uid://chn5rixu24eqp" path="res://src/Characters/enemies/slime.gd" id="2_b58ev"]
-[ext_resource type="Texture2D" uid="uid://cjmcnc6o61tpa" path="res://assets/Bosses/Boss08/Boss08_D.png" id="3_b58ev"]
-[ext_resource type="PackedScene" uid="uid://bpcsr5ajqm7sq" path="res://scenes/attacks/aoeAttack.tscn" id="4_b58ev"]
+[ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_vrtql"]
+[ext_resource type="Script" uid="uid://cgjapd081ioyr" path="res://src/Characters/enemies/axe_beef.gd" id="2_vrtql"]
+[ext_resource type="Texture2D" uid="uid://d2scaude5orn7" path="res://assets/Bosses/Boss04/Boss04_B.png" id="3_vrtql"]
+[ext_resource type="PackedScene" uid="uid://55c8dbewhco2" path="res://scenes/attacks/attack.tscn" id="4_n65g0"]
 
 [sub_resource type="Animation" id="Animation_evhp6"]
 length = 2.0000200298026205
@@ -31,10 +31,23 @@ tracks/1/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -41)]
+}
 
 [sub_resource type="Animation" id="Animation_wgkba"]
-resource_name = "bite"
+resource_name = "axe"
 length = 1.4000200208619236
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -43,10 +56,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.207782),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.207782, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [18, 19, 20, 21, 22, 23, 24]
+"values": [17, 18, 19, 20, 21, 22, 23, 0]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -62,9 +75,22 @@ tracks/1/keys = {
 "method": &"attack_hit"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20148635, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(2, -41), Vector2(-61, 26), Vector2(2, -41)]
+}
 
 [sub_resource type="Animation" id="Animation_t77sq"]
 resource_name = "die"
+length = 1.200020017881691
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -73,10 +99,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.39999998, 0.6, 0.79999995),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.39999998, 0.6, 0.79999995, 0.99999994),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [42, 43, 44, 45, 46]
+"values": [30, 31, 32, 33, 34, 47]
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -87,7 +113,19 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, 0, 0, 0.20000336, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"times": PackedFloat32Array(0, 1.2)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -41)]
 }
 
 [sub_resource type="Animation" id="Animation_1cphh"]
@@ -104,7 +142,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [36, 37, 38, 39, 40]
+"values": [24, 25, 26, 27, 28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -41)]
 }
 
 [sub_resource type="Animation" id="Animation_0t6l1"]
@@ -124,6 +174,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -41)]
+}
 
 [sub_resource type="Animation" id="Animation_b58ev"]
 resource_name = "walk"
@@ -142,36 +204,61 @@ tracks/0/keys = {
 "update": 1,
 "values": [6, 7, 8, 9, 10, 11]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -41)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t77sq"]
 _data = {
 &"RESET": SubResource("Animation_evhp6"),
-&"bite": SubResource("Animation_wgkba"),
+&"axe": SubResource("Animation_wgkba"),
 &"die": SubResource("Animation_t77sq"),
 &"hurt": SubResource("Animation_1cphh"),
 &"idle": SubResource("Animation_0t6l1"),
 &"walk": SubResource("Animation_b58ev")
 }
 
-[node name="Slime" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_4h4y0")]
-script = ExtResource("2_b58ev")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrtql"]
+size = Vector2(176, 261)
+
+[node name="Axe Beef" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_vrtql")]
+script = ExtResource("2_vrtql")
+base_hp = 30.0
 hp_per_level = 20.0
 animation = NodePath("AnimationPlayer")
-attack_rate = 1.5
-attackList = [NodePath("AOE Attack")]
+attack_rate = 2.0
+attackList = [NodePath("Attack")]
+
+[node name="Status" parent="." index="0" unique_id=2098837675]
+offset_left = -85.0
+offset_top = 118.0
+offset_right = 91.0
+offset_bottom = 252.0
 
 [node name="Sprite2D" parent="." index="1" unique_id=215155055]
 position = Vector2(2, -41)
-texture = ExtResource("3_b58ev")
+texture = ExtResource("3_vrtql")
 flip_h = true
-vframes = 8
+vframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=2003974188]
 libraries/ = SubResource("AnimationLibrary_t77sq")
 autoplay = &"idle"
 
-[node name="AOE Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_b58ev")]
-position = Vector2(-210.75995, 126.41499)
-damage = 2.0
-damagePerLevel = 3.0
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(736704528) index="0" unique_id=715550499]
+position = Vector2(2, 48.5)
+shape = SubResource("RectangleShape2D_vrtql")
+
+[node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_n65g0")]
+damage = 5.0
+damagePerLevel = 5.0
 animationName = "bite"

@@ -136,6 +136,9 @@ _data = {
 &"idle": SubResource("Animation_0t6l1")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cphh"]
+size = Vector2(176, 206)
+
 [node name="Bug" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_evhp6")]
 script = ExtResource("2_0t6l1")
 animation = NodePath("AnimationPlayer")
@@ -151,6 +154,10 @@ vframes = 6
 libraries/ = SubResource("AnimationLibrary_t77sq")
 autoplay = &"idle"
 
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(736704528) index="0" unique_id=715550499]
+position = Vector2(2, 56)
+shape = SubResource("RectangleShape2D_1cphh")
+
 [node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_0t6l1")]
 damage = 5.0
-damagePerLevel = 2.0
+damagePerLevel = 4.0

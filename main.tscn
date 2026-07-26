@@ -10,7 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 [ext_resource type="Script" uid="uid://dm67hu2tuxudl" path="res://src/game_state_connector.gd" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="12_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://rlp30g5tcbts" path="res://scenes/enemies/slime.tscn" id="13_yaehf"]
 [ext_resource type="PackedScene" uid="uid://dr0l58iupnuyq" path="res://scenes/upgrade_chooser.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://blrjequ8r3cdx" path="res://scenes/enemies/axeBeef.tscn" id="14_074og"]
 [ext_resource type="PackedScene" uid="uid://2tnkk6vufvtq" path="res://scenes/enemies/enemiesList.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://dt60l0xnnugic" path="res://scenes/heros/heroClassList.tscn" id="16_yaehf"]
 
@@ -264,6 +267,7 @@ heroClassListNode = NodePath("../HeroClassList")
 spawnNode = NodePath("../SpawnLocations")
 
 [node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
+enemys = Array[PackedScene]([ExtResource("12_2cqfq"), ExtResource("13_yaehf"), ExtResource("14_074og")])
 
 [node name="HeroClassList" parent="." unique_id=655837084 instance=ExtResource("16_yaehf")]
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bpcsr5ajqm7sq"]
+
+[ext_resource type="Script" uid="uid://dqs5oj0ohl8wg" path="res://src/Abilities/attacks/aoeattack.gd" id="1_8t5b1"]
+[ext_resource type="PackedScene" uid="uid://dv4yno8ph7tlc" path="res://scenes/attacks/animations/slime_hit.tscn" id="2_ddol6"]
+
+[node name="AOE Attack" type="Node2D" unique_id=1836769189]
+script = ExtResource("1_8t5b1")
+hitAnimation = ExtResource("2_ddol6")

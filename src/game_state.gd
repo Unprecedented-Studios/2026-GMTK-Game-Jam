@@ -55,11 +55,14 @@ func spawn_next_enemy():
 	newEnemy.global_position = spawn_point.global_position;
 	newEnemy.died.connect(_on_enemy_died)
 	newEnemy.clicked_on.connect(_on_character_selected)
+	if (player_level == 0):
+		newEnemy.walk();
 	var tween = get_tree().create_tween()
 	tween.tween_property(newEnemy,"position",Vector2(newEnemy.position.x-512,newEnemy.position.y),2)
 	newEnemy.can_attack = false;
 	await tween.finished
 	newEnemy.can_attack = true;
+	newEnemy.stop();
 
 func gameover():
 	game_over.emit();
