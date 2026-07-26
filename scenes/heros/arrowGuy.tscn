@@ -145,6 +145,7 @@ _data = {
 script = ExtResource("2_7y0hv")
 damage = 1.0
 type = 0
+base_hp = 30.0
 hp_per_level = 15.0
 animation = NodePath("AnimationPlayer")
 attackList = [NodePath("Attack")]
@@ -163,5 +164,6 @@ position = Vector2(0, 8)
 
 [node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("3_0h41n")]
 position = Vector2(2, 3)
-damage = 2.0
+damage = 3.0
+damagePerLevel = 1.5
 animationName = "attack0"

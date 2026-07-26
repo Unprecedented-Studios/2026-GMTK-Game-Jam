@@ -92,6 +92,18 @@ func perform_action(act:Action_Button):
 func _on_start_button_button_up() -> void:
 	$StartMenu.hide()
 	GameState.start_game()
+	#"Tutorial"
+	var tutTime = Timer.new()
+	add_child(tutTime)
+	tutTime.one_shot = true
+	tutTime.timeout.connect(
+		func():
+			$TutorialInfo.modulate.a = 0;
+			$TutorialInfo.show()
+			var t = get_tree().create_tween()
+			t.tween_property($TutorialInfo, "modulate:a",1,1);
+	);
+	tutTime.start(7)
 
 
 #region Instructions stuff
@@ -197,6 +209,11 @@ func _on_game_state_enemy_died() -> void:
 		_on_upgrade_chooser_upgrade_chosen(null)
 	else:
 		$UpgradeChooser.display_upgrade_chooser($ActionBar.get_actions(), GameState.active_allies)
+	if $TutorialInfo.visible:
+			var tween = get_tree().create_tween()
+			tween.parallel().tween_property($TutorialInfo,"position",Vector2($TutorialInfo.position.x - 512.0,$TutorialInfo.position.y),2.0)
+			tween.parallel().tween_property($TutorialInfo, "modulate:a",0,1);
+			await tween.finished
 
 
 func _on_debug_pressed() -> void:

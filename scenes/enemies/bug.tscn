@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_evhp6"]
 [ext_resource type="Script" uid="uid://b1liahik6qp2u" path="res://src/Characters/enemies/bug.gd" id="2_0t6l1"]
-[ext_resource type="PackedScene" uid="uid://55c8dbewhco2" path="res://scenes/attacks/attack.tscn" id="4_0t6l1"]
+[ext_resource type="Script" uid="uid://b1gfeph6te47m" path="res://src/Abilities/attacks/attack.gd" id="3_0t6l1"]
+[ext_resource type="PackedScene" uid="uid://syiux7qxlmov" path="res://scenes/attacks/animations/basic_hit.tscn" id="4_t77sq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1cphh"]
 load_path = "res://.godot/imported/Boss03_A.png-5866fe6e7a4c01bc95c5700764f565cd.ctex"
@@ -159,6 +160,8 @@ size = Vector2(176, 206)
 
 [node name="Bug" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_evhp6")]
 script = ExtResource("2_0t6l1")
+base_hp = 0.0
+hp_per_level = 50.0
 animation = NodePath("AnimationPlayer")
 attackList = [NodePath("Attack")]
 
@@ -176,6 +179,8 @@ autoplay = &"idle"
 position = Vector2(2, 56)
 shape = SubResource("RectangleShape2D_1cphh")
 
-[node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_0t6l1")]
-damage = 5.0
-damagePerLevel = 4.0
+[node name="Attack" type="Node2D" parent="." index="11" unique_id=1836769189]
+script = ExtResource("3_0t6l1")
+damage = -2.0
+damagePerLevel = 6.0
+hitAnimation = ExtResource("4_t77sq")

@@ -10,10 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2m6kmyliixk7" path="res://scenes/ActionExplanations.tscn" id="7_kek77"]
 [ext_resource type="Script" uid="uid://dm67hu2tuxudl" path="res://src/game_state_connector.gd" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://22hy83fdvnjy" path="res://assets/Sounds/UI_Swish_1.mp3" id="11_efxa6"]
-[ext_resource type="PackedScene" uid="uid://b2ckovjnaxtba" path="res://scenes/enemies/bug.tscn" id="12_2cqfq"]
-[ext_resource type="PackedScene" uid="uid://rlp30g5tcbts" path="res://scenes/enemies/slime.tscn" id="13_yaehf"]
 [ext_resource type="PackedScene" uid="uid://dr0l58iupnuyq" path="res://scenes/upgrade_chooser.tscn" id="13_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://blrjequ8r3cdx" path="res://scenes/enemies/axeBeef.tscn" id="14_074og"]
 [ext_resource type="PackedScene" uid="uid://2tnkk6vufvtq" path="res://scenes/enemies/enemiesList.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://dt60l0xnnugic" path="res://scenes/heros/heroClassList.tscn" id="16_yaehf"]
 
@@ -258,14 +255,15 @@ stream = ExtResource("11_efxa6")
 pitch_scale = 1.54
 bus = &"UI sounds"
 
-[node name="GameStateSetupNode" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemyListNode", "heroClassListNode", "spawnNode")]
+[node name="GameStateSetupNode" type="Node" parent="." unique_id=123523947 node_paths=PackedStringArray("enemySpawns", "alliesSpawns", "enemyListNode", "heroClassListNode", "spawnNode")]
 script = ExtResource("10_ycdy4")
+enemySpawns = [NodePath("../SpawnLocations/EnemySpawn")]
+alliesSpawns = [NodePath("../SpawnLocations/Spawn1"), NodePath("../SpawnLocations/Spawn2"), NodePath("../SpawnLocations/Spawn3"), NodePath("../SpawnLocations/Spawn4"), NodePath("../SpawnLocations/Spawn5")]
 enemyListNode = NodePath("../EnemiesList")
 heroClassListNode = NodePath("../HeroClassList")
 spawnNode = NodePath("../SpawnLocations")
 
 [node name="EnemiesList" parent="." unique_id=827189623 instance=ExtResource("15_vivmo")]
-enemys = Array[PackedScene]([ExtResource("12_2cqfq"), ExtResource("13_yaehf"), ExtResource("14_074og")])
 
 [node name="HeroClassList" parent="." unique_id=655837084 instance=ExtResource("16_yaehf")]
 
@@ -279,6 +277,27 @@ offset_bottom = 8.0
 text = "move!"
 
 [node name="TransitionTimer" type="Timer" parent="." unique_id=1377453550]
+
+[node name="TutorialInfo" type="PanelContainer" parent="." unique_id=985346196]
+visible = false
+offset_left = 287.0
+offset_top = 470.0
+offset_right = 983.0
+offset_bottom = 635.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("5_7mycd")
+
+[node name="Label" type="Label" parent="TutorialInfo" unique_id=1114152606]
+layout_mode = 2
+theme = ExtResource("5_7mycd")
+text = "Oh no, your ally is taking damage!
+
+To heal, select your ally by clicking
+on them (or hitting tab) 
+then click the heal button below
+(or hit its hotkey <Q>)"
 
 [connection signal="walk_done" from="MapTreadmill" to="." method="_on_map_treadmill_walk_done"]
 [connection signal="mouse_entered" from="ActionBarArea" to="." method="_on_action_bar_area_mouse_entered"]

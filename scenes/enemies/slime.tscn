@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_4h4y0"]
 [ext_resource type="Script" uid="uid://chn5rixu24eqp" path="res://src/Characters/enemies/slime.gd" id="2_b58ev"]
 [ext_resource type="Texture2D" uid="uid://cjmcnc6o61tpa" path="res://assets/Bosses/Boss08/Boss08_D.png" id="3_b58ev"]
-[ext_resource type="PackedScene" uid="uid://bpcsr5ajqm7sq" path="res://scenes/attacks/aoeAttack.tscn" id="4_b58ev"]
+[ext_resource type="Script" uid="uid://dqs5oj0ohl8wg" path="res://src/Abilities/attacks/aoeattack.gd" id="4_ankfk"]
+[ext_resource type="Texture2D" uid="uid://cv6hv000c6bc5" path="res://assets/Abilities/Buffs & Debuffs/Hit01.png" id="5_ankfk"]
 
 [sub_resource type="Animation" id="Animation_evhp6"]
 length = 2.0000200298026205
@@ -153,11 +154,73 @@ _data = {
 &"walk": SubResource("Animation_b58ev")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1rq6"]
+atlas = ExtResource("5_ankfk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ack0d"]
+atlas = ExtResource("5_ankfk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxpq1"]
+atlas = ExtResource("5_ankfk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kauh"]
+atlas = ExtResource("5_ankfk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr7hw"]
+atlas = ExtResource("5_ankfk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_reyql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1rq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ack0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxpq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kauh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr7hw")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="PackedScene" id="PackedScene_e12yk"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("SlimeHitAnimation", "AnimatedSprite2D", "modulate", "scale", "sprite_frames", "frame", "frame_progress"),
+"node_count": 1,
+"node_ids": PackedInt32Array(184564592),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0),
+"variants": [Color(0, 1, 0, 1), Vector2(4, 4), SubResource("SpriteFrames_reyql"), 5, 1.0],
+"version": 3
+}
+
 [node name="Slime" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_4h4y0")]
 script = ExtResource("2_b58ev")
-hp_per_level = 20.0
+base_hp = 20.0
+hp_per_level = 50.0
 animation = NodePath("AnimationPlayer")
-attack_rate = 1.5
+attack_rate = 2.0
 attackList = [NodePath("AOE Attack")]
 
 [node name="Sprite2D" parent="." index="1" unique_id=215155055]
@@ -170,8 +233,9 @@ vframes = 8
 libraries/ = SubResource("AnimationLibrary_t77sq")
 autoplay = &"idle"
 
-[node name="AOE Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_b58ev")]
+[node name="AOE Attack" type="Node2D" parent="." index="11" unique_id=1836769189]
 position = Vector2(-210.75995, 126.41499)
-damage = 2.0
-damagePerLevel = 3.0
+script = ExtResource("4_ankfk")
+damagePerLevel = 4.0
+hitAnimation = SubResource("PackedScene_e12yk")
 animationName = "bite"

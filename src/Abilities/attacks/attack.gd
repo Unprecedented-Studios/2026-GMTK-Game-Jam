@@ -15,9 +15,12 @@ func attack(target:Node2D, attack_mod:float = 1.0, _level:float = 1.0):
 	if target:
 		target.take_damage(dmg)
 		if hitAnimation:
-			var playhit = hitAnimation.instantiate() as AnimatedSprite2D;
-			add_child(playhit)
-			playhit.global_position = target.hitPos.global_position;
-			playhit.play();
-			await playhit.animation_finished;
-			playhit.queue_free();
+			play_hit_animation(target)
+
+func play_hit_animation(target:Node2D):
+	var playhit = hitAnimation.instantiate() as AnimatedSprite2D;
+	add_child(playhit)
+	playhit.global_position = target.hitPos.global_position;
+	playhit.play();
+	await playhit.animation_finished;
+	playhit.queue_free();

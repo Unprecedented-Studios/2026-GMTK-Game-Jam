@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://1kpckr43gxh0" path="res://scenes/character.tscn" id="1_vrtql"]
 [ext_resource type="Script" uid="uid://cgjapd081ioyr" path="res://src/Characters/enemies/axe_beef.gd" id="2_vrtql"]
 [ext_resource type="Texture2D" uid="uid://d2scaude5orn7" path="res://assets/Bosses/Boss04/Boss04_B.png" id="3_vrtql"]
-[ext_resource type="PackedScene" uid="uid://55c8dbewhco2" path="res://scenes/attacks/attack.tscn" id="4_n65g0"]
+[ext_resource type="Script" uid="uid://b1gfeph6te47m" path="res://src/Abilities/attacks/attack.gd" id="4_ohog4"]
+[ext_resource type="PackedScene" uid="uid://syiux7qxlmov" path="res://scenes/attacks/animations/basic_hit.tscn" id="5_8gf6v"]
 
 [sub_resource type="Animation" id="Animation_evhp6"]
 length = 2.0000200298026205
@@ -47,7 +48,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_wgkba"]
 resource_name = "axe"
 length = 1.4000200208619236
-loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -82,7 +82,7 @@ tracks/2/path = NodePath("Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.20148635, 1.4),
+"times": PackedFloat32Array(0, 0.2, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(2, -41), Vector2(-61, 26), Vector2(2, -41)]
@@ -232,10 +232,10 @@ size = Vector2(176, 261)
 
 [node name="Axe Beef" unique_id=2001436315 node_paths=PackedStringArray("animation", "attackList") groups=["enemies"] instance=ExtResource("1_vrtql")]
 script = ExtResource("2_vrtql")
-base_hp = 30.0
-hp_per_level = 20.0
+base_hp = -20.0
+hp_per_level = 80.0
 animation = NodePath("AnimationPlayer")
-attack_rate = 2.0
+attack_rate = 3.0
 attackList = [NodePath("Attack")]
 
 [node name="Status" parent="." index="0" unique_id=2098837675]
@@ -258,7 +258,9 @@ autoplay = &"idle"
 position = Vector2(2, 48.5)
 shape = SubResource("RectangleShape2D_vrtql")
 
-[node name="Attack" parent="." index="11" unique_id=1836769189 instance=ExtResource("4_n65g0")]
-damage = 5.0
-damagePerLevel = 5.0
-animationName = "bite"
+[node name="Attack" type="Node2D" parent="." index="11" unique_id=1836769189]
+script = ExtResource("4_ohog4")
+damage = -5.0
+damagePerLevel = 10.0
+hitAnimation = ExtResource("5_8gf6v")
+animationName = "axe"

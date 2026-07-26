@@ -176,6 +176,7 @@ _data = {
 script = ExtResource("2_mpyc7")
 damage = 1.0
 type = 0
+base_hp = 15.0
 animation = NodePath("AnimationPlayer")
 attack_rate = 1.5
 attackList = [NodePath("Attack"), NodePath("Attack2")]

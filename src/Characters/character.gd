@@ -43,7 +43,7 @@ var can_attack:bool:
 			attack_timer.stop()
 		
 func _ready():
-	current_hp = max_hp;
+	set_full_health()
 	_update_healthBar();
 	
 	if self.is_in_group("enemies"):
@@ -71,15 +71,10 @@ func _update_healthBar():
 	health_bar.health = current_hp as int;
 
 func set_level(new_level):
-	if current_hp > 0 && new_level > level:
-		current_hp += hp_per_level * (new_level - level);
-
-	level = new_level
-	
-	if current_hp > max_hp:
-		current_hp = max_hp
-	
-	_update_healthBar()
+	if is_alive:
+		level = new_level
+		set_full_health();
+		_update_healthBar()
 
 var selected:bool = false:
 	get():
@@ -104,6 +99,9 @@ func walk():
 func stop():
 	if (current_hp > 0):
 		animation.play("idle")
+
+func set_full_health():
+	current_hp = max_hp;
 
 func take_damage(info:DamageInfo) -> void:
 	if !is_alive:

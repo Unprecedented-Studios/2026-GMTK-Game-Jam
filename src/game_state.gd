@@ -16,7 +16,7 @@ var all_characters:Array[Character]:
 	get:
 		return active_allies + active_enemies;
 		
-var player_level = 0;
+var player_level = 1;
 
 signal enemy_died
 func _on_enemy_died():
@@ -38,7 +38,7 @@ func _on_character_selected(c:Character):
 		character.selected = false;
 	c.selected = true;
 	select_character.emit(c)
-		
+
 func spawn_next_enemy():
 	if !enemyList:	
 		enemyList = enemyListNode.enemys;
@@ -48,14 +48,13 @@ func spawn_next_enemy():
 		
 	var newEnemy = enemyScene.instantiate() as Character;
 	active_enemies.push_back(newEnemy);
-	newEnemy.level = player_level;
-	
 	spawnNode.add_child(newEnemy);
 	var spawn_point = enemySpawns.pick_random();
+	newEnemy.set_level(player_level);
 	newEnemy.global_position = spawn_point.global_position;
 	newEnemy.died.connect(_on_enemy_died)
 	newEnemy.clicked_on.connect(_on_character_selected)
-	if (player_level == 0):
+	if (player_level == 1):
 		newEnemy.walk();
 	var tween = get_tree().create_tween()
 	tween.tween_property(newEnemy,"position",Vector2(newEnemy.position.x-512,newEnemy.position.y),2)
@@ -85,14 +84,21 @@ func start_game():
 		
 	active_enemies = [];
 	active_allies = [];
-	player_level = 0;
+	player_level = 1;
 	spawn_next_enemy()
 	var heroNode = heroClassListNode.classes[0] as PackedScene;
 	spawn_hero(heroNode, "base")
 
 func spawn_hero(heroNode:PackedScene, _upgradeID: String):
 	var hero = heroNode.instantiate() as Character;
-	var spawn_point = alliesSpawns[active_allies.size()];
+	var spawn_point:Marker2D
+	for spoint in alliesSpawns:
+		if !spawn_point:
+			if -1 == active_allies.find_custom( func(a): 
+				return a.global_position == spoint.global_position
+				):
+				spawn_point = spoint
+			
 	active_allies.push_back(hero);
 	hero.char_class = _upgradeID;
 	spawnNode.add_child(hero)
