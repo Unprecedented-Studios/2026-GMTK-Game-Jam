@@ -29,7 +29,7 @@ frame = 16
 [node name="ArrowDude" type="Node" parent="characters" unique_id=1925965395 node_paths=PackedStringArray("icon")]
 script = ExtResource("2_sqx2t")
 character_class = ExtResource("5_fsr8d")
-info = "Dude with a box, shoots fast but no big numbers"
+info = "Dude with a bow, shoots fast but no big numbers"
 icon = NodePath("Sprite2D")
 upgradeID = "ArrowDude"
 metadata/_custom_type_script = "uid://b7etcurocjtll"
